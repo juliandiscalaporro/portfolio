@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { projects } from "@/data/portfolio";
+import Gallery from "@/components/Gallery";
 
 export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
@@ -142,18 +143,7 @@ export default async function ProjectPage({
         {gallery.length > 0 && (
           <section className="space-y-5">
             <SectionTitle>Galerie</SectionTitle>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {gallery.map((src, i) => (
-                <div key={i} className="relative h-56 rounded-xl overflow-hidden border border-sky-900/30">
-                  <Image
-                    src={src}
-                    alt={`${project.title} — photo ${i + 1}`}
-                    fill
-                    className="object-cover hover:scale-105 transition-transform duration-500"
-                  />
-                </div>
-              ))}
-            </div>
+            <Gallery images={gallery} title={project.title} />
           </section>
         )}
 
