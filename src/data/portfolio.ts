@@ -33,18 +33,22 @@ export const projects: Project[] = [
   {
     slug: "prisma",
     title: "Prisma",
-    description: "Description courte du projet : ce qu'il fait, le problème qu'il résout, ce que tu as appris.",
-    content: `Décris ici ton projet en détail.
+    description: "Vol de nuit, Bandeaux de LEDs changeant de couleur en fonction de la vitesse de vol, Largage d’un micro CanSat",
+    content: `Années : 2024-2025
+Type de projet : Minif
+Moteur : Pro24 6G
+Taille : 1,05 m
+Vol de nuit : Balistique
 
-Tu peux expliquer le contexte, les objectifs, la méthode, les résultats et ce que tu as appris. Chaque ligne vide crée un nouveau paragraphe.
-
-N'hésite pas à être précis sur les aspects techniques.`,
-    tags: ["Python", "React", "PostgreSQL"],
-    github: "https://github.com/juliandiscalaporro/projet-1",
+Résultats : Pitot fonctionnel, visibilité du changement de couleur des bandeaux LED lors des différentes phases de vol. Malgré une non-ouverture du parachute, le micro-cansat a été largué après l’apogée et récupéré en parfait état.`,
+    tags: ["CAO", "Programmation", "Integration","composites", "électronique", "soudure"],
     image: "/images/projects/prisma/cover.jpg",
     images: [
       "/images/projects/prisma/photo-1.jpg",
       "/images/projects/prisma/photo-2.jpg",
+      "/images/projects/prisma/photo-3.jpg",
+      "/images/projects/prisma/photo-4.jpg",
+      "/images/projects/prisma/photo-5.jpg",
     ],
     documents: [
       { name: "Rapport de projet", url: "/documents/prisma/rapport.pdf" },
