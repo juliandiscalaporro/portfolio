@@ -115,20 +115,6 @@ export default async function ProjectPage({
           </div>
         </header>
 
-        {/* Image de couverture */}
-        {project.image && (
-          <div className="relative w-full h-72 md:h-96 rounded-2xl overflow-hidden border border-sky-900/30">
-            <Image
-              src={project.image}
-              alt={project.title}
-              fill
-              className="object-cover"
-              priority
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#03060f]/60 via-transparent to-transparent" />
-          </div>
-        )}
-
         {/* Contenu texte */}
         <section className="space-y-5">
           <SectionTitle>Description</SectionTitle>
@@ -139,11 +125,16 @@ export default async function ProjectPage({
           </div>
         </section>
 
-        {/* Galerie */}
-        {gallery.length > 0 && (
+        {/* Galerie + cover + vidéos */}
+        {(project.image || gallery.length > 0 || (project.videos ?? []).length > 0) && (
           <section className="space-y-5">
             <SectionTitle>Galerie</SectionTitle>
-            <Gallery images={gallery} title={project.title} />
+            <Gallery
+              images={gallery}
+              videos={project.videos}
+              cover={project.image}
+              title={project.title}
+            />
           </section>
         )}
 

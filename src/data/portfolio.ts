@@ -25,6 +25,7 @@ export type Project = {
   demo?: string;
   image?: string;
   images?: string[];
+  videos?: string[];
   documents?: Document[];
   type: "académique" | "personnel" | "associatif";
 };
@@ -49,6 +50,9 @@ Résultats : Pitot fonctionnel, visibilité du changement de couleur des bandeau
       "/images/projects/prisma/photo-3.jpg",
       "/images/projects/prisma/photo-4.jpg",
       "/images/projects/prisma/photo-5.jpg",
+    ],
+    videos: [
+      "/images/projects/prisma/video-1.mp4",
     ],
     documents: [
       { name: "Rapport de projet", url: "/documents/prisma/Rapport_final_PRISMA.pdf" },
