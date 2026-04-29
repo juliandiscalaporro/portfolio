@@ -54,9 +54,9 @@ export type Skill = {
 };
 
 export const skills: Skill[] = [
-  { category: "Programmation", items: ["Python", "C/C++"] },
-  { category: "CAO", items: ["React", "Next.js", "Node.js", "SQL"] },
-  { category: "Outils", items: ["Git", "Docker", "Linux", "VS Code"] },
+  { category: "Programmation", items: ["Python", "C/C++", "SQL","Matlab"] },
+  { category: "CAO", items: ["Catia", "Fusion 360"] },
+  { category: "Modélisation", items: ["StarCCM+", "COMSOL", "Patran/Nastran", "STK 13"] },
 ];
 
 export type Education = {
