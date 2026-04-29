@@ -155,12 +155,12 @@ export default function Home() {
             <div className="absolute inset-5">
               <div className="relative w-full h-full">
                 <div className="absolute inset-0 rounded-full bg-gradient-to-br from-sky-400 via-violet-500 to-pink-500 p-[3px] glow-blue">
-                  <div className="w-full h-full rounded-full overflow-hidden bg-[#03060f]">
+                  <div className="relative w-full h-full rounded-full overflow-hidden bg-[#03060f]">
                     <Image
                       src={config.photo}
                       alt={config.name}
                       fill
-                      className="object-cover"
+                      className="object-cover rounded-full"
                       priority
                     />
                   </div>
