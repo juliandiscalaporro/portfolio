@@ -54,8 +54,8 @@ export type Skill = {
 };
 
 export const skills: Skill[] = [
-  { category: "Langages", items: ["Python", "C/C++"] },
-  { category: "Web", items: ["React", "Next.js", "Node.js", "SQL"] },
+  { category: "Programmation", items: ["Python", "C/C++"] },
+  { category: "CAO", items: ["React", "Next.js", "Node.js", "SQL"] },
   { category: "Outils", items: ["Git", "Docker", "Linux", "VS Code"] },
 ];
 
@@ -68,14 +68,14 @@ export type Education = {
 
 export const education: Education[] = [
   {
-    school: "Nom de l'école d'ingénieur",
-    degree: "Diplôme d'ingénieur — Spécialité",
-    period: "2022 — 2025",
-    description: "Cycle ingénieur avec spécialisation en informatique.",
+    school: "IPSA, Institut Polytechnique des Sciences Avancées",
+    degree: "Diplôme d'ingénieur — Espace, Lanceurs et Satellites (ELS)",
+    period: "2024 — 2027",
+    description: "Cycle ingénieur avec spécialisation en aérospatiale.",
   },
   {
-    school: "Classes Préparatoires aux Grandes Écoles",
-    degree: "MPSI / MP",
-    period: "2020 — 2022",
+    school: "Classes Préparatoires aux Grandes Écoles, Centre international de Valbonne",
+    degree: "PCSI / PSI*",
+    period: "2022 — 2024",
   },
 ];
