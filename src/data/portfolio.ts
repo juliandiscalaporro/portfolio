@@ -51,7 +51,7 @@ Résultats : Pitot fonctionnel, visibilité du changement de couleur des bandeau
       "/images/projects/prisma/photo-5.jpg",
     ],
     documents: [
-      { name: "Rapport de projet", url: "/documents/prisma/rapport.pdf" },
+      { name: "Rapport de projet", url: "/documents/prisma/Rapport_final_PRISMA.pdf" },
     ],
     type: "associatif",
   },
