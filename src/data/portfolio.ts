@@ -10,40 +10,74 @@ export const config = {
   photo: "/images/profile.jpg",
 };
 
+export type Document = {
+  name: string;
+  url: string;
+};
+
 export type Project = {
+  slug: string;
   title: string;
   description: string;
+  content: string;
   tags: string[];
   github?: string;
   demo?: string;
   image?: string;
-  type: "académique" | "personnel";
+  images?: string[];
+  documents?: Document[];
+  type: "académique" | "personnel" | "associatif";
 };
 
 export const projects: Project[] = [
   {
-    title: "Projet 1",
+    slug: "prisma",
+    title: "Prisma",
     description: "Description courte du projet : ce qu'il fait, le problème qu'il résout, ce que tu as appris.",
+    content: `Décris ici ton projet en détail.
+
+Tu peux expliquer le contexte, les objectifs, la méthode, les résultats et ce que tu as appris. Chaque ligne vide crée un nouveau paragraphe.
+
+N'hésite pas à être précis sur les aspects techniques.`,
     tags: ["Python", "React", "PostgreSQL"],
     github: "https://github.com/juliandiscalaporro/projet-1",
-    image: "/images/projects/projet-1.jpg",
-    type: "académique",
+    image: "/images/projects/prisma/cover.jpg",
+    images: [
+      "/images/projects/prisma/photo-1.jpg",
+      "/images/projects/prisma/photo-2.jpg",
+    ],
+    documents: [
+      { name: "Rapport de projet", url: "/documents/prisma/rapport.pdf" },
+    ],
+    type: "associatif",
   },
   {
+    slug: "projet-2",
     title: "Projet 2",
     description: "Description courte du projet : ce qu'il fait, le problème qu'il résout, ce que tu as appris.",
+    content: `Décris ici ton projet en détail.
+
+Tu peux expliquer le contexte, les objectifs, la méthode, les résultats et ce que tu as appris.`,
     tags: ["C++", "Arduino", "IoT"],
     github: "https://github.com/juliandiscalaporro/projet-2",
-    image: "/images/projects/projet-2.jpg",
+    image: "/images/projects/projet-2/cover.jpg",
+    images: [],
+    documents: [],
     type: "personnel",
   },
   {
+    slug: "projet-3",
     title: "Projet 3",
     description: "Description courte du projet : ce qu'il fait, le problème qu'il résout, ce que tu as appris.",
+    content: `Décris ici ton projet en détail.
+
+Tu peux expliquer le contexte, les objectifs, la méthode, les résultats et ce que tu as appris.`,
     tags: ["Java", "Spring Boot", "Docker"],
     github: "https://github.com/juliandiscalaporro/projet-3",
     demo: "https://mon-projet.vercel.app",
-    image: "/images/projects/projet-3.jpg",
+    image: "/images/projects/projet-3/cover.jpg",
+    images: [],
+    documents: [],
     type: "académique",
   },
 ];
@@ -54,7 +88,7 @@ export type Skill = {
 };
 
 export const skills: Skill[] = [
-  { category: "Programmation", items: ["Python", "C/C++", "SQL","Matlab"] },
+  { category: "Programmation", items: ["Python", "C/C++", "SQL", "Matlab"] },
   { category: "CAO", items: ["Catia", "Fusion 360"] },
   { category: "Modélisation", items: ["StarCCM+", "COMSOL", "Patran/Nastran", "STK 13"] },
 ];
@@ -74,8 +108,8 @@ export const education: Education[] = [
     description: "Cycle ingénieur avec spécialisation en aérospatiale.",
   },
   {
-    school: "Classes Préparatoires aux Grandes Écoles, Centre international de Valbonne",
-    degree: "PCSI / PSI*",
+    school: "Classes Préparatoires aux Grandes Écoles",
+    degree: "Centre international de Valbonne, PCSI / PSI*",
     period: "2022 — 2024",
   },
 ];

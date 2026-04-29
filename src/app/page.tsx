@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import StarCanvas from "@/components/StarCanvas";
 import OrbitRing from "@/components/OrbitRing";
 import { config, projects, skills, education } from "@/data/portfolio";
@@ -175,9 +176,9 @@ export default function Home() {
           <SectionTitle label="Projets" icon={<RocketIcon />} />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {projects.map((project) => (
+              <Link key={project.title} href={`/projets/${project.slug}`}>
               <article
-                key={project.title}
-                className="card-space flex flex-col rounded-xl overflow-hidden"
+                className="card-space flex flex-col rounded-xl overflow-hidden cursor-pointer"
               >
                 {/* Image */}
                 <div className="relative h-44 bg-[#060d20]">
@@ -240,6 +241,7 @@ export default function Home() {
                   </div>
                 </div>
               </article>
+              </Link>
             ))}
           </div>
         </section>
