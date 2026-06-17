@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx tsc *)",
+      "PowerShell(npx tsc --noEmit)",
+      "PowerShell(node -v)",
+      "PowerShell(npm -v)",
+      "Bash(git config *)",
+      "PowerShell(git push origin main)"
+    ]
+  }
+}
