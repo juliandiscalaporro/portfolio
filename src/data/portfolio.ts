@@ -87,7 +87,93 @@ Tu peux expliquer le contexte, les objectifs, la méthode, les résultats et ce 
     images: [],
     documents: [],
     type: "personnel",
+  },
+
+  // --- Projets de deuxième année ---
+  {
+    slug: "conception-avion-ecoconception",
+    title: "Principe de base de conception avion et écoconception - Industrialisation et méthode de production",
+    description: "Description courte du projet : ce qu'il fait, le problème qu'il résout, ce que tu as appris.",
+    content: `Décris ici ton projet en détail.
+
+Tu peux expliquer le contexte, les objectifs, la méthode, les résultats et ce que tu as appris.`,
+    tags: ["2ème année"],
+    images: [],
+    documents: [],
+    type: "académique",
+  },
+  {
+    slug: "astronomie",
+    title: "Astronomie",
+    description: "Description courte du projet : ce qu'il fait, le problème qu'il résout, ce que tu as appris.",
+    content: `Décris ici ton projet en détail.
+
+Tu peux expliquer le contexte, les objectifs, la méthode, les résultats et ce que tu as appris.`,
+    tags: ["2ème année"],
+    images: [],
+    documents: [],
+    type: "académique",
+  },
+  {
+    slug: "modeling-asteroid-population",
+    title: "Modeling the asteroid population",
+    description: "Description courte du projet : ce qu'il fait, le problème qu'il résout, ce que tu as appris.",
+    content: `Décris ici ton projet en détail.
+
+Tu peux expliquer le contexte, les objectifs, la méthode, les résultats et ce que tu as appris.`,
+    tags: ["2ème année"],
+    images: [],
+    documents: [],
+    type: "académique",
     pinned: true,
+  },
+  {
+    slug: "production-electrique-hydrogene",
+    title: "Production électrique et Hydrogène",
+    description: "Description courte du projet : ce qu'il fait, le problème qu'il résout, ce que tu as appris.",
+    content: `Décris ici ton projet en détail.
+
+Tu peux expliquer le contexte, les objectifs, la méthode, les résultats et ce que tu as appris.`,
+    tags: ["2ème année"],
+    images: [],
+    documents: [],
+    type: "académique",
+  },
+  {
+    slug: "mecanique-spatiale",
+    title: "Mécanique spatiale",
+    description: "Description courte du projet : ce qu'il fait, le problème qu'il résout, ce que tu as appris.",
+    content: `Décris ici ton projet en détail.
+
+Tu peux expliquer le contexte, les objectifs, la méthode, les résultats et ce que tu as appris.`,
+    tags: ["2ème année"],
+    images: [],
+    documents: [],
+    type: "académique",
+  },
+  {
+    slug: "conception-mission-rentree-atmospherique",
+    title: "Projet de conception de mission I : Rentrée atmosphérique",
+    description: "Description courte du projet : ce qu'il fait, le problème qu'il résout, ce que tu as appris.",
+    content: `Décris ici ton projet en détail.
+
+Tu peux expliquer le contexte, les objectifs, la méthode, les résultats et ce que tu as appris.`,
+    tags: ["2ème année"],
+    images: [],
+    documents: [],
+    type: "académique",
+  },
+  {
+    slug: "methodes-numeriques-spatial",
+    title: "Méthodes numériques pour le spatial",
+    description: "Description courte du projet : ce qu'il fait, le problème qu'il résout, ce que tu as appris.",
+    content: `Décris ici ton projet en détail.
+
+Tu peux expliquer le contexte, les objectifs, la méthode, les résultats et ce que tu as appris.`,
+    tags: ["2ème année"],
+    images: [],
+    documents: [],
+    type: "académique",
   },
 
   // --- Projets de première année ---
@@ -195,93 +281,6 @@ Tu peux expliquer le contexte, les objectifs, la méthode, les résultats et ce 
 
 Tu peux expliquer le contexte, les objectifs, la méthode, les résultats et ce que tu as appris.`,
     tags: ["1ère année"],
-    images: [],
-    documents: [],
-    type: "académique",
-  },
-
-  // --- Projets de deuxième année ---
-  {
-    slug: "conception-avion-ecoconception",
-    title: "Principe de base de conception avion et écoconception - Industrialisation et méthode de production",
-    description: "Description courte du projet : ce qu'il fait, le problème qu'il résout, ce que tu as appris.",
-    content: `Décris ici ton projet en détail.
-
-Tu peux expliquer le contexte, les objectifs, la méthode, les résultats et ce que tu as appris.`,
-    tags: ["2ème année"],
-    images: [],
-    documents: [],
-    type: "académique",
-  },
-  {
-    slug: "astronomie",
-    title: "Astronomie",
-    description: "Description courte du projet : ce qu'il fait, le problème qu'il résout, ce que tu as appris.",
-    content: `Décris ici ton projet en détail.
-
-Tu peux expliquer le contexte, les objectifs, la méthode, les résultats et ce que tu as appris.`,
-    tags: ["2ème année"],
-    images: [],
-    documents: [],
-    type: "académique",
-  },
-  {
-    slug: "modeling-asteroid-population",
-    title: "Modeling the asteroid population",
-    description: "Description courte du projet : ce qu'il fait, le problème qu'il résout, ce que tu as appris.",
-    content: `Décris ici ton projet en détail.
-
-Tu peux expliquer le contexte, les objectifs, la méthode, les résultats et ce que tu as appris.`,
-    tags: ["2ème année"],
-    images: [],
-    documents: [],
-    type: "académique",
-    pinned: true,
-  },
-  {
-    slug: "production-electrique-hydrogene",
-    title: "Production électrique et Hydrogène",
-    description: "Description courte du projet : ce qu'il fait, le problème qu'il résout, ce que tu as appris.",
-    content: `Décris ici ton projet en détail.
-
-Tu peux expliquer le contexte, les objectifs, la méthode, les résultats et ce que tu as appris.`,
-    tags: ["2ème année"],
-    images: [],
-    documents: [],
-    type: "académique",
-  },
-  {
-    slug: "mecanique-spatiale",
-    title: "Mécanique spatiale",
-    description: "Description courte du projet : ce qu'il fait, le problème qu'il résout, ce que tu as appris.",
-    content: `Décris ici ton projet en détail.
-
-Tu peux expliquer le contexte, les objectifs, la méthode, les résultats et ce que tu as appris.`,
-    tags: ["2ème année"],
-    images: [],
-    documents: [],
-    type: "académique",
-  },
-  {
-    slug: "conception-mission-rentree-atmospherique",
-    title: "Projet de conception de mission I : Rentrée atmosphérique",
-    description: "Description courte du projet : ce qu'il fait, le problème qu'il résout, ce que tu as appris.",
-    content: `Décris ici ton projet en détail.
-
-Tu peux expliquer le contexte, les objectifs, la méthode, les résultats et ce que tu as appris.`,
-    tags: ["2ème année"],
-    images: [],
-    documents: [],
-    type: "académique",
-  },
-  {
-    slug: "methodes-numeriques-spatial",
-    title: "Méthodes numériques pour le spatial",
-    description: "Description courte du projet : ce qu'il fait, le problème qu'il résout, ce que tu as appris.",
-    content: `Décris ici ton projet en détail.
-
-Tu peux expliquer le contexte, les objectifs, la méthode, les résultats et ce que tu as appris.`,
-    tags: ["2ème année"],
     images: [],
     documents: [],
     type: "académique",

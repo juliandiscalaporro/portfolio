@@ -6,7 +6,13 @@
       "PowerShell(node -v)",
       "PowerShell(npm -v)",
       "Bash(git config *)",
-      "PowerShell(git push origin main)"
+      "PowerShell(git push origin main)",
+      "Bash(find /c/Users/julia -maxdepth 4 -iname \"portfolio\" -type d 2>/dev/null)",
+      "Read(//c/Users/julia/**)",
+      "Bash(rm -rf \"/c/Users/julia/Desktop/Stage/Code/portfolio\" && ls \"/c/Users/julia/Desktop/Stage/Code/\" 2>&1)"
+    ],
+    "additionalDirectories": [
+      "C:\\Users\\julia\\Desktop\\Stage\\Code\\portfolio"
     ]
   }
 }
