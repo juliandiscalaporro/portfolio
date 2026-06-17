@@ -117,13 +117,29 @@ Tu peux expliquer le contexte, les objectifs, la méthode, les résultats et ce 
   {
     slug: "modeling-asteroid-population",
     title: "Modeling the asteroid population",
-    description: "Description courte du projet : ce qu'il fait, le problème qu'il résout, ce que tu as appris.",
-    content: `Décris ici ton projet en détail.
+    description: "Simulation numérique (RK4, Python) de la dynamique à long terme de l'astéroïde rétrograde 2007 VW266, premier co-orbital rétrograde connu de Jupiter, en comparaison avec Connors & Wiegert (2018).",
+    content: `Années : 2025-2026 (Ci421c — Modelling the asteroid population, J. Desmars)
+Équipe : Julian Discala Porro, Kevin De Oliveira Simoes, Corentin Planchon
+Référence : Connors & Wiegert (2018), Planetary and Space Science 151:71-77
 
-Tu peux expliquer le contexte, les objectifs, la méthode, les résultats et ce que tu as appris.`,
-    tags: ["2ème année"],
+2007 VW266 est un astéroïde rétrograde trans-jovien (inclinaison i ≈ 108,4°), identifié par Connors & Wiegert (2018) comme le premier co-orbital rétrograde connu de Jupiter, verrouillé dans la résonance de moyen mouvement 13:−14.
+
+Objectif : reproduire ces résultats à partir des premiers principes, avec un intégrateur RK4 codé "from scratch" en Python et un modèle simplifié à deux perturbateurs (Jupiter + Saturne, képlériens).
+
+Méthode :
+- Équations du mouvement héliocentriques (repère écliptique J2000) incluant le terme direct et le terme indirect (réaction des planètes sur le Soleil), indispensable à la conservation de l'énergie.
+- Jupiter et Saturne traités comme képlériens fixes ; résolution de l'équation de Kepler par Newton.
+- Choix de l'intégrateur validé par comparaison Euler / RK2 / RK4 sur un cas test : seul RK4 (pas h = 1 jour) conserve le demi-grand axe à mieux que 10⁻⁶ AU sur 100 ans.
+- Construction progressive du modèle : particule test sur Jupiter circulaire, puis Jupiter elliptique réel, puis 2007 VW266 avec Jupiter seul (100 ans), puis modèle complet Jupiter + Saturne sur ~12 000 ans.
+- Propagation Monte Carlo : N = 100 clones (Jupiter seul, 100 ans) et N = 5 clones (Jupiter + Saturne, ~12 000 ans), tirages gaussiens sur les éléments orbitaux initiaux dans leurs incertitudes observationnelles.
+
+Résultats : l'orbite est stable sur 10⁴ ans et traverse quatre phases dynamiques distinctes — évolution résonante stable (0-6 000 ans, mécanisme de Kozai-Lidov), excitation séculaire (6 000-7 500 ans), perturbation majeure avec perte temporaire de la protection résonante (~7 500-9 500 ans, a → 5,0 UA, e → 0,50, i → 118°), puis re-stabilisation. Ces résultats sont en accord qualitatif avec Connors & Wiegert (2018) : période séculaire de Kozai (~8 000 ans), épisode de perturbation et recapture post-perturbation. Saturne modifie les échelles de temps séculaires mais ne change pas qualitativement la dynamique : Jupiter reste le moteur dynamique dominant.`,
+    tags: ["2ème année", "Mécanique spatiale", "Python", "RK4", "Monte Carlo"],
+    image: "/images/projects/modeling-asteroid-population/cover.png",
     images: [],
-    documents: [],
+    documents: [
+      { name: "Rapport de projet (poster + compte-rendu)", url: "/documents/modeling-asteroid-population/Rapport_2007VW266.pdf" },
+    ],
     type: "académique",
     pinned: true,
   },

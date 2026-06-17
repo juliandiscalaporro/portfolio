@@ -9,10 +9,14 @@
       "PowerShell(git push origin main)",
       "Bash(find /c/Users/julia -maxdepth 4 -iname \"portfolio\" -type d 2>/dev/null)",
       "Read(//c/Users/julia/**)",
-      "Bash(rm -rf \"/c/Users/julia/Desktop/Stage/Code/portfolio\" && ls \"/c/Users/julia/Desktop/Stage/Code/\" 2>&1)"
+      "Bash(rm -rf \"/c/Users/julia/Desktop/Stage/Code/portfolio\" && ls \"/c/Users/julia/Desktop/Stage/Code/\" 2>&1)",
+      "Bash(cd \"c:\\\\Users\\\\julia\\\\Desktop\\\\Projets\\\\Perso\\\\portfolio\" && cp \"/c/Users/julia/Downloads/CompteRenduFinalCiri-Planchon-Deoliveira-Discala-1.pdf\" \"public/documents/modeling-asteroid-population/Rapport_2007VW266.pdf\" && ls -la \"public/documents/modeling-asteroid-population/\")",
+      "Bash(xargs -I{} ls -la {})",
+      "Bash(sort -k6,7)"
     ],
     "additionalDirectories": [
-      "C:\\Users\\julia\\Desktop\\Stage\\Code\\portfolio"
+      "C:\\Users\\julia\\Desktop\\Stage\\Code\\portfolio",
+      "C:\\Users\\julia\\Downloads"
     ]
   }
 }
