@@ -47,6 +47,14 @@ function RocketIcon() {
   );
 }
 
+function PinIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} className="w-3 h-3">
+      <path d="M12 17v5M9 10.76V13a1 1 0 0 1-.553.894l-1.448.724A2 2 0 0 0 6 16.382V18a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-1.618a2 2 0 0 0-.999-1.764l-1.448-.724A1 1 0 0 1 15 13v-2.24a3 3 0 0 1 1.143-2.353l.605-.474a1 1 0 0 0-.144-1.667A8.7 8.7 0 0 0 12.456 5h-.912a8.7 8.7 0 0 0-4.148 1.266 1 1 0 0 0-.144 1.667l.605.474A3 3 0 0 1 9 10.76" />
+    </svg>
+  );
+}
+
 function SatelliteIcon() {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-4 h-4">
@@ -61,6 +69,10 @@ function SatelliteIcon() {
 }
 
 export default function Home() {
+  const sortedProjects = [...projects].sort(
+    (a, b) => Number(!!b.pinned) - Number(!!a.pinned)
+  );
+
   return (
     <div className="min-h-screen bg-[#03060f] text-slate-200 relative">
 
@@ -175,10 +187,12 @@ export default function Home() {
         <section id="projets">
           <SectionTitle label="Projets" icon={<RocketIcon />} />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {projects.map((project) => (
+            {sortedProjects.map((project) => (
               <Link key={project.title} href={`/projets/${project.slug}`}>
               <article
-                className="card-space flex flex-col rounded-xl overflow-hidden cursor-pointer"
+                className={`card-space flex flex-col rounded-xl overflow-hidden cursor-pointer ${
+                  project.pinned ? "border border-sky-600/60 shadow-[0_0_20px_rgba(56,189,248,0.15)]" : ""
+                }`}
               >
                 {/* Image */}
                 <div className="relative h-44 bg-[#060d20]">
@@ -197,6 +211,13 @@ export default function Home() {
                     </div>
                   )}
                   <div className="absolute inset-0 bg-gradient-to-t from-[#060d20] via-transparent to-transparent" />
+                  {project.pinned && (
+                    <div className="absolute top-3 left-3">
+                      <span className="flex items-center gap-1 text-xs font-mono px-2 py-0.5 rounded-full bg-sky-600/90 text-white border border-sky-400/50">
+                        <PinIcon /> Épinglé
+                      </span>
+                    </div>
+                  )}
                   <div className="absolute top-3 right-3">
                     <span className="text-xs font-mono px-2 py-0.5 rounded-full bg-sky-950/80 text-sky-400 border border-sky-800/50">
                       {project.type}

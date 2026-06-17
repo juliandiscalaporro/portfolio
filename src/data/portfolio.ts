@@ -28,6 +28,7 @@ export type Project = {
   videos?: string[];
   documents?: Document[];
   type: "académique" | "personnel" | "associatif";
+  pinned?: boolean;
 };
 
 export const projects: Project[] = [
@@ -58,32 +59,229 @@ Résultats : Pitot fonctionnel, visibilité du changement de couleur des bandeau
       { name: "Rapport de projet", url: "/documents/prisma/Rapport_final_PRISMA.pdf" },
     ],
     type: "associatif",
+    pinned: true,
   },
+
+  // --- Projets personnels ---
   {
-    slug: "projet-2",
-    title: "Projet 2",
+    slug: "astray",
+    title: "Astray",
     description: "Description courte du projet : ce qu'il fait, le problème qu'il résout, ce que tu as appris.",
     content: `Décris ici ton projet en détail.
 
 Tu peux expliquer le contexte, les objectifs, la méthode, les résultats et ce que tu as appris.`,
-    tags: ["C++", "Arduino", "IoT"],
-    github: "https://github.com/juliandiscalaporro/projet-2",
-    image: "/images/projects/projet-2/cover.jpg",
+    tags: [],
     images: [],
     documents: [],
     type: "personnel",
+    pinned: true,
   },
   {
-    slug: "projet-3",
-    title: "Projet 3",
+    slug: "simulating-black-hole",
+    title: "Simulating a black hole",
     description: "Description courte du projet : ce qu'il fait, le problème qu'il résout, ce que tu as appris.",
     content: `Décris ici ton projet en détail.
 
 Tu peux expliquer le contexte, les objectifs, la méthode, les résultats et ce que tu as appris.`,
-    tags: ["Java", "Spring Boot", "Docker"],
-    github: "https://github.com/juliandiscalaporro/projet-3",
-    demo: "https://mon-projet.vercel.app",
-    image: "/images/projects/projet-3/cover.jpg",
+    tags: [],
+    images: [],
+    documents: [],
+    type: "personnel",
+    pinned: true,
+  },
+
+  // --- Projets de première année ---
+  {
+    slug: "modelisation-simulation-numerique-vehicules",
+    title: "Modélisation et simulation numérique - application véhicules",
+    description: "Description courte du projet : ce qu'il fait, le problème qu'il résout, ce que tu as appris.",
+    content: `Décris ici ton projet en détail.
+
+Tu peux expliquer le contexte, les objectifs, la méthode, les résultats et ce que tu as appris.`,
+    tags: ["1ère année"],
+    images: [],
+    documents: [],
+    type: "académique",
+  },
+  {
+    slug: "catia-1",
+    title: "Catia I",
+    description: "Description courte du projet : ce qu'il fait, le problème qu'il résout, ce que tu as appris.",
+    content: `Décris ici ton projet en détail.
+
+Tu peux expliquer le contexte, les objectifs, la méthode, les résultats et ce que tu as appris.`,
+    tags: ["1ère année"],
+    images: [],
+    documents: [],
+    type: "académique",
+  },
+  {
+    slug: "catia-2",
+    title: "Catia II",
+    description: "Description courte du projet : ce qu'il fait, le problème qu'il résout, ce que tu as appris.",
+    content: `Décris ici ton projet en détail.
+
+Tu peux expliquer le contexte, les objectifs, la méthode, les résultats et ce que tu as appris.`,
+    tags: ["1ère année"],
+    images: [],
+    documents: [],
+    type: "académique",
+  },
+  {
+    slug: "modelisation-analyse-dynamique-aeronefs",
+    title: "Modélisation et analyse dynamiques des aéronefs",
+    description: "Description courte du projet : ce qu'il fait, le problème qu'il résout, ce que tu as appris.",
+    content: `Décris ici ton projet en détail.
+
+Tu peux expliquer le contexte, les objectifs, la méthode, les résultats et ce que tu as appris.`,
+    tags: ["1ère année"],
+    images: [],
+    documents: [],
+    type: "académique",
+  },
+  {
+    slug: "analyse-harmonique-ingenieur",
+    title: "Analyse harmonique pour l'ingénieur",
+    description: "Description courte du projet : ce qu'il fait, le problème qu'il résout, ce que tu as appris.",
+    content: `Décris ici ton projet en détail.
+
+Tu peux expliquer le contexte, les objectifs, la méthode, les résultats et ce que tu as appris.`,
+    tags: ["1ère année"],
+    images: [],
+    documents: [],
+    type: "académique",
+  },
+  {
+    slug: "optimisation-convexe",
+    title: "Optimisation convexe",
+    description: "Description courte du projet : ce qu'il fait, le problème qu'il résout, ce que tu as appris.",
+    content: `Décris ici ton projet en détail.
+
+Tu peux expliquer le contexte, les objectifs, la méthode, les résultats et ce que tu as appris.`,
+    tags: ["1ère année"],
+    images: [],
+    documents: [],
+    type: "académique",
+  },
+  {
+    slug: "introduction-sciences-donnees",
+    title: "Introduction aux sciences des données",
+    description: "Description courte du projet : ce qu'il fait, le problème qu'il résout, ce que tu as appris.",
+    content: `Décris ici ton projet en détail.
+
+Tu peux expliquer le contexte, les objectifs, la méthode, les résultats et ce que tu as appris.`,
+    tags: ["1ère année"],
+    images: [],
+    documents: [],
+    type: "académique",
+  },
+  {
+    slug: "initiation-bases-donnees",
+    title: "Initiation aux bases de données",
+    description: "Description courte du projet : ce qu'il fait, le problème qu'il résout, ce que tu as appris.",
+    content: `Décris ici ton projet en détail.
+
+Tu peux expliquer le contexte, les objectifs, la méthode, les résultats et ce que tu as appris.`,
+    tags: ["1ère année"],
+    images: [],
+    documents: [],
+    type: "académique",
+  },
+  {
+    slug: "conduite-gestion-projet",
+    title: "Conduite et gestion de projet",
+    description: "Description courte du projet : ce qu'il fait, le problème qu'il résout, ce que tu as appris.",
+    content: `Décris ici ton projet en détail.
+
+Tu peux expliquer le contexte, les objectifs, la méthode, les résultats et ce que tu as appris.`,
+    tags: ["1ère année"],
+    images: [],
+    documents: [],
+    type: "académique",
+  },
+
+  // --- Projets de deuxième année ---
+  {
+    slug: "conception-avion-ecoconception",
+    title: "Principe de base de conception avion et écoconception - Industrialisation et méthode de production",
+    description: "Description courte du projet : ce qu'il fait, le problème qu'il résout, ce que tu as appris.",
+    content: `Décris ici ton projet en détail.
+
+Tu peux expliquer le contexte, les objectifs, la méthode, les résultats et ce que tu as appris.`,
+    tags: ["2ème année"],
+    images: [],
+    documents: [],
+    type: "académique",
+  },
+  {
+    slug: "astronomie",
+    title: "Astronomie",
+    description: "Description courte du projet : ce qu'il fait, le problème qu'il résout, ce que tu as appris.",
+    content: `Décris ici ton projet en détail.
+
+Tu peux expliquer le contexte, les objectifs, la méthode, les résultats et ce que tu as appris.`,
+    tags: ["2ème année"],
+    images: [],
+    documents: [],
+    type: "académique",
+  },
+  {
+    slug: "modeling-asteroid-population",
+    title: "Modeling the asteroid population",
+    description: "Description courte du projet : ce qu'il fait, le problème qu'il résout, ce que tu as appris.",
+    content: `Décris ici ton projet en détail.
+
+Tu peux expliquer le contexte, les objectifs, la méthode, les résultats et ce que tu as appris.`,
+    tags: ["2ème année"],
+    images: [],
+    documents: [],
+    type: "académique",
+    pinned: true,
+  },
+  {
+    slug: "production-electrique-hydrogene",
+    title: "Production électrique et Hydrogène",
+    description: "Description courte du projet : ce qu'il fait, le problème qu'il résout, ce que tu as appris.",
+    content: `Décris ici ton projet en détail.
+
+Tu peux expliquer le contexte, les objectifs, la méthode, les résultats et ce que tu as appris.`,
+    tags: ["2ème année"],
+    images: [],
+    documents: [],
+    type: "académique",
+  },
+  {
+    slug: "mecanique-spatiale",
+    title: "Mécanique spatiale",
+    description: "Description courte du projet : ce qu'il fait, le problème qu'il résout, ce que tu as appris.",
+    content: `Décris ici ton projet en détail.
+
+Tu peux expliquer le contexte, les objectifs, la méthode, les résultats et ce que tu as appris.`,
+    tags: ["2ème année"],
+    images: [],
+    documents: [],
+    type: "académique",
+  },
+  {
+    slug: "conception-mission-rentree-atmospherique",
+    title: "Projet de conception de mission I : Rentrée atmosphérique",
+    description: "Description courte du projet : ce qu'il fait, le problème qu'il résout, ce que tu as appris.",
+    content: `Décris ici ton projet en détail.
+
+Tu peux expliquer le contexte, les objectifs, la méthode, les résultats et ce que tu as appris.`,
+    tags: ["2ème année"],
+    images: [],
+    documents: [],
+    type: "académique",
+  },
+  {
+    slug: "methodes-numeriques-spatial",
+    title: "Méthodes numériques pour le spatial",
+    description: "Description courte du projet : ce qu'il fait, le problème qu'il résout, ce que tu as appris.",
+    content: `Décris ici ton projet en détail.
+
+Tu peux expliquer le contexte, les objectifs, la méthode, les résultats et ce que tu as appris.`,
+    tags: ["2ème année"],
     images: [],
     documents: [],
     type: "académique",
