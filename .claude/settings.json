@@ -12,7 +12,14 @@
       "Bash(rm -rf \"/c/Users/julia/Desktop/Stage/Code/portfolio\" && ls \"/c/Users/julia/Desktop/Stage/Code/\" 2>&1)",
       "Bash(cd \"c:\\\\Users\\\\julia\\\\Desktop\\\\Projets\\\\Perso\\\\portfolio\" && cp \"/c/Users/julia/Downloads/CompteRenduFinalCiri-Planchon-Deoliveira-Discala-1.pdf\" \"public/documents/modeling-asteroid-population/Rapport_2007VW266.pdf\" && ls -la \"public/documents/modeling-asteroid-population/\")",
       "Bash(xargs -I{} ls -la {})",
-      "Bash(sort -k6,7)"
+      "Bash(sort -k6,7)",
+      "Read(//c/Program Files/**)",
+      "Read(//c/Users/julia/AppData/Local/**)",
+      "Read(//c/Users/julia/AppData/Roaming/**)",
+      "Read(//c//**)",
+      "Bash(where.exe node *)",
+      "Read(//c/Users/julia/AppData/Local/Programs/**)",
+      "Read(//c/Users/julia/scoop/**)"
     ],
     "additionalDirectories": [
       "C:\\Users\\julia\\Desktop\\Stage\\Code\\portfolio",

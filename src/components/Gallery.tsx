@@ -1,13 +1,13 @@
 "use client";
 
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 
 type MediaItem = { kind: "image"; src: string } | { kind: "video"; src: string };
 
 function CloseIcon() {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} className="w-6 h-6">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-6 h-6">
       <path d="M18 6 6 18M6 6l12 12" />
     </svg>
   );
@@ -15,7 +15,7 @@ function CloseIcon() {
 
 function ChevronLeft() {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} className="w-7 h-7">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-7 h-7">
       <path d="m15 18-6-6 6-6" />
     </svg>
   );
@@ -23,7 +23,7 @@ function ChevronLeft() {
 
 function ChevronRight() {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} className="w-7 h-7">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-7 h-7">
       <path d="m9 18 6-6-6-6" />
     </svg>
   );
@@ -31,19 +31,17 @@ function ChevronRight() {
 
 function PlayIcon() {
   return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className="w-10 h-10">
+    <svg viewBox="0 0 24 24" fill="currentColor" className="w-9 h-9">
       <path d="M8 5v14l11-7z" />
     </svg>
   );
 }
 
 function VideoThumbnail({ src }: { src: string }) {
-  const videoRef = useRef<HTMLVideoElement>(null);
   return (
     <video
-      ref={videoRef}
       src={src}
-      className="absolute inset-0 w-full h-full object-cover"
+      className="absolute inset-0 h-full w-full object-cover"
       muted
       playsInline
       preload="metadata"
@@ -71,8 +69,14 @@ export default function Gallery({
   const [active, setActive] = useState<number | null>(null);
 
   const close = useCallback(() => setActive(null), []);
-  const prev = useCallback(() => setActive((i) => (i !== null ? (i - 1 + media.length) % media.length : 0)), [media.length]);
-  const next = useCallback(() => setActive((i) => (i !== null ? (i + 1) % media.length : 0)), [media.length]);
+  const prev = useCallback(
+    () => setActive((i) => (i !== null ? (i - 1 + media.length) % media.length : 0)),
+    [media.length]
+  );
+  const next = useCallback(
+    () => setActive((i) => (i !== null ? (i + 1) % media.length : 0)),
+    [media.length]
+  );
 
   useEffect(() => {
     if (active === null) return;
@@ -93,127 +97,140 @@ export default function Gallery({
 
   return (
     <>
-      {/* Cover cliquable */}
+      {/* Figure principale */}
       {cover && (
-        <button
-          onClick={() => setActive(0)}
-          className="relative w-full h-72 md:h-96 rounded-2xl overflow-hidden border border-sky-900/30 group focus:outline-none focus:ring-2 focus:ring-sky-500 block"
-        >
-          <Image src={cover} alt={title} fill className="object-cover group-hover:scale-[1.02] transition-transform duration-500" priority />
-          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
-            <span className="opacity-0 group-hover:opacity-100 transition-opacity text-white text-xs font-mono bg-black/50 px-3 py-1 rounded-full">
-              Plein écran
-            </span>
-          </div>
-        </button>
+        <figure>
+          <button
+            onClick={() => setActive(0)}
+            className="group block w-full border border-line bg-card p-2 transition-colors hover:border-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+          >
+            <div className="relative h-64 w-full md:h-96">
+              <Image src={cover} alt={title} fill className="object-cover" priority />
+            </div>
+          </button>
+          <figcaption className="mt-2 font-mono text-xs text-ink-soft">
+            Fig. 1 — {title}. <span className="text-ink-faint">Cliquer pour agrandir.</span>
+          </figcaption>
+        </figure>
       )}
 
-      {/* Grille galerie */}
+      {/* Figures secondaires */}
       {galleryItems.length > 0 && (
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className={`grid grid-cols-1 gap-6 sm:grid-cols-2 ${cover ? "mt-8" : ""}`}>
           {galleryItems.map((item, i) => {
             const globalIndex = (cover ? 1 : 0) + i;
+            const figNum = globalIndex + 1;
             return (
-              <button
-                key={i}
-                onClick={() => setActive(globalIndex)}
-                className="relative h-56 rounded-xl overflow-hidden border border-sky-900/30 group focus:outline-none focus:ring-2 focus:ring-sky-500"
-              >
-                {item.kind === "image" ? (
-                  <Image
-                    src={item.src}
-                    alt={`${title} — photo ${i + 1}`}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                ) : (
-                  <>
-                    <VideoThumbnail src={item.src} />
-                    <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
-                      <div className="text-white opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300 bg-black/50 rounded-full p-2">
-                        <PlayIcon />
-                      </div>
-                    </div>
-                  </>
-                )}
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/15 transition-colors duration-300" />
-              </button>
+              <figure key={i}>
+                <button
+                  onClick={() => setActive(globalIndex)}
+                  className="group block w-full border border-line bg-card p-2 transition-colors hover:border-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                >
+                  <div className="relative h-52 w-full">
+                    {item.kind === "image" ? (
+                      <Image
+                        src={item.src}
+                        alt={`${title} — fig. ${figNum}`}
+                        fill
+                        className="object-cover"
+                      />
+                    ) : (
+                      <>
+                        <VideoThumbnail src={item.src} />
+                        <div className="absolute inset-0 flex items-center justify-center bg-ink/25">
+                          <span className="border border-paper/70 p-2 text-paper transition-transform group-hover:scale-105">
+                            <PlayIcon />
+                          </span>
+                        </div>
+                      </>
+                    )}
+                  </div>
+                </button>
+                <figcaption className="mt-2 font-mono text-xs text-ink-soft">
+                  Fig. {figNum}
+                  {item.kind === "video" ? " (vidéo)" : ""} — {title}.
+                </figcaption>
+              </figure>
             );
           })}
         </div>
       )}
 
-      {/* Lightbox */}
+      {/* Visionneuse */}
       {active !== null && (
         <div
-          className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-sm flex items-center justify-center"
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-[#181510]/95"
           onClick={close}
         >
-          {/* Compteur */}
-          <div className="absolute top-5 left-1/2 -translate-x-1/2 text-sm font-mono text-slate-400">
-            {active + 1} / {media.length}
+          <div className="absolute left-1/2 top-5 -translate-x-1/2 font-mono text-xs tracking-widest text-paper/70">
+            FIG. {active + 1} / {media.length}
           </div>
 
-          {/* Fermer */}
           <button
             onClick={close}
-            className="absolute top-5 right-5 text-slate-400 hover:text-white transition-colors p-2 rounded-full hover:bg-white/10"
+            className="absolute right-5 top-4 p-2 text-paper/70 transition-colors hover:text-paper"
+            aria-label="Fermer"
           >
             <CloseIcon />
           </button>
 
-          {/* Précédent */}
           {media.length > 1 && (
             <button
-              onClick={(e) => { e.stopPropagation(); prev(); }}
-              className="absolute left-4 text-slate-400 hover:text-white transition-colors p-3 rounded-full hover:bg-white/10"
+              onClick={(e) => {
+                e.stopPropagation();
+                prev();
+              }}
+              className="absolute left-3 p-3 text-paper/70 transition-colors hover:text-paper"
+              aria-label="Précédent"
             >
               <ChevronLeft />
             </button>
           )}
 
-          {/* Contenu */}
           <div
-            className="relative w-full max-w-5xl max-h-[85vh] mx-16 flex items-center justify-center"
+            className="relative mx-14 flex max-h-[85vh] w-full max-w-5xl items-center justify-center"
             onClick={(e) => e.stopPropagation()}
           >
             {media[active].kind === "image" ? (
               <Image
                 src={media[active].src}
-                alt={`${title} — ${active + 1}`}
+                alt={`${title} — fig. ${active + 1}`}
                 width={1400}
                 height={900}
-                className="object-contain w-full max-h-[85vh] rounded-lg"
+                className="max-h-[85vh] w-full object-contain"
                 priority
               />
             ) : (
-              <video
-                src={media[active].src}
-                controls
-                autoPlay
-                className="w-full max-h-[85vh] rounded-lg"
-              />
+              <video src={media[active].src} controls autoPlay className="max-h-[85vh] w-full" />
             )}
           </div>
 
-          {/* Suivant */}
           {media.length > 1 && (
             <button
-              onClick={(e) => { e.stopPropagation(); next(); }}
-              className="absolute right-4 text-slate-400 hover:text-white transition-colors p-3 rounded-full hover:bg-white/10"
+              onClick={(e) => {
+                e.stopPropagation();
+                next();
+              }}
+              className="absolute right-3 p-3 text-paper/70 transition-colors hover:text-paper"
+              aria-label="Suivant"
             >
               <ChevronRight />
             </button>
           )}
 
-          {/* Points de navigation */}
           {media.length > 1 && (
-            <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex gap-2">
+            <div className="absolute bottom-5 left-1/2 flex -translate-x-1/2 gap-2.5">
               {media.map((_, i) => (
                 <button
                   key={i}
-                  onClick={(e) => { e.stopPropagation(); setActive(i); }}
-                  className={`h-2 rounded-full transition-all ${i === active ? "bg-sky-400 w-4" : "bg-slate-600 hover:bg-slate-400 w-2"}`}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setActive(i);
+                  }}
+                  aria-label={`Figure ${i + 1}`}
+                  className={`h-2 w-2 transition-colors ${
+                    i === active ? "bg-accent" : "bg-paper/30 hover:bg-paper/60"
+                  }`}
                 />
               ))}
             </div>

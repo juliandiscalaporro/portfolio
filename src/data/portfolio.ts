@@ -303,6 +303,24 @@ Tu peux expliquer le contexte, les objectifs, la méthode, les résultats et ce 
   },
 ];
 
+export type ProjectGroup = "2A" | "1A" | "P" | "A";
+
+export function projectGroup(p: Project): ProjectGroup {
+  if (p.tags.includes("2ème année")) return "2A";
+  if (p.tags.includes("1ère année")) return "1A";
+  if (p.type === "associatif") return "A";
+  return "P";
+}
+
+/** Référence de dossier façon archive technique, ex. « 2A-03 », « P-01 ». */
+export function projectRef(p: Project): string {
+  const group = projectGroup(p);
+  const index = projects
+    .filter((x) => projectGroup(x) === group)
+    .findIndex((x) => x.slug === p.slug);
+  return `${group}-${String(index + 1).padStart(2, "0")}`;
+}
+
 export type Skill = {
   category: string;
   items: string[];
