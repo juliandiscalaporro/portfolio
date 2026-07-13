@@ -102,14 +102,14 @@ export default function Gallery({
         <figure>
           <button
             onClick={() => setActive(0)}
-            className="group block w-full border border-line bg-card p-2 transition-colors hover:border-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+            className="group block w-full border border-line bg-blueprint-panel p-2 transition-colors hover:border-chalk/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
           >
             <div className="relative h-64 w-full md:h-96">
               <Image src={cover} alt={title} fill className="object-cover" priority />
             </div>
           </button>
-          <figcaption className="mt-2 font-mono text-xs text-ink-soft">
-            Fig. 1 — {title}. <span className="text-ink-faint">Cliquer pour agrandir.</span>
+          <figcaption className="mt-2 font-mono text-xs text-chalk-soft">
+            Fig. 1 — {title}. <span className="text-chalk-faint">Cliquer pour agrandir.</span>
           </figcaption>
         </figure>
       )}
@@ -124,7 +124,7 @@ export default function Gallery({
               <figure key={i}>
                 <button
                   onClick={() => setActive(globalIndex)}
-                  className="group block w-full border border-line bg-card p-2 transition-colors hover:border-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                  className="group block w-full border border-line bg-blueprint-panel p-2 transition-colors hover:border-chalk/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
                 >
                   <div className="relative h-52 w-full">
                     {item.kind === "image" ? (
@@ -137,8 +137,8 @@ export default function Gallery({
                     ) : (
                       <>
                         <VideoThumbnail src={item.src} />
-                        <div className="absolute inset-0 flex items-center justify-center bg-ink/25">
-                          <span className="border border-paper/70 p-2 text-paper transition-transform group-hover:scale-105">
+                        <div className="absolute inset-0 flex items-center justify-center bg-blueprint/40">
+                          <span className="border border-chalk/70 p-2 text-chalk transition-transform group-hover:scale-105">
                             <PlayIcon />
                           </span>
                         </div>
@@ -146,7 +146,7 @@ export default function Gallery({
                     )}
                   </div>
                 </button>
-                <figcaption className="mt-2 font-mono text-xs text-ink-soft">
+                <figcaption className="mt-2 font-mono text-xs text-chalk-soft">
                   Fig. {figNum}
                   {item.kind === "video" ? " (vidéo)" : ""} — {title}.
                 </figcaption>
@@ -159,16 +159,16 @@ export default function Gallery({
       {/* Visionneuse */}
       {active !== null && (
         <div
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-[#181510]/95"
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-[#050b16]/95"
           onClick={close}
         >
-          <div className="absolute left-1/2 top-5 -translate-x-1/2 font-mono text-xs tracking-widest text-paper/70">
+          <div className="absolute left-1/2 top-5 -translate-x-1/2 font-mono text-xs tracking-widest text-chalk/70">
             FIG. {active + 1} / {media.length}
           </div>
 
           <button
             onClick={close}
-            className="absolute right-5 top-4 p-2 text-paper/70 transition-colors hover:text-paper"
+            className="absolute right-5 top-4 p-2 text-chalk/70 transition-colors hover:text-chalk"
             aria-label="Fermer"
           >
             <CloseIcon />
@@ -180,7 +180,7 @@ export default function Gallery({
                 e.stopPropagation();
                 prev();
               }}
-              className="absolute left-3 p-3 text-paper/70 transition-colors hover:text-paper"
+              className="absolute left-3 p-3 text-chalk/70 transition-colors hover:text-chalk"
               aria-label="Précédent"
             >
               <ChevronLeft />
@@ -211,7 +211,7 @@ export default function Gallery({
                 e.stopPropagation();
                 next();
               }}
-              className="absolute right-3 p-3 text-paper/70 transition-colors hover:text-paper"
+              className="absolute right-3 p-3 text-chalk/70 transition-colors hover:text-chalk"
               aria-label="Suivant"
             >
               <ChevronRight />
@@ -229,7 +229,7 @@ export default function Gallery({
                   }}
                   aria-label={`Figure ${i + 1}`}
                   className={`h-2 w-2 transition-colors ${
-                    i === active ? "bg-accent" : "bg-paper/30 hover:bg-paper/60"
+                    i === active ? "bg-accent" : "bg-chalk/30 hover:bg-chalk/60"
                   }`}
                 />
               ))}

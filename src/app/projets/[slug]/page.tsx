@@ -10,7 +10,7 @@ export function generateStaticParams() {
 function SectionHead({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex items-center gap-4">
-      <h2 className="font-mono text-xs uppercase tracking-[0.25em] text-ink-soft">{children}</h2>
+      <h2 className="font-mono text-xs uppercase tracking-[0.25em] text-chalk-soft">{children}</h2>
       <div className="h-px flex-1 bg-line" />
     </div>
   );
@@ -37,15 +37,15 @@ export default async function ProjectPage({
   return (
     <div className="min-h-screen">
       {/* Nav */}
-      <nav className="sticky top-0 z-50 border-b border-line bg-paper/95 backdrop-blur-sm">
+      <nav className="sticky top-0 z-50 border-b border-line bg-blueprint/95 backdrop-blur-sm">
         <div className="mx-auto flex h-14 max-w-3xl items-center justify-between px-6">
           <Link
             href="/#registre"
-            className="font-mono text-xs uppercase tracking-widest text-ink-soft transition-colors hover:text-accent"
+            className="font-mono text-xs uppercase tracking-widest text-chalk-soft transition-colors hover:text-accent"
           >
             ← Retour au registre
           </Link>
-          <span className="font-mono text-xs uppercase tracking-widest text-ink-faint">
+          <span className="font-mono text-xs uppercase tracking-widest text-chalk-faint">
             Dossier {ref}
           </span>
         </div>
@@ -53,8 +53,8 @@ export default async function ProjectPage({
 
       <main className="mx-auto max-w-3xl px-6 pb-24 pt-16">
         {/* Cartouche */}
-        <header className="border-b-2 border-ink pb-10">
-          <div className="flex flex-wrap gap-x-6 gap-y-1 font-mono text-xs uppercase tracking-widest text-ink-soft">
+        <header className="border-b-2 border-chalk/60 pb-10">
+          <div className="flex flex-wrap gap-x-6 gap-y-1 font-mono text-xs uppercase tracking-widest text-chalk-soft">
             <span className="text-accent">{ref}</span>
             <span>{project.type}</span>
             {project.pinned && <span>◆ sélection</span>}
@@ -62,11 +62,11 @@ export default async function ProjectPage({
           <h1 className="mt-5 font-serif text-4xl font-medium leading-tight tracking-tight md:text-5xl">
             {project.title}
           </h1>
-          <p className="mt-5 max-w-2xl text-lg italic leading-relaxed text-ink-soft">
+          <p className="mt-5 max-w-2xl text-lg italic leading-relaxed text-chalk-soft">
             {project.description}
           </p>
           {project.tags.length > 0 && (
-            <p className="mt-5 font-mono text-xs text-ink-faint">{project.tags.join(" · ")}</p>
+            <p className="mt-5 font-mono text-xs text-chalk-faint">{project.tags.join(" · ")}</p>
           )}
           {(project.github || project.demo) && (
             <div className="mt-7 flex flex-wrap gap-3">
@@ -75,7 +75,7 @@ export default async function ProjectPage({
                   href={project.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="border border-ink px-4 py-2 font-mono text-xs uppercase tracking-widest transition-colors hover:bg-ink hover:text-paper"
+                  className="border border-chalk/60 px-4 py-2 font-mono text-xs uppercase tracking-widest transition-colors hover:bg-chalk hover:text-blueprint"
                 >
                   Code source ↗
                 </a>
@@ -85,7 +85,7 @@ export default async function ProjectPage({
                   href={project.demo}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="border border-accent bg-accent px-4 py-2 font-mono text-xs uppercase tracking-widest text-paper transition-colors hover:border-accent-deep hover:bg-accent-deep"
+                  className="border border-accent bg-accent px-4 py-2 font-mono text-xs uppercase tracking-widest text-blueprint transition-colors hover:border-accent-deep hover:bg-accent-deep"
                 >
                   Démonstration ↗
                 </a>
@@ -132,13 +132,13 @@ export default async function ProjectPage({
                   href={doc.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex items-baseline gap-4 border-b border-line py-4 transition-colors hover:border-ink"
+                  className="group flex items-baseline gap-4 border-b border-line py-4 transition-colors hover:border-chalk/60"
                 >
                   <span className="font-mono text-xs text-accent">PDF</span>
                   <span className="flex-1 font-serif text-lg underline-offset-4 decoration-accent group-hover:underline">
                     {doc.name}
                   </span>
-                  <span className="font-mono text-xs text-ink-faint transition-colors group-hover:text-accent">
+                  <span className="font-mono text-xs text-chalk-faint transition-colors group-hover:text-accent">
                     ouvrir ↗
                   </span>
                 </a>
@@ -148,14 +148,11 @@ export default async function ProjectPage({
         )}
       </main>
 
-      {/* Colophon */}
-      <footer className="bg-ink text-paper">
-        <div className="mx-auto flex max-w-3xl flex-wrap justify-between gap-4 px-6 py-8 font-mono text-xs text-paper/60">
+      {/* Pied de page */}
+      <footer className="border-t border-line bg-blueprint-deep">
+        <div className="mx-auto flex max-w-3xl flex-wrap justify-between gap-4 px-6 py-8 font-mono text-xs text-chalk-faint">
           <p>© {new Date().getFullYear()} Julian Discala Porro.</p>
-          <a
-            href={`mailto:${config.email}`}
-            className="text-paper/80 transition-colors hover:text-[#ff7a45]"
-          >
+          <a href={`mailto:${config.email}`} className="transition-colors hover:text-accent">
             Écrire ↗
           </a>
         </div>

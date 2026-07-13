@@ -5,17 +5,20 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        paper: "#f6f3ec",
-        card: "#fbf9f3",
-        ink: {
-          DEFAULT: "#221f1a",
-          soft: "#6f6a5f",
-          faint: "#a39d8f",
+        blueprint: {
+          DEFAULT: "#0d1b2f",
+          panel: "#122540",
+          deep: "#091324",
         },
-        line: "#d9d3c6",
+        chalk: {
+          DEFAULT: "#e7eef7",
+          soft: "#9db0c9",
+          faint: "#64789a",
+        },
+        line: "#28405f",
         accent: {
-          DEFAULT: "#c14d17",
-          deep: "#9a3c10",
+          DEFAULT: "#f2a23c",
+          deep: "#d3821f",
         },
       },
       fontFamily: {
