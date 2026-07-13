@@ -38,7 +38,7 @@ export default async function ProjectPage({
     <div className="min-h-screen">
       {/* Nav */}
       <nav className="sticky top-0 z-50 border-b border-line bg-blueprint/95 backdrop-blur-sm">
-        <div className="mx-auto flex h-14 max-w-3xl items-center justify-between px-6">
+        <div className="mx-auto flex h-14 max-w-4xl items-center justify-between px-6">
           <Link
             href="/#registre"
             className="font-mono text-xs uppercase tracking-widest text-chalk-soft transition-colors hover:text-accent"
@@ -51,7 +51,7 @@ export default async function ProjectPage({
         </div>
       </nav>
 
-      <main className="mx-auto max-w-3xl px-6 pb-24 pt-16">
+      <main className="mx-auto max-w-4xl px-6 pb-24 pt-16">
         {/* Cartouche */}
         <header className="border-b-2 border-chalk/60 pb-10">
           <div className="flex flex-wrap gap-x-6 gap-y-1 font-mono text-xs uppercase tracking-widest text-chalk-soft">
@@ -150,7 +150,7 @@ export default async function ProjectPage({
 
       {/* Pied de page */}
       <footer className="border-t border-line bg-blueprint-deep">
-        <div className="mx-auto flex max-w-3xl flex-wrap justify-between gap-4 px-6 py-8 font-mono text-xs text-chalk-faint">
+        <div className="mx-auto flex max-w-4xl flex-wrap justify-between gap-4 px-6 py-8 font-mono text-xs text-chalk-faint">
           <p>© {new Date().getFullYear()} Julian Discala Porro.</p>
           <a href={`mailto:${config.email}`} className="transition-colors hover:text-accent">
             Écrire ↗

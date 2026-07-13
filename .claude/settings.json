@@ -19,7 +19,8 @@
       "Read(//c//**)",
       "Bash(where.exe node *)",
       "Read(//c/Users/julia/AppData/Local/Programs/**)",
-      "Read(//c/Users/julia/scoop/**)"
+      "Read(//c/Users/julia/scoop/**)",
+      "Bash(curl -sI --max-time 10 \"https://images-assets.nasa.gov/image/PIA03654/PIA03654~orig.jpg\")"
     ],
     "additionalDirectories": [
       "C:\\Users\\julia\\Desktop\\Stage\\Code\\portfolio",

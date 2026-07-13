@@ -10,6 +10,8 @@ import {
   type Project,
 } from "@/data/portfolio";
 
+const CONTAINER = "mx-auto w-full max-w-[90rem] px-6 md:px-12";
+
 /* Vignette de repli pour les dossiers sans image — tracé monoligne façon plan. */
 function OrbitGlyph() {
   return (
@@ -24,6 +26,19 @@ function OrbitGlyph() {
   );
 }
 
+/* Repères de coin façon marques de calage d'un tirage de plan. */
+function CornerMarks() {
+  const base = "absolute h-3 w-3 border-accent";
+  return (
+    <>
+      <span className={`${base} -left-1.5 -top-1.5 border-l-2 border-t-2`} aria-hidden="true" />
+      <span className={`${base} -right-1.5 -top-1.5 border-r-2 border-t-2`} aria-hidden="true" />
+      <span className={`${base} -bottom-1.5 -left-1.5 border-b-2 border-l-2`} aria-hidden="true" />
+      <span className={`${base} -bottom-1.5 -right-1.5 border-b-2 border-r-2`} aria-hidden="true" />
+    </>
+  );
+}
+
 function SectionTitle({ num, title, note }: { num: string; title: string; note?: string }) {
   return (
     <div className="flex flex-wrap items-baseline gap-x-5 gap-y-2 border-b-2 border-chalk/60 pb-4 mb-10">
@@ -35,6 +50,29 @@ function SectionTitle({ num, title, note }: { num: string; title: string; note?:
         </span>
       )}
     </div>
+  );
+}
+
+/* Planche photographique pleine largeur, légendée façon atlas. */
+function PlateBand({
+  src,
+  alt,
+  caption,
+  position = "center",
+}: {
+  src: string;
+  alt: string;
+  caption: string;
+  position?: string;
+}) {
+  return (
+    <figure className="relative mt-28 h-[45vh] min-h-[340px] w-full overflow-hidden border-y border-line">
+      <Image src={src} alt={alt} fill sizes="100vw" className="object-cover" style={{ objectPosition: position }} />
+      <div className="absolute inset-0 bg-blueprint/25" aria-hidden="true" />
+      <figcaption className="absolute bottom-4 right-4 max-w-[85%] border border-line bg-blueprint/85 px-3 py-1.5 font-mono text-[11px] tracking-wide text-chalk-soft backdrop-blur-sm">
+        {caption}
+      </figcaption>
+    </figure>
   );
 }
 
@@ -76,19 +114,6 @@ function ProjectCard({ project }: { project: Project }) {
   );
 }
 
-/* Repères de coin façon marques de calage d'un tirage de plan. */
-function CornerMarks() {
-  const base = "absolute h-3 w-3 border-accent";
-  return (
-    <>
-      <span className={`${base} -left-1.5 -top-1.5 border-l-2 border-t-2`} aria-hidden="true" />
-      <span className={`${base} -right-1.5 -top-1.5 border-r-2 border-t-2`} aria-hidden="true" />
-      <span className={`${base} -bottom-1.5 -left-1.5 border-b-2 border-l-2`} aria-hidden="true" />
-      <span className={`${base} -bottom-1.5 -right-1.5 border-b-2 border-r-2`} aria-hidden="true" />
-    </>
-  );
-}
-
 export default function Home() {
   const pinned = projects.filter((p) => p.pinned);
 
@@ -103,7 +128,7 @@ export default function Home() {
     <div className="min-h-screen">
       {/* Nav */}
       <nav className="sticky top-0 z-50 border-b border-line bg-blueprint/95 backdrop-blur-sm">
-        <div className="mx-auto flex h-14 max-w-4xl items-center justify-between px-6">
+        <div className="flex h-14 items-center justify-between px-6 md:px-10">
           <span className="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em]">
             <span className="inline-block h-2 w-2 bg-accent" aria-hidden="true" />
             J. Discala Porro
@@ -123,17 +148,32 @@ export default function Home() {
         </div>
       </nav>
 
-      <main className="mx-auto max-w-4xl px-6">
-        {/* Cartouche d'en-tête */}
-        <header className="pt-14">
-          <div className="flex flex-wrap justify-between gap-x-6 gap-y-1 border-y border-line py-2 font-mono text-xs uppercase tracking-widest text-chalk-soft">
-            <span>Dossier de travaux — rév. juillet 2026</span>
-            <span>Ivry-sur-Seine · 48.81° N, 2.39° E</span>
-          </div>
+      {/* Hero — Saturne à contre-jour */}
+      <header className="relative flex min-h-[calc(100vh-3.5rem)] flex-col overflow-hidden">
+        <Image
+          src="/images/space/saturn.jpg"
+          alt="Saturne à contre-jour photographiée par la sonde Cassini"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
+        />
+        <div
+          className="absolute inset-0 bg-gradient-to-t from-blueprint via-blueprint/55 to-blueprint/30"
+          aria-hidden="true"
+        />
+        <div
+          className="absolute inset-0 bg-gradient-to-r from-blueprint/70 via-blueprint/25 to-transparent"
+          aria-hidden="true"
+        />
 
-          <div className="mt-14 flex flex-col gap-12 md:flex-row md:items-start md:gap-16">
-            <div className="flex-1">
-              <h1 className="font-serif text-6xl font-medium leading-[1.02] tracking-tight md:text-7xl">
+        <div className={`relative z-10 flex flex-1 flex-col justify-center py-16 ${CONTAINER}`}>
+          <div className="flex flex-col gap-12 lg:flex-row lg:items-center lg:justify-between">
+            <div className="max-w-2xl">
+              <p className="border-y border-line/70 py-2 font-mono text-xs uppercase tracking-widest text-chalk-soft">
+                Dossier de travaux — rév. juillet 2026
+              </p>
+              <h1 className="mt-10 font-serif text-6xl font-medium leading-[1.02] tracking-tight md:text-8xl">
                 Julian
                 <br />
                 <span className="italic text-accent">Discala Porro</span>
@@ -171,7 +211,7 @@ export default function Home() {
               </div>
             </div>
 
-            <figure className="w-56 shrink-0 self-center md:mt-2 md:self-start">
+            <figure className="w-56 shrink-0 self-center lg:w-64 lg:self-center">
               <div className="relative border border-chalk/30 bg-blueprint-panel p-2 pb-3">
                 <CornerMarks />
                 <div className="relative aspect-[4/5]">
@@ -181,72 +221,100 @@ export default function Home() {
               </div>
             </figure>
           </div>
-        </header>
+        </div>
 
+        <div className={`relative z-10 pb-5 ${CONTAINER}`}>
+          <div className="flex flex-wrap items-center justify-between gap-3 font-mono text-[11px] tracking-wide text-chalk-soft">
+            <span>Planche I — Saturne à contre-jour, sonde Cassini · NASA/JPL-Caltech/SSI, 2013.</span>
+            <a href="#travaux" className="transition-colors hover:text-accent">
+              ↓ dérouler le dossier
+            </a>
+          </div>
+        </div>
+      </header>
+
+      <main>
         {/* I. Travaux sélectionnés */}
-        <section id="travaux" className="mt-24 scroll-mt-20">
+        <section id="travaux" className={`mt-24 scroll-mt-20 ${CONTAINER}`}>
           <SectionTitle num="I." title="Travaux sélectionnés" note={`${pinned.length} dossiers`} />
-          <div className="grid gap-6 sm:grid-cols-2">
+          <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
             {pinned.map((project) => (
               <ProjectCard key={project.slug} project={project} />
             ))}
           </div>
         </section>
 
+        {/* Planche II — Andromède */}
+        <PlateBand
+          src="/images/space/andromeda.jpg"
+          alt="La galaxie d'Andromède observée en ultraviolet par le télescope GALEX"
+          caption="Planche II — M31, la galaxie d'Andromède en ultraviolet · NASA/JPL-Caltech, GALEX."
+        />
+
         {/* II. Registre complet */}
-        <section id="registre" className="mt-24 scroll-mt-20">
+        <section id="registre" className={`mt-24 scroll-mt-20 ${CONTAINER}`}>
           <SectionTitle num="II." title="Registre complet" note={`${projects.length} dossiers`} />
-          {registre.map(
-            ({ label, items }) =>
-              items.length > 0 && (
-                <div key={label} className="mb-12">
-                  <div className="flex items-baseline justify-between border-b border-line pb-2">
-                    <h3 className="font-mono text-xs uppercase tracking-[0.2em] text-chalk-soft">
-                      {label}
-                    </h3>
-                    <span className="font-mono text-xs text-chalk-faint">
-                      {items.length} {items.length > 1 ? "dossiers" : "dossier"}
-                    </span>
-                  </div>
-                  <ul>
-                    {items.map((project) => (
-                      <li key={project.slug} className="border-b border-line">
-                        <Link
-                          href={`/projets/${project.slug}`}
-                          className="group grid grid-cols-[3.5rem_1fr] items-baseline gap-3 px-2 py-3.5 transition-colors hover:bg-blueprint-panel sm:grid-cols-[3.5rem_1fr_auto]"
-                        >
-                          <span className="font-mono text-xs text-accent">
-                            {projectRef(project)}
-                          </span>
-                          <span>
-                            <span className="font-serif text-lg leading-snug underline-offset-4 decoration-accent group-hover:underline">
-                              {project.title}
+          <div className="grid gap-x-16 lg:grid-cols-2">
+            {registre.map(
+              ({ label, items }) =>
+                items.length > 0 && (
+                  <div key={label} className="mb-12">
+                    <div className="flex items-baseline justify-between border-b border-line pb-2">
+                      <h3 className="font-mono text-xs uppercase tracking-[0.2em] text-chalk-soft">
+                        {label}
+                      </h3>
+                      <span className="font-mono text-xs text-chalk-faint">
+                        {items.length} {items.length > 1 ? "dossiers" : "dossier"}
+                      </span>
+                    </div>
+                    <ul>
+                      {items.map((project) => (
+                        <li key={project.slug} className="border-b border-line">
+                          <Link
+                            href={`/projets/${project.slug}`}
+                            className="group grid grid-cols-[3.5rem_1fr] items-baseline gap-3 px-2 py-3.5 transition-colors hover:bg-blueprint-panel sm:grid-cols-[3.5rem_1fr_auto]"
+                          >
+                            <span className="font-mono text-xs text-accent">
+                              {projectRef(project)}
                             </span>
-                            {project.pinned && (
-                              <span className="ml-2 text-sm text-accent" title="Travaux sélectionnés">
-                                ◆
+                            <span>
+                              <span className="font-serif text-lg leading-snug underline-offset-4 decoration-accent group-hover:underline">
+                                {project.title}
                               </span>
-                            )}
-                          </span>
-                          <span className="hidden font-mono text-xs text-chalk-faint transition-colors group-hover:text-accent sm:inline">
-                            consulter →
-                          </span>
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )
-          )}
+                              {project.pinned && (
+                                <span className="ml-2 text-sm text-accent" title="Travaux sélectionnés">
+                                  ◆
+                                </span>
+                              )}
+                            </span>
+                            <span className="hidden font-mono text-xs text-chalk-faint transition-colors group-hover:text-accent sm:inline">
+                              consulter →
+                            </span>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )
+            )}
+          </div>
           <p className="font-mono text-xs text-chalk-faint">
             <span className="text-accent">◆</span> — figure dans les travaux sélectionnés.
           </p>
         </section>
 
+        {/* Planche III — Jupiter */}
+        <PlateBand
+          src="/images/space/jupiter.jpg"
+          alt="La Grande Tache rouge de Jupiter photographiée par la sonde Juno"
+          caption="Planche III — La Grande Tache rouge de Jupiter, sonde Juno · NASA/JPL-Caltech/SwRI/MSSS."
+          position="center 35%"
+        />
+
         {/* III. Compétences */}
-        <section id="competences" className="mt-24 scroll-mt-20">
+        <section id="competences" className={`mt-24 scroll-mt-20 ${CONTAINER}`}>
           <SectionTitle num="III." title="Compétences" />
-          <div className="grid grid-cols-2 gap-x-8 gap-y-12 md:grid-cols-4">
+          <div className="grid grid-cols-2 gap-x-10 gap-y-12 md:grid-cols-4">
             {skills.map((skill) => (
               <div key={skill.category}>
                 <p className="border-b border-chalk/60 pb-2 font-mono text-xs uppercase tracking-widest text-chalk-soft">
@@ -268,31 +336,50 @@ export default function Home() {
         </section>
 
         {/* IV. Parcours */}
-        <section id="parcours" className="mt-24 scroll-mt-20">
+        <section id="parcours" className={`mt-24 scroll-mt-20 ${CONTAINER}`}>
           <SectionTitle num="IV." title="Parcours" />
-          <div>
-            {education.map((edu) => (
-              <div
-                key={edu.school}
-                className="grid gap-2 border-b border-line py-6 last:border-0 md:grid-cols-[10rem_1fr] md:gap-8"
-              >
-                <p className="pt-1 font-mono text-xs text-accent">{edu.period}</p>
-                <div>
-                  <p className="font-serif text-xl">{edu.school}</p>
-                  <p className="mt-1 text-chalk-soft">{edu.degree}</p>
-                  {edu.description && (
-                    <p className="mt-1 text-[15px] text-chalk-faint">{edu.description}</p>
-                  )}
+          <div className="grid gap-12 lg:grid-cols-[1fr_22rem] lg:items-start">
+            <div>
+              {education.map((edu) => (
+                <div
+                  key={edu.school}
+                  className="grid gap-2 border-b border-line py-6 last:border-0 md:grid-cols-[10rem_1fr] md:gap-8"
+                >
+                  <p className="pt-1 font-mono text-xs text-accent">{edu.period}</p>
+                  <div>
+                    <p className="font-serif text-xl">{edu.school}</p>
+                    <p className="mt-1 text-chalk-soft">{edu.degree}</p>
+                    {edu.description && (
+                      <p className="mt-1 text-[15px] text-chalk-faint">{edu.description}</p>
+                    )}
+                  </div>
                 </div>
+              ))}
+            </div>
+            <figure className="justify-self-center lg:justify-self-end">
+              <div className="relative border border-chalk/30 bg-blueprint-panel p-2 pb-3">
+                <CornerMarks />
+                <div className="relative aspect-square w-64 lg:w-80">
+                  <Image
+                    src="/images/space/earthrise.jpg"
+                    alt="Lever de Terre photographié depuis l'orbite lunaire par Apollo 8"
+                    fill
+                    sizes="320px"
+                    className="object-cover"
+                  />
+                </div>
+                <p className="mt-2 max-w-[19rem] px-1 font-mono text-xs leading-relaxed text-chalk-soft">
+                  Planche IV — Lever de Terre, Apollo 8, 24 déc. 1968 · NASA.
+                </p>
               </div>
-            ))}
+            </figure>
           </div>
         </section>
       </main>
 
       {/* Cartouche de plan — pied de page */}
       <footer className="mt-28 border-t border-line bg-blueprint-deep">
-        <div className="mx-auto max-w-4xl px-6 py-12">
+        <div className={`py-12 ${CONTAINER}`}>
           <div className="border border-chalk/40 font-mono text-xs">
             <div className="grid sm:grid-cols-[2fr_1fr_1fr]">
               <div className="border-b border-chalk/40 p-4 sm:border-b-0 sm:border-r">
@@ -330,7 +417,10 @@ export default function Home() {
           </div>
 
           <div className="mt-6 flex flex-col justify-between gap-4 font-mono text-xs text-chalk-faint md:flex-row">
-            <p>© {new Date().getFullYear()} Julian Discala Porro — mis en page à la main, sans template.</p>
+            <p>
+              © {new Date().getFullYear()} Julian Discala Porro — mis en page à la main, sans
+              template. Planches I–IV : NASA, domaine public.
+            </p>
             <div className="flex gap-6">
               <a
                 href={config.github}
