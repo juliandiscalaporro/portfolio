@@ -149,10 +149,13 @@ export default async function ProjectPage({
       </main>
 
       {/* Colophon */}
-      <footer className="border-t-2 border-ink">
-        <div className="mx-auto flex max-w-3xl flex-wrap justify-between gap-4 px-6 py-8 font-mono text-xs text-ink-soft">
+      <footer className="bg-ink text-paper">
+        <div className="mx-auto flex max-w-3xl flex-wrap justify-between gap-4 px-6 py-8 font-mono text-xs text-paper/60">
           <p>© {new Date().getFullYear()} Julian Discala Porro.</p>
-          <a href={`mailto:${config.email}`} className="transition-colors hover:text-accent">
+          <a
+            href={`mailto:${config.email}`}
+            className="text-paper/80 transition-colors hover:text-[#ff7a45]"
+          >
             Écrire ↗
           </a>
         </div>

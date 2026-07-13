@@ -8,9 +8,16 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Papier millimétré : grille fine + grille majeure, très légères. */
 body {
   font-family: 'Newsreader', Georgia, 'Times New Roman', serif;
   background-color: #f6f3ec;
+  background-image:
+    linear-gradient(rgba(34, 31, 26, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34, 31, 26, 0.05) 1px, transparent 1px),
+    linear-gradient(rgba(34, 31, 26, 0.028) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34, 31, 26, 0.028) 1px, transparent 1px);
+  background-size: 120px 120px, 120px 120px, 24px 24px, 24px 24px;
   color: #221f1a;
   -webkit-font-smoothing: antialiased;
   font-feature-settings: 'liga', 'kern';
