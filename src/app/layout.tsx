@@ -1,9 +1,14 @@
 import type { Metadata } from "next";
+import "@fontsource/spectral/400.css";
+import "@fontsource/spectral/500.css";
+import "@fontsource/work-sans/400.css";
+import "@fontsource/work-sans/500.css";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Julian Discala Porro — Ingénieur Aéronautique & Spatial",
-  description: "Portfolio de Julian Discala Porro, étudiant en 4e année à l'IPSA, spécialisation Espace, Lanceurs et Satellites.",
+  title: "Julian Discala Porro, élève ingénieur spatial et apprenti astronome",
+  description: "Stage à l'Observatoire de la Côte d'Azur, prédiction et reconstruction d'orbites, projets en mécanique spatiale et astrophysique.",
+  alternates: { languages: { fr: "/", en: "/en" } },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
