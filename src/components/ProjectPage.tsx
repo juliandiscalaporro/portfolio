@@ -67,8 +67,8 @@ export default function ProjectPage({ lang, slug }: { lang: Lang; slug: string }
 
         {project.image && (
           <figure className="mt-14">
-            <div className="relative aspect-[16/9] overflow-hidden rounded-[3px] bg-raised">
-              <Image src={project.image} alt={tr(project.title, lang)} fill priority sizes="100vw" className="object-cover" />
+            <div className={`relative aspect-[16/9] overflow-hidden rounded-[3px] ${project.imageFit === "contain" ? "bg-white" : "bg-raised"}`}>
+              <Image src={project.image} alt={tr(project.title, lang)} fill priority sizes="100vw" className={project.imageFit === "contain" ? "object-contain p-4" : "object-cover"} />
             </div>
             {project.imageCredit && (
               <figcaption className="mt-3 text-[0.85rem] text-faint">{tr(project.imageCredit, lang)}</figcaption>

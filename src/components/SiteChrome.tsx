@@ -8,7 +8,6 @@ export function Header({ lang, altHref }: { lang: Lang; altHref: string }) {
   const links = [
     { label: t.navExperience, href: `${home}#experience` },
     { label: t.navProjects, href: `${home}#projets` },
-    { label: t.navSky, href: `${home}#ciel` },
     { label: t.navPath, href: `${home}#parcours` },
   ];
   return (

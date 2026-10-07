@@ -1,11 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
-import Lightbox from "@/components/Lightbox";
 import { Header, Footer } from "@/components/SiteChrome";
 import {
   config,
   experiences,
   projects,
+  archive,
   sky,
   skills,
   languages,
@@ -29,7 +29,8 @@ const closing = {
 
 export default function HomePage({ lang }: { lang: Lang }) {
   const t = ui(lang);
-  const labels = { close: t.close, prev: t.prev, next: t.next, enlarge: t.enlarge };
+  const ongoing = projects.filter((p) => p.status === "ongoing");
+  const done = projects.filter((p) => p.status === "done");
   const cvLabel = t.cv + (config.cvIsTranslated[lang] ? "" : t.cvFrOnly);
 
   return (
@@ -96,6 +97,18 @@ export default function HomePage({ lang }: { lang: Lang }) {
                         <li key={tag.fr} className="chip">{tr(tag, lang)}</li>
                       ))}
                     </ul>
+                    <figure className="mt-10 hidden md:block">
+                      <div className="relative aspect-[3/4] overflow-hidden rounded-[3px] bg-raised">
+                        <Image
+                          src={exp.illustration.src}
+                          alt={tr(exp.illustration.alt, lang)}
+                          fill
+                          sizes="30vw"
+                          className="object-cover"
+                        />
+                      </div>
+                      <figcaption className="mt-3 text-[0.85rem] text-faint">{tr(exp.illustration.alt, lang)}</figcaption>
+                    </figure>
                   </div>
                 </aside>
 
@@ -149,16 +162,10 @@ export default function HomePage({ lang }: { lang: Lang }) {
               </article>
             ))}
 
-            <h3 className="mt-20 font-serif text-[1.25rem] font-medium">{t.photosTitle}</h3>
-            <Lightbox
-              labels={labels}
-              items={experiences[0].photos.map((p) => ({ src: p.src, caption: tr(p.alt, lang) }))}
-              className="mt-5 grid grid-flow-dense auto-rows-[150px] grid-cols-2 gap-2 sm:auto-rows-[190px] md:grid-cols-4"
-              thumbClassName={experiences[0].photos.map((ph) => (ph.h > ph.w ? "row-span-2" : ""))}
-              sizes="(min-width: 768px) 25vw, 50vw"
-            />
           </div>
         </section>
+
+        <Band image={sky.find((x) => x.src.includes("ngc6960"))!} lang={lang} position="50% 42%" />
 
         {/* ── Projets ──────────────────────────────────────── */}
         <section id="projets" className="border-t border-line/70">
@@ -168,8 +175,9 @@ export default function HomePage({ lang }: { lang: Lang }) {
               <p className="max-w-prose text-muted md:col-span-7 md:pt-3">{t.projectsIntro}</p>
             </div>
 
-            <ul className="mt-14 divide-y divide-line border-y border-line">
-              {projects.map((p) => (
+            <h3 className="mt-14 font-serif text-[1.3rem] font-medium">{t.ongoingTitle}</h3>
+            <ul className="mt-5 divide-y divide-line border-y border-line">
+              {ongoing.map((p) => (
                 <li key={p.slug}>
                   <Link
                     href={`${t.projectBase}/${p.slug}`}
@@ -190,13 +198,10 @@ export default function HomePage({ lang }: { lang: Lang }) {
                       <p className="flex flex-wrap items-center gap-x-3 gap-y-2 text-[0.92rem] text-muted">
                         <span>{tr(p.kind, lang)}</span>
                         <span className="text-faint">{tr(p.period, lang)}</span>
-                        {p.status === "ongoing" && (
-                          <span className="rounded-full border border-star/60 px-2.5 py-0.5 text-[0.8rem] text-star">{t.ongoing}</span>
-                        )}
                       </p>
-                      <h3 className="mt-3 font-serif text-[2rem] font-medium leading-tight text-paper transition-colors group-hover:text-star">
+                      <h4 className="mt-3 font-serif text-[2rem] font-medium leading-tight text-paper transition-colors group-hover:text-star">
                         {tr(p.title, lang)}
-                      </h3>
+                      </h4>
                       <p className="mt-3 max-w-prose text-paper/80">{tr(p.description, lang)}</p>
                       <ul className="mt-5 flex flex-wrap gap-2">
                         {p.tags.map((tag) => (
@@ -211,26 +216,59 @@ export default function HomePage({ lang }: { lang: Lang }) {
                 </li>
               ))}
             </ul>
+
+            <h3 className="mt-20 font-serif text-[1.3rem] font-medium">{t.doneTitle}</h3>
+            <ul className="mt-5 grid gap-x-8 gap-y-14 md:grid-cols-2">
+              {done.map((p) => (
+                <li key={p.slug}>
+                  <Link href={`${t.projectBase}/${p.slug}`} className="group block">
+                    <div className={`relative aspect-[16/10] overflow-hidden rounded-[3px] ${p.imageFit === "contain" ? "bg-white" : "bg-raised"}`}>
+                      {p.image && (
+                        <Image
+                          src={p.image}
+                          alt=""
+                          fill
+                          sizes="(min-width: 768px) 45vw, 100vw"
+                          className={`${p.imageFit === "contain" ? "object-contain p-3" : "object-cover"} transition-transform duration-500 group-hover:scale-[1.03]`}
+                        />
+                      )}
+                    </div>
+                    <p className="mt-5 flex flex-wrap gap-x-3 text-[0.92rem] text-muted">
+                      <span>{tr(p.kind, lang)}</span>
+                      <span className="text-faint">{tr(p.period, lang)}</span>
+                    </p>
+                    <h4 className="mt-2 font-serif text-[1.6rem] font-medium leading-snug text-paper transition-colors group-hover:text-star">
+                      {tr(p.title, lang)}
+                    </h4>
+                    <p className="mt-2 text-paper/80">{tr(p.description, lang)}</p>
+                    <span className="mt-4 inline-block text-[0.95rem] text-paper underline decoration-star/60 underline-offset-4 group-hover:decoration-star">
+                      {t.readProject}
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+
+            <h3 className="mt-24 font-serif text-[1.3rem] font-medium">{t.archiveTitle}</h3>
+            <div className="mt-6 grid gap-10 md:grid-cols-3">
+              {archive.map((g) => (
+                <div key={g.group.fr}>
+                  <p className="border-b border-line pb-3 text-[0.95rem] text-star">{tr(g.group, lang)}</p>
+                  <ul className="mt-3 space-y-3">
+                    {g.items.map((it) => (
+                      <li key={it.title.fr} className="leading-snug">
+                        <span className="text-paper/90">{tr(it.title, lang)}</span>
+                        {it.note && <span className="mt-0.5 block text-[0.9rem] text-muted">{tr(it.note, lang)}</span>}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
-        {/* ── Ciel ─────────────────────────────────────────── */}
-        <section id="ciel" className="border-t border-line/70 bg-[#080d18]">
-          <div className="mx-auto max-w-6xl px-4 py-20 sm:px-8 md:py-28">
-            <div className="grid gap-4 md:grid-cols-12">
-              <h2 className="h2 md:col-span-5">{t.skyTitle}</h2>
-              <p className="max-w-prose text-muted md:col-span-7 md:pt-3">{t.skyIntro}</p>
-            </div>
-            <Lightbox
-              labels={labels}
-              showCaptions
-              items={sky.map((s) => ({ src: s.src, caption: `${tr(s.title, lang)}. ${tr(s.note, lang)}` }))}
-              className="mt-12 grid grid-cols-2 gap-x-3 gap-y-8 md:grid-cols-3"
-              aspectClass="aspect-square"
-              sizes="(min-width: 768px) 33vw, 50vw"
-            />
-          </div>
-        </section>
+        <Band image={sky.find((x) => x.src.includes("lune"))!} lang={lang} position="50% 45%" />
 
         {/* ── Parcours ─────────────────────────────────────── */}
         <section id="parcours" className="border-t border-line/70">
@@ -287,6 +325,8 @@ export default function HomePage({ lang }: { lang: Lang }) {
           </div>
         </section>
 
+        <Band image={sky.find((x) => x.src.includes("voie-lactee"))!} lang={lang} position="50% 40%" />
+
         {/* ── Contact ──────────────────────────────────────── */}
         <section className="border-t border-line/70">
           <div className="mx-auto max-w-6xl px-4 py-20 sm:px-8 md:py-28">
@@ -302,5 +342,18 @@ export default function HomePage({ lang }: { lang: Lang }) {
 
       <Footer lang={lang} />
     </>
+  );
+}
+
+/* Bandeau d'illustration pleine largeur, entre deux sections */
+function Band({ image, lang, position }: { image: (typeof sky)[number]; lang: Lang; position: string }) {
+  return (
+    <figure className="relative h-[220px] overflow-hidden border-t border-line/70 sm:h-[300px]">
+      <Image src={image.src} alt={tr(image.title, lang)} fill sizes="100vw" className="object-cover" style={{ objectPosition: position }} />
+      <div className="absolute inset-0 bg-gradient-to-b from-night/40 via-transparent to-night/70" />
+      <figcaption className="absolute bottom-3 right-4 max-w-[80%] text-right text-[0.82rem] text-paper/75 sm:right-8">
+        {tr(image.title, lang)}. {tr(image.note, lang)}
+      </figcaption>
+    </figure>
   );
 }

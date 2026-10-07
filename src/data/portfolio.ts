@@ -48,7 +48,7 @@ export type Experience = {
   results: { value: T; label: T }[];
   figure?: { src: string; caption: T; w: number; h: number };
   video?: { url: string; label: T };
-  photos: Photo[];
+  illustration: Photo;
   tags: T[];
 };
 
@@ -128,16 +128,7 @@ export const experiences: Experience[] = [
         en: "Watch the video: tracking a satellite from the Calern dome",
       },
     },
-    photos: [
-      { src: "/images/stage/calern-coupole-crepuscule.jpg", w: 900, h: 1600, alt: { fr: "La coupole UniversCity au crépuscule, à Calern", en: "The UniversCity dome at dusk, Calern" } },
-      { src: "/images/stage/calern-telescope.jpg", w: 900, h: 1600, alt: { fr: "Le télescope UniversCity sous sa coupole", en: "The UniversCity telescope inside its dome" } },
-      { src: "/images/stage/calern-pupitre.jpg", w: 1200, h: 1600, alt: { fr: "Au pupitre de commande du télescope pendant une nuit d'observation", en: "At the telescope control desk during an observing night" } },
-      { src: "/images/stage/calern-coupole-interieur.jpg", w: 1600, h: 1200, alt: { fr: "Sous la coupole pendant une acquisition", en: "Under the dome during an acquisition" } },
-      { src: "/images/stage/valrose-lagrange.jpg", w: 900, h: 1600, alt: { fr: "Le château de Valrose, laboratoire Lagrange, à Nice", en: "Valrose castle, Lagrange laboratory, Nice" } },
-      { src: "/images/stage/montgros-equatorial.jpg", w: 1600, h: 1200, alt: { fr: "Le grand équatorial du mont Gros, Observatoire de Nice", en: "The great equatorial telescope at Mont Gros, Nice Observatory" } },
-      { src: "/images/stage/calern-groupe.jpg", w: 1600, h: 1200, alt: { fr: "Avec l'équipe sur le plateau de Calern", en: "With the team on the Calern plateau" } },
-      { src: "/images/stage/astrovalberg.jpg", w: 1600, h: 1200, alt: { fr: "Le stand de l'Observatoire au festival Astro'Valberg", en: "The Observatory stand at the Astro'Valberg festival" } },
-    ],
+    illustration: { src: "/images/stage/calern-coupole-crepuscule.jpg", w: 900, h: 1600, alt: { fr: "La coupole UniversCity au crépuscule, plateau de Calern", en: "The UniversCity dome at dusk, Calern plateau" } },
     tags: tg("Python", "gLAB", "SGP4", "satkit", "STK", "astrométrie|astrometry", "Gaia"),
   },
 ];
@@ -160,6 +151,7 @@ export type Project = {
   demo?: string;
   image?: string;
   imageCredit?: T;
+  imageFit?: "cover" | "contain";
   images?: { src: string; caption?: T }[];
   videos?: string[];
   documents?: Document[];
@@ -283,9 +275,83 @@ export const projects: Project[] = [
       { label: { fr: "Mon rôle", en: "My role" }, value: { fr: "Co-responsable du projet", en: "Project co-lead" } },
     ],
     tags: tg("ballon|balloon", "liaison optique|optical link", "capteurs|sensors", "gestion de projet|project management"),
-    image: "/images/projects/borealis/equipe-calern.jpg",
+    image: "/images/projects/borealis/plateau-calern.jpg",
+    imageCredit: { fr: "Le plateau de Calern, site de lancement envisagé", en: "The Calern plateau, the planned launch site" },
+  },
+  {
+    slug: "2007-vw266",
+    title: { fr: "L'astéroïde rétrograde 2007 VW266", en: "The retrograde asteroid 2007 VW266" },
+    kind: { fr: "Projet de recherche, Modelling the asteroid population", en: "Research project, Modelling the asteroid population" },
+    period: { fr: "2025 – 2026", en: "2025 – 2026" },
+    status: "done",
+    description: {
+      fr: "Simuler sur 12 000 ans le premier co-orbital rétrograde connu de Jupiter, avec un intégrateur écrit de zéro en Python.",
+      en: "Simulating Jupiter's first known retrograde co-orbital over 12,000 years, with an integrator written from scratch in Python.",
+    },
+    content: [
+      {
+        fr: "2007 VW266 tourne autour du Soleil dans le sens inverse des planètes (inclinaison de 108°). Connors et Wiegert (2018) ont montré qu'il partage l'orbite de Jupiter, verrouillé dans une résonance 13:−14. Notre objectif : retrouver ce résultat à partir des premiers principes.",
+        en: "2007 VW266 orbits the Sun in the opposite direction to the planets (108° inclination). Connors and Wiegert (2018) showed that it shares Jupiter's orbit, locked in a 13:−14 resonance. Our goal: recover this result from first principles.",
+      },
+      {
+        fr: "Nous avons écrit un intégrateur Runge-Kutta d'ordre 4 en Python, après l'avoir comparé à Euler et RK2 : seul RK4 conserve le demi-grand axe à mieux que 10⁻⁶ UA sur 100 ans. Le modèle a été construit par étapes, de Jupiter circulaire jusqu'au système complet Jupiter et Saturne, avec le terme indirect indispensable à la conservation de l'énergie. Des clones Monte-Carlo, tirés dans les incertitudes d'observation, testent la robustesse du résultat.",
+        en: "We wrote a fourth-order Runge-Kutta integrator in Python, after comparing it with Euler and RK2: only RK4 conserves the semi-major axis to better than 10⁻⁶ AU over 100 years. The model was built step by step, from a circular Jupiter up to the full Jupiter and Saturn system, including the indirect term needed for energy conservation. Monte Carlo clones, drawn within the observational uncertainties, test how robust the result is.",
+      },
+      {
+        fr: "L'orbite reste stable sur 10 000 ans et traverse quatre phases : évolution résonante stable (mécanisme de Kozai-Lidov), excitation séculaire, perte temporaire de la protection résonante, puis re-stabilisation. C'est en accord qualitatif avec Connors et Wiegert : Saturne modifie les échelles de temps, mais Jupiter reste le moteur de la dynamique.",
+        en: "The orbit stays stable over 10,000 years and goes through four phases: stable resonant evolution (Kozai-Lidov mechanism), secular excitation, temporary loss of resonant protection, then re-stabilisation. This agrees qualitatively with Connors and Wiegert: Saturn changes the timescales, but Jupiter remains the driver of the dynamics.",
+      },
+    ],
+    facts: [
+      { label: { fr: "Intégrateur", en: "Integrator" }, value: { fr: "RK4, pas de 1 jour", en: "RK4, 1-day step" } },
+      { label: { fr: "Durée simulée", en: "Simulated span" }, value: { fr: "≈ 12 000 ans", en: "≈ 12,000 years" } },
+      { label: { fr: "Équipe", en: "Team" }, value: { fr: "Avec K. De Oliveira Simoes et C. Planchon", en: "With K. De Oliveira Simoes and C. Planchon" } },
+    ],
+    tags: tg("Python", "RK4", "Monte-Carlo", "résonance|resonance"),
+    image: "/images/projects/modeling-asteroid-population/orbite-3d-saturne.jpg",
+    imageFit: "contain",
     images: [
-      { src: "/images/projects/borealis/plateau-calern.jpg", caption: { fr: "Le plateau de Calern, site de lancement envisagé", en: "The Calern plateau, the planned launch site" } },
+      { src: "/images/projects/modeling-asteroid-population/orbite-3d.jpg", caption: { fr: "Orbite héliocentrique de 2007 VW266 avec Jupiter et Saturne, sur 100 ans", en: "Heliocentric orbit of 2007 VW266 with Jupiter and Saturn, over 100 years" } },
+      { src: "/images/projects/modeling-asteroid-population/monte-carlo-12000-ans.jpg", caption: { fr: "Éléments orbitaux des clones Monte-Carlo sur 12 000 ans", en: "Orbital elements of the Monte Carlo clones over 12,000 years" } },
+      { src: "/images/projects/modeling-asteroid-population/poster.jpg", caption: { fr: "Le poster du projet", en: "The project poster" } },
+    ],
+    documents: [
+      { name: { fr: "Rapport et poster (en anglais)", en: "Report and poster" }, url: "/documents/modeling-asteroid-population/Rapport_2007VW266.pdf" },
+    ],
+  },
+  {
+    slug: "gaia-606",
+    title: { fr: "Retrouver le géocroiseur Gaia-606", en: "Recovering the near-Earth object Gaia-606" },
+    kind: { fr: "Projet d'astronomie et d'astrométrie", en: "Astronomy and astrometry project" },
+    period: { fr: "Mai 2026", en: "May 2026" },
+    status: "done",
+    description: {
+      fr: "À partir d'images brutes du télescope de 1,20 m de l'Observatoire de Haute-Provence, détecter un astéroïde, mesurer sa position et l'identifier.",
+      en: "From raw images taken with the 1.20 m telescope at Haute-Provence Observatory, detect an asteroid, measure its position and identify it.",
+    },
+    content: [
+      {
+        fr: "Gaia-606 est le premier géocroiseur détecté par le réseau de suivi au sol du satellite Gaia, en 2016. Gaia balaie le ciel et ne revoit pas un objet assez vite pour calculer son orbite : ce sont des télescopes au sol qui prennent le relais. Nous avons refait toute cette chaîne sur les 20 images d'origine.",
+        en: "Gaia-606 is the first near-Earth object detected by the ground follow-up network of the Gaia satellite, in 2016. Gaia scans the sky and does not revisit an object quickly enough to compute its orbit: ground telescopes take over. We redid this whole chain on the 20 original images.",
+      },
+      {
+        fr: "Calibration des images (offset et plat médians), repérage de l'objet en mouvement par clignotement sous DS9, mesure de sa trajectoire en pixels, solution astrométrique avec Astrometry.net, puis passage en coordonnées équatoriales. La comparaison avec le Minor Planet Center identifie l'objet comme (508555) 2016 UV56 : position à moins d'une seconde d'arc, vitesse à 4 % près.",
+        en: "Image calibration (median bias and flat), spotting the moving object by blinking in DS9, measuring its trajectory in pixels, astrometric solution with Astrometry.net, then conversion to equatorial coordinates. Comparison with the Minor Planet Center identifies the object as (508555) 2016 UV56: position within one arcsecond, speed within 4%.",
+      },
+    ],
+    facts: [
+      { label: { fr: "Télescope", en: "Telescope" }, value: { fr: "T120, Observatoire de Haute-Provence", en: "T120, Haute-Provence Observatory" } },
+      { label: { fr: "Vitesse mesurée", en: "Measured speed" }, value: { fr: "0,416″ par minute", en: "0.416″ per minute" } },
+      { label: { fr: "Identification", en: "Identification" }, value: { fr: "(508555) 2016 UV56", en: "(508555) 2016 UV56" } },
+    ],
+    tags: tg("Python", "astrométrie|astrometry", "DS9", "Astrometry.net"),
+    image: "/images/projects/gaia-606/champ.jpg",
+    images: [
+      { src: "/images/projects/gaia-606/mouvement-ciel.jpg", caption: { fr: "Mouvement de Gaia-606 en coordonnées équatoriales", en: "Motion of Gaia-606 in equatorial coordinates" } },
+      { src: "/images/projects/gaia-606/mouvement-pixels.jpg", caption: { fr: "Trajectoire mesurée sur les images, en pixels", en: "Trajectory measured on the images, in pixels" } },
+    ],
+    documents: [
+      { name: { fr: "Rapport (en anglais)", en: "Report" }, url: "/documents/astronomie/Rapport_Gaia-606.pdf" },
     ],
   },
   {
@@ -319,12 +385,47 @@ export const projects: Project[] = [
       { src: "/images/projects/prisma/photo-1.jpg" },
       { src: "/images/projects/prisma/photo-2.jpg" },
       { src: "/images/projects/prisma/photo-3.jpg" },
-      { src: "/images/projects/prisma/photo-4.jpg" },
       { src: "/images/projects/prisma/photo-5.jpg" },
     ],
     videos: ["/images/projects/prisma/video-1.mp4"],
     documents: [
       { name: { fr: "Rapport de projet", en: "Project report (French)" }, url: "/documents/prisma/Rapport_final_PRISMA.pdf" },
+    ],
+  },
+];
+
+
+// ─── Autres projets (liste courte, sans page) ──────────────────────────────
+// Pour donner une page à l'un d'eux, déplace-le dans `projects` ci-dessus.
+
+export const archive: { group: T; items: { title: T; note?: T }[] }[] = [
+  {
+    group: { fr: "Cycle ingénieur, 2e année (2025 – 2026)", en: "Engineering cycle, 2nd year (2025 – 2026)" },
+    items: [
+      { title: { fr: "Rentrée atmosphérique : Apollo et Artemis", en: "Atmospheric re-entry: Apollo and Artemis" }, note: { fr: "Simulation 3D sous MATLAB, entrée directe et entrée à rebond", en: "3D MATLAB simulation, direct and skip entry" } },
+      { title: { fr: "Conception avion et écoconception, industrialisation et méthodes de production", en: "Aircraft design and eco-design, industrialisation and production methods" } },
+      { title: { fr: "Production électrique et hydrogène", en: "Electric power and hydrogen production" } },
+      { title: { fr: "Méthodes numériques pour le spatial", en: "Numerical methods for space" } },
+    ],
+  },
+  {
+    group: { fr: "Cycle ingénieur, 1re année (2024 – 2025)", en: "Engineering cycle, 1st year (2024 – 2025)" },
+    items: [
+      { title: { fr: "Modélisation et simulation numérique, application aux véhicules", en: "Modelling and numerical simulation for vehicles" } },
+      { title: { fr: "Catia I et Catia II", en: "Catia I and Catia II" } },
+      { title: { fr: "Modélisation et analyse dynamique des aéronefs", en: "Aircraft dynamics modelling and analysis" } },
+      { title: { fr: "Analyse harmonique pour l'ingénieur", en: "Harmonic analysis for engineers" } },
+      { title: { fr: "Optimisation convexe", en: "Convex optimisation" } },
+      { title: { fr: "Introduction aux sciences des données", en: "Introduction to data science" } },
+      { title: { fr: "Initiation aux bases de données", en: "Introduction to databases" } },
+      { title: { fr: "Conduite et gestion de projet", en: "Project management" } },
+    ],
+  },
+  {
+    group: { fr: "Projets personnels et associatifs", en: "Personal and association projects" },
+    items: [
+      { title: { fr: "ASTRAY, AeroIPSA", en: "ASTRAY, AeroIPSA" }, note: { fr: "Vol en recherche d'altitude maximale, test du système de stabilisation et largage de poudres colorées", en: "Maximum-altitude flight, stabilisation system test and coloured powder release" } },
+      { title: { fr: "Simuler un trou noir", en: "Simulating a black hole" } },
     ],
   },
 ];
