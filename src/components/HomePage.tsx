@@ -97,7 +97,7 @@ export default function HomePage({ lang }: { lang: Lang }) {
                         <li key={tag.fr} className="chip">{tr(tag, lang)}</li>
                       ))}
                     </ul>
-                    <figure className="mt-10 hidden md:block">
+                    <figure className="mt-10 max-w-sm">
                       <div className="relative aspect-[3/4] overflow-hidden rounded-[3px] bg-raised">
                         <Image
                           src={exp.illustration.src}
@@ -165,7 +165,7 @@ export default function HomePage({ lang }: { lang: Lang }) {
           </div>
         </section>
 
-        <Band image={sky.find((x) => x.src.includes("ngc6960"))!} lang={lang} position="50% 42%" />
+        <Illustration images={pick("m51", "ngc6960")} lang={lang} text={illus.seestar} />
 
         {/* ── Projets ──────────────────────────────────────── */}
         <section id="projets" className="border-t border-line/70">
@@ -268,7 +268,7 @@ export default function HomePage({ lang }: { lang: Lang }) {
           </div>
         </section>
 
-        <Band image={sky.find((x) => x.src.includes("lune"))!} lang={lang} position="50% 45%" />
+        <Illustration images={pick("lune", "m16")} lang={lang} text={illus.calern} reverse />
 
         {/* ── Parcours ─────────────────────────────────────── */}
         <section id="parcours" className="border-t border-line/70">
@@ -325,7 +325,7 @@ export default function HomePage({ lang }: { lang: Lang }) {
           </div>
         </section>
 
-        <Band image={sky.find((x) => x.src.includes("voie-lactee"))!} lang={lang} position="50% 40%" />
+        <Illustration images={pick("voie-lactee", "m13")} lang={lang} text={illus.ciel} />
 
         {/* ── Contact ──────────────────────────────────────── */}
         <section className="border-t border-line/70">
@@ -345,15 +345,54 @@ export default function HomePage({ lang }: { lang: Lang }) {
   );
 }
 
-/* Bandeau d'illustration pleine largeur, entre deux sections */
-function Band({ image, lang, position }: { image: (typeof sky)[number]; lang: Lang; position: string }) {
+type SkyImage = (typeof sky)[number];
+const pick = (...keys: string[]): SkyImage[] => keys.map((k) => sky.find((x) => x.src.includes(k))!);
+
+const illus = {
+  seestar: {
+    fr: { title: "Mes premières images du ciel profond", text: "Prises en une nuit au festival Astro'Valberg, avec un Seestar S50 qu'on m'avait prêté." },
+    en: { title: "My first deep-sky images", text: "Taken in a single night at the Astro'Valberg festival, with a borrowed Seestar S50." },
+  },
+  calern: {
+    fr: { title: "Avec les données du télescope de Calern", text: "Images brutes du télescope UniversCity, que j'ai traitées moi-même en Python : alignement, empilement, composition des couleurs." },
+    en: { title: "From the Calern telescope data", text: "Raw frames from the UniversCity telescope, which I processed myself in Python: alignment, stacking, colour composition." },
+  },
+  ciel: {
+    fr: { title: "Du ciel à l'œil nu au télescope", text: "La Voie lactée depuis la réserve de ciel étoilé de Valberg, et l'amas d'Hercule, M 13, à partir des données du télescope UniversCity." },
+    en: { title: "From naked-eye sky to telescope", text: "The Milky Way from the Valberg dark-sky reserve, and the Hercules Cluster, M 13, from UniversCity telescope data." },
+  },
+};
+
+/* Images d'illustration entre deux sections : affichées en entier, avec leur légende */
+function Illustration({
+  images,
+  lang,
+  text,
+  reverse = false,
+}: {
+  images: SkyImage[];
+  lang: Lang;
+  text: { fr: { title: string; text: string }; en: { title: string; text: string } };
+  reverse?: boolean;
+}) {
   return (
-    <figure className="relative h-[220px] overflow-hidden border-t border-line/70 sm:h-[300px]">
-      <Image src={image.src} alt={tr(image.title, lang)} fill sizes="100vw" className="object-cover" style={{ objectPosition: position }} />
-      <div className="absolute inset-0 bg-gradient-to-b from-night/40 via-transparent to-night/70" />
-      <figcaption className="absolute bottom-3 right-4 max-w-[80%] text-right text-[0.82rem] text-paper/75 sm:right-8">
-        {tr(image.title, lang)}. {tr(image.note, lang)}
-      </figcaption>
-    </figure>
+    <section className="border-t border-line/70 bg-[#070b15]">
+      <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 py-16 sm:px-8 md:grid-cols-12 md:py-20">
+        <div className={`grid grid-cols-2 gap-3 md:col-span-8 ${reverse ? "md:order-2" : ""}`}>
+          {images.map((im) => (
+            <figure key={im.src}>
+              <div className={`relative overflow-hidden rounded-[3px] bg-black ${im.h > im.w ? "aspect-[3/4]" : "aspect-square"}`}>
+                <Image src={im.src} alt={tr(im.title, lang)} fill sizes="(min-width: 768px) 33vw, 50vw" className="object-cover" />
+              </div>
+              <figcaption className="mt-2 text-[0.85rem] leading-snug text-muted">{tr(im.title, lang)}</figcaption>
+            </figure>
+          ))}
+        </div>
+        <div className={`md:col-span-4 ${reverse ? "md:order-1" : ""}`}>
+          <p className="font-serif text-[1.6rem] font-medium leading-snug text-paper">{text[lang].title}</p>
+          <p className="mt-3 text-paper/75">{text[lang].text}</p>
+        </div>
+      </div>
+    </section>
   );
 }
