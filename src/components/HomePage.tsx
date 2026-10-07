@@ -39,7 +39,7 @@ export default function HomePage({ lang }: { lang: Lang }) {
 
       <main id="contenu">
         {/* ── Hero ─────────────────────────────────────────── */}
-        <section className="mx-auto grid max-w-6xl gap-10 px-4 pb-20 pt-12 sm:px-8 md:grid-cols-12 md:gap-12 md:pt-20">
+        <section className="mx-auto grid max-w-[112rem] gap-10 px-4 pb-20 pt-12 sm:px-8 lg:px-16 md:grid-cols-12 md:gap-12 md:pt-20">
           <div className="flex flex-col justify-center md:col-span-7">
             <div className="mb-8 flex items-center gap-4">
               <Image
@@ -81,12 +81,12 @@ export default function HomePage({ lang }: { lang: Lang }) {
 
         {/* ── Expérience ───────────────────────────────────── */}
         <section id="experience" className="border-t border-line/70">
-          <div className="mx-auto max-w-6xl px-4 py-20 sm:px-8 md:py-28">
+          <div className="mx-auto max-w-[112rem] px-4 py-20 sm:px-8 lg:px-16 md:py-28">
             <h2 className="h2">{t.experienceTitle}</h2>
 
             {experiences.map((exp) => (
               <article key={exp.role.fr} className="mt-12 grid gap-10 md:grid-cols-12 md:gap-12">
-                <aside className="md:col-span-4">
+                <aside className="md:col-span-4 xl:col-span-3">
                   <div className="md:sticky md:top-24">
                     <p className="text-[0.92rem] text-star">{tr(exp.period, lang)}</p>
                     <h3 className="mt-2 font-serif text-[1.6rem] font-medium leading-snug">{tr(exp.role, lang)}</h3>
@@ -112,7 +112,8 @@ export default function HomePage({ lang }: { lang: Lang }) {
                   </div>
                 </aside>
 
-                <div className="md:col-span-8">
+                <div className="md:col-span-8 xl:col-span-9 xl:grid xl:grid-cols-2 xl:gap-16">
+                  <div>
                   <p className="max-w-[40rem] font-serif text-[1.35rem] leading-[1.55] text-paper">{tr(exp.summary, lang)}</p>
                   <div className="mt-8 max-w-[38rem] space-y-5 text-paper/80">
                     {exp.paragraphs.map((p, i) => (
@@ -120,7 +121,9 @@ export default function HomePage({ lang }: { lang: Lang }) {
                     ))}
                   </div>
 
-                  <h4 className="mt-14 font-serif text-[1.25rem] font-medium">{t.resultsTitle}</h4>
+                  </div>
+                  <div>
+                  <h4 className="mt-14 font-serif text-[1.25rem] font-medium xl:mt-1">{t.resultsTitle}</h4>
                   <dl className="mt-5 grid border-t border-line sm:grid-cols-2">
                     {exp.results.map((r, i) => (
                       <div
@@ -158,6 +161,7 @@ export default function HomePage({ lang }: { lang: Lang }) {
                       </a>
                     </p>
                   )}
+                  </div>
                 </div>
               </article>
             ))}
@@ -169,21 +173,21 @@ export default function HomePage({ lang }: { lang: Lang }) {
 
         {/* ── Projets ──────────────────────────────────────── */}
         <section id="projets" className="border-t border-line/70">
-          <div className="mx-auto max-w-6xl px-4 py-20 sm:px-8 md:py-28">
+          <div className="mx-auto max-w-[112rem] px-4 py-20 sm:px-8 lg:px-16 md:py-28">
             <div className="grid gap-4 md:grid-cols-12">
               <h2 className="h2 md:col-span-5">{t.projectsTitle}</h2>
               <p className="max-w-prose text-muted md:col-span-7 md:pt-3">{t.projectsIntro}</p>
             </div>
 
             <h3 className="mt-14 font-serif text-[1.3rem] font-medium">{t.ongoingTitle}</h3>
-            <ul className="mt-5 divide-y divide-line border-y border-line">
+            <ul className="mt-5 divide-y divide-line border-y border-line xl:grid xl:grid-cols-2 xl:gap-x-14 xl:divide-y-0">
               {ongoing.map((p) => (
                 <li key={p.slug}>
                   <Link
                     href={`${t.projectBase}/${p.slug}`}
-                    className="group grid gap-6 py-8 md:grid-cols-12 md:gap-10 md:py-10"
+                    className="group grid gap-6 py-8 md:grid-cols-12 md:gap-10 md:py-10 xl:grid-cols-1 xl:gap-6"
                   >
-                    <div className="relative aspect-[16/10] overflow-hidden rounded-[3px] bg-raised md:col-span-5">
+                    <div className="relative aspect-[16/10] overflow-hidden rounded-[3px] bg-raised md:col-span-5 xl:col-span-1">
                       {p.image && (
                         <Image
                           src={p.image}
@@ -194,7 +198,7 @@ export default function HomePage({ lang }: { lang: Lang }) {
                         />
                       )}
                     </div>
-                    <div className="flex flex-col md:col-span-7">
+                    <div className="flex flex-col md:col-span-7 xl:col-span-1">
                       <p className="flex flex-wrap items-center gap-x-3 gap-y-2 text-[0.92rem] text-muted">
                         <span>{tr(p.kind, lang)}</span>
                         <span className="text-faint">{tr(p.period, lang)}</span>
@@ -218,7 +222,7 @@ export default function HomePage({ lang }: { lang: Lang }) {
             </ul>
 
             <h3 className="mt-20 font-serif text-[1.3rem] font-medium">{t.doneTitle}</h3>
-            <ul className="mt-5 grid gap-x-8 gap-y-14 md:grid-cols-2">
+            <ul className="mt-5 grid gap-x-8 gap-y-14 md:grid-cols-2 2xl:grid-cols-4">
               {done.map((p) => (
                 <li key={p.slug}>
                   <Link href={`${t.projectBase}/${p.slug}`} className="group block">
@@ -250,7 +254,7 @@ export default function HomePage({ lang }: { lang: Lang }) {
             </ul>
 
             <h3 className="mt-24 font-serif text-[1.3rem] font-medium">{t.archiveTitle}</h3>
-            <div className="mt-6 grid gap-10 md:grid-cols-3">
+            <div className="mt-6 grid gap-10 md:grid-cols-3 xl:gap-16">
               {archive.map((g) => (
                 <div key={g.group.fr}>
                   <p className="border-b border-line pb-3 text-[0.95rem] text-star">{tr(g.group, lang)}</p>
@@ -272,7 +276,7 @@ export default function HomePage({ lang }: { lang: Lang }) {
 
         {/* ── Parcours ─────────────────────────────────────── */}
         <section id="parcours" className="border-t border-line/70">
-          <div className="mx-auto max-w-6xl px-4 py-20 sm:px-8 md:py-28">
+          <div className="mx-auto max-w-[112rem] px-4 py-20 sm:px-8 lg:px-16 md:py-28">
             <h2 className="h2">{t.pathTitle}</h2>
 
             <ol className="mt-12 border-t border-line">
@@ -329,7 +333,7 @@ export default function HomePage({ lang }: { lang: Lang }) {
 
         {/* ── Contact ──────────────────────────────────────── */}
         <section className="border-t border-line/70">
-          <div className="mx-auto max-w-6xl px-4 py-20 sm:px-8 md:py-28">
+          <div className="mx-auto max-w-[112rem] px-4 py-20 sm:px-8 lg:px-16 md:py-28">
             <h2 className="max-w-3xl font-serif text-[2rem] font-medium leading-tight sm:text-[2.6rem]">{closing[lang].title}</h2>
             <p className="mt-5 max-w-prose text-paper/80">{closing[lang].text}</p>
             <div className="mt-8 flex flex-wrap gap-3">
@@ -377,7 +381,7 @@ function Illustration({
 }) {
   return (
     <section className="border-t border-line/70 bg-[#070b15]">
-      <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 py-16 sm:px-8 md:grid-cols-12 md:py-20">
+      <div className="mx-auto grid max-w-[112rem] items-center gap-10 px-4 py-16 sm:px-8 lg:px-16 md:grid-cols-12 md:py-20">
         <div className={`grid grid-cols-2 gap-3 md:col-span-8 ${reverse ? "md:order-2" : ""}`}>
           {images.map((im) => (
             <figure key={im.src}>

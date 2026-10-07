@@ -22,7 +22,7 @@ export default function ProjectPage({ lang, slug }: { lang: Lang; slug: string }
   return (
     <>
       <Header lang={lang} altHref={altHref} />
-      <main className="mx-auto max-w-6xl px-4 pb-24 pt-10 sm:px-8 md:pt-14">
+      <main className="mx-auto max-w-[112rem] px-4 pb-24 pt-10 sm:px-8 lg:px-16 md:pt-14">
         <Link href={`${t.home}#projets`} className="link text-[0.95rem]">
           {t.back}
         </Link>
@@ -77,8 +77,8 @@ export default function ProjectPage({ lang, slug }: { lang: Lang; slug: string }
         )}
 
         <section className="mt-16 grid gap-10 md:grid-cols-12 md:gap-12">
-          <h2 className="font-serif text-[1.5rem] font-medium md:col-span-4">{t.about}</h2>
-          <div className="max-w-[38rem] space-y-5 text-paper/85 md:col-span-8">
+          <h2 className="font-serif text-[1.5rem] font-medium md:col-span-4 xl:col-span-3">{t.about}</h2>
+          <div className="max-w-[46rem] space-y-5 text-paper/85 md:col-span-8 xl:col-span-9">
             {project.content.map((p, i) => (
               <p key={i}>{tr(p, lang)}</p>
             ))}
@@ -92,13 +92,13 @@ export default function ProjectPage({ lang, slug }: { lang: Lang; slug: string }
 
         {media.length > 0 && (
           <section className="mt-16 grid gap-6 md:grid-cols-12 md:gap-12">
-            <h2 className="font-serif text-[1.5rem] font-medium md:col-span-4">{t.gallery}</h2>
-            <div className="md:col-span-8">
+            <h2 className="font-serif text-[1.5rem] font-medium md:col-span-4 xl:col-span-3">{t.gallery}</h2>
+            <div className="md:col-span-8 xl:col-span-9">
               <Lightbox
                 labels={labels}
                 items={media}
                 showCaptions={withCaptions}
-                className="grid grid-cols-2 gap-x-3 gap-y-6"
+                className="grid grid-cols-2 gap-x-3 gap-y-6 xl:grid-cols-3"
                 aspectClass="aspect-[4/3]"
                 sizes="(min-width: 768px) 30vw, 50vw"
               />
@@ -108,8 +108,8 @@ export default function ProjectPage({ lang, slug }: { lang: Lang; slug: string }
 
         {project.documents && project.documents.length > 0 && (
           <section className="mt-16 grid gap-6 md:grid-cols-12 md:gap-12">
-            <h2 className="font-serif text-[1.5rem] font-medium md:col-span-4">{t.documents}</h2>
-            <ul className="border-t border-line md:col-span-8">
+            <h2 className="font-serif text-[1.5rem] font-medium md:col-span-4 xl:col-span-3">{t.documents}</h2>
+            <ul className="border-t border-line md:col-span-8 xl:col-span-9">
               {project.documents.map((d) => (
                 <li key={d.url} className="border-b border-line">
                   <a

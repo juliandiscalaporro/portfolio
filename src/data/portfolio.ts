@@ -380,7 +380,7 @@ export const projects: Project[] = [
       { label: { fr: "Vol", en: "Flight" }, value: { fr: "Balistique, de nuit", en: "Ballistic, at night" } },
     ],
     tags: tg("CAO|CAD", "électronique|electronics", "composites", "soudure|soldering", "intégration|integration"),
-    image: "/images/projects/prisma/cover.jpg",
+    image: "/images/projects/prisma/couverture.jpg",
     images: [
       { src: "/images/projects/prisma/photo-1.jpg" },
       { src: "/images/projects/prisma/photo-2.jpg" },

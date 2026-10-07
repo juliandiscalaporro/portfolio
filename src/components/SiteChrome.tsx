@@ -12,7 +12,7 @@ export function Header({ lang, altHref }: { lang: Lang; altHref: string }) {
   ];
   return (
     <header className="sticky top-0 z-50 border-b border-line/70 bg-night/85 backdrop-blur">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-6 px-4 sm:px-8">
+      <div className="mx-auto flex h-16 max-w-[112rem] items-center justify-between gap-6 px-4 sm:px-8 lg:px-16">
         <Link href={home} className="font-serif text-[1.15rem] font-medium text-paper hover:text-star">
           {config.name}
         </Link>
@@ -44,7 +44,7 @@ export function Footer({ lang }: { lang: Lang }) {
   const t = ui(lang);
   return (
     <footer className="border-t border-line/70">
-      <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-10 text-[0.92rem] text-muted sm:flex-row sm:items-center sm:justify-between sm:px-8">
+      <div className="mx-auto flex max-w-[112rem] flex-col gap-4 px-4 py-10 text-[0.92rem] text-muted sm:flex-row sm:items-center sm:justify-between sm:px-8 lg:px-16">
         <p>
           {config.name}, {new Date().getFullYear()}. {t.footerLine}
         </p>
