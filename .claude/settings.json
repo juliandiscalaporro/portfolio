@@ -1,0 +1,30 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx tsc *)",
+      "PowerShell(npx tsc --noEmit)",
+      "PowerShell(node -v)",
+      "PowerShell(npm -v)",
+      "Bash(git config *)",
+      "PowerShell(git push origin main)",
+      "Bash(find /c/Users/julia -maxdepth 4 -iname \"portfolio\" -type d 2>/dev/null)",
+      "Read(//c/Users/julia/**)",
+      "Bash(rm -rf \"/c/Users/julia/Desktop/Stage/Code/portfolio\" && ls \"/c/Users/julia/Desktop/Stage/Code/\" 2>&1)",
+      "Bash(cd \"c:\\\\Users\\\\julia\\\\Desktop\\\\Projets\\\\Perso\\\\portfolio\" && cp \"/c/Users/julia/Downloads/CompteRenduFinalCiri-Planchon-Deoliveira-Discala-1.pdf\" \"public/documents/modeling-asteroid-population/Rapport_2007VW266.pdf\" && ls -la \"public/documents/modeling-asteroid-population/\")",
+      "Bash(xargs -I{} ls -la {})",
+      "Bash(sort -k6,7)",
+      "Read(//c/Program Files/**)",
+      "Read(//c/Users/julia/AppData/Local/**)",
+      "Read(//c/Users/julia/AppData/Roaming/**)",
+      "Read(//c//**)",
+      "Bash(where.exe node *)",
+      "Read(//c/Users/julia/AppData/Local/Programs/**)",
+      "Read(//c/Users/julia/scoop/**)",
+      "Bash(curl -sI --max-time 10 \"https://images-assets.nasa.gov/image/PIA03654/PIA03654~orig.jpg\")"
+    ],
+    "additionalDirectories": [
+      "C:\\Users\\julia\\Desktop\\Stage\\Code\\portfolio",
+      "C:\\Users\\julia\\Downloads"
+    ]
+  }
+}
