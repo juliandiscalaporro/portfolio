@@ -355,6 +355,167 @@ export const projects: Project[] = [
     ],
   },
   {
+    slug: "estimation-trajectoire",
+    title: { fr: "Retrouver une trajectoire à partir de mesures", en: "Recovering a trajectory from measurements" },
+    kind: { fr: "Projet de méthodes numériques pour le spatial", en: "Numerical methods for space project" },
+    period: { fr: "Mai 2026", en: "May 2026" },
+    status: "done",
+    description: {
+      fr: "À partir de positions mesurées d'un projectile freiné par l'air, retrouver sa vitesse initiale, son angle de tir, son point de départ et son coefficient de traînée, avec leurs incertitudes.",
+      en: "From measured positions of a projectile slowed by air, recovering its initial speed, launch angle, starting point and drag coefficient, with their uncertainties.",
+    },
+    content: [
+      {
+        fr: "C'est le problème inverse de la détermination d'orbite : on ne connaît pas les conditions initiales, seulement une suite de positions (x, y) mesurées à 1 m près. Quatre jeux de données, de plus en plus difficiles, laissent inconnus de un à cinq paramètres parmi la position et la vitesse de départ, l'angle de tir et le coefficient de traînée.",
+        en: "This is the inverse problem behind orbit determination: the initial conditions are unknown, only a series of (x, y) positions measured to within 1 m. Four datasets, increasingly difficult, leave between one and five parameters unknown among the starting position and speed, the launch angle and the drag coefficient.",
+      },
+      {
+        fr: "Le mouvement, sous la gravité et une traînée quadratique, est intégré en Runge-Kutta d'ordre 4. En même temps que la trajectoire, on intègre les équations variationnelles, qui donnent la sensibilité de chaque position à chaque paramètre inconnu : le vecteur d'état passe de 4 à 4 + 4p composantes. Ces dérivées alimentent un algorithme de Gauss-Newton qui corrige les paramètres jusqu'à ce que la correction tombe sous 10⁻¹⁰. La matrice de covariance (BᵀB)⁻¹ donne l'incertitude de chaque paramètre et leurs corrélations.",
+        en: "The motion, under gravity and quadratic drag, is integrated with fourth-order Runge-Kutta. Alongside the trajectory, we integrate the variational equations, which give the sensitivity of each position to each unknown parameter: the state vector grows from 4 to 4 + 4p components. These derivatives feed a Gauss-Newton algorithm that corrects the parameters until the correction falls below 10⁻¹⁰. The covariance matrix (BᵀB)⁻¹ gives the uncertainty on each parameter and their correlations.",
+      },
+      {
+        fr: "Les quatre cas convergent en 8 à 10 itérations, avec un χ² réduit entre 0,99 et 1,13 : les résidus sont cohérents avec la précision annoncée des mesures. Dans le cas le plus dur, à cinq inconnues, l'angle de tir est retrouvé à 0,02° près et la vitesse initiale à 0,3 m/s près. Le point d'impact est localisé par dichotomie à mieux qu'un millimètre.",
+        en: "All four cases converge in 8 to 10 iterations, with a reduced χ² between 0.99 and 1.13: the residuals are consistent with the stated measurement precision. In the hardest case, with five unknowns, the launch angle is recovered to within 0.02° and the initial speed to within 0.3 m/s. The impact point is located by bisection to better than a millimetre.",
+      },
+    ],
+    facts: [
+      { label: { fr: "Méthode", en: "Method" }, value: { fr: "Équations variationnelles + Gauss-Newton", en: "Variational equations + Gauss-Newton" } },
+      { label: { fr: "Intégrateur", en: "Integrator" }, value: { fr: "RK4", en: "RK4" } },
+      { label: { fr: "Inconnues", en: "Unknowns" }, value: { fr: "1 à 5 paramètres selon le jeu de données", en: "1 to 5 parameters depending on the dataset" } },
+      { label: { fr: "Équipe", en: "Team" }, value: { fr: "Avec Y. Taia et T. Gamondes", en: "With Y. Taia and T. Gamondes" } },
+    ],
+    tags: tg("Python", "RK4", "Gauss-Newton", "moindres carrés|least squares", "problème inverse|inverse problem"),
+    image: "/images/projects/estimation-trajectoire/couverture.jpg",
+    imageFit: "contain",
+    imageCredit: { fr: "Les quatre jeux de données : un projectile soumis à la gravité et à la traînée", en: "The four datasets: a projectile subject to gravity and drag" },
+    images: [
+      { src: "/images/projects/estimation-trajectoire/quatre-trajectoires.jpg", caption: { fr: "Les quatre trajectoires ajustées et leurs paramètres estimés", en: "The four fitted trajectories and their estimated parameters" } },
+      { src: "/images/projects/estimation-trajectoire/ajustement-dataset2.jpg", caption: { fr: "Jeu de données 2 : trajectoire ajustée et résidus, contenus dans la précision de ±1 m", en: "Dataset 2: fitted trajectory and residuals, within the ±1 m precision" } },
+    ],
+    documents: [
+      { name: { fr: "Rapport (en anglais)", en: "Report" }, url: "/documents/estimation-trajectoire/Rapport_estimation_trajectoire.pdf" },
+    ],
+  },
+  {
+    slug: "propulsion-nucleaire",
+    title: { fr: "Propulsion nucléaire thermique", en: "Nuclear thermal propulsion" },
+    kind: { fr: "Projet production électrique et hydrogène", en: "Electric power and hydrogen project" },
+    period: { fr: "Avril 2026", en: "April 2026" },
+    status: "done",
+    description: {
+      fr: "Un moteur qui chauffe de l'hydrogène liquide avec un réacteur nucléaire peut doubler l'impulsion spécifique d'une fusée. Comment empêcher l'hydrogène de ronger le cœur du réacteur ?",
+      en: "An engine that heats liquid hydrogen with a nuclear reactor can double a rocket's specific impulse. How do you stop the hydrogen from eating away the reactor core?",
+    },
+    content: [
+      {
+        fr: "Un moteur nucléaire thermique, comme NERVA dans les années 1960, fait passer de l'hydrogène liquide dans un réacteur à fission avant de le détendre dans une tuyère. Il atteint 800 à 1 000 s d'impulsion spécifique, contre 450 s pour le meilleur moteur chimique, ce qui réduit fortement la masse de propergol pour aller vers Mars. Mais au-delà de 2 500 K, l'hydrogène chaud attaque le combustible en graphite et arrache de la matière fissile, rejetée dans le jet.",
+        en: "A nuclear thermal engine, like NERVA in the 1960s, passes liquid hydrogen through a fission reactor before expanding it in a nozzle. It reaches 800 to 1,000 s of specific impulse, against 450 s for the best chemical engine, which greatly reduces the propellant mass for a trip to Mars. But above 2,500 K, hot hydrogen attacks the graphite fuel and strips off fissile material, which is ejected in the exhaust.",
+      },
+      {
+        fr: "Après un état de l'art (histoire de Rover/NERVA et DRACO, contraintes techniques, économiques, écologiques et réglementaires), nous avons comparé quatre matériaux réfractaires et retenu un combustible tout-carbure (U₀,₂Zr₀,₈)C, qui supprime l'interface graphite responsable de la corrosion et supporte une paroi plus chaude.",
+        en: "After a review (the history of Rover/NERVA and DRACO, technical, economic, environmental and regulatory constraints), we compared four refractory materials and chose an all-carbide (U₀.₂Zr₀.₈)C fuel, which removes the graphite interface responsible for corrosion and withstands a hotter wall.",
+      },
+      {
+        fr: "Pour chiffrer le gain, nous avons modélisé sous MATLAB l'écoulement d'hydrogène dans un canal de refroidissement de 90 cm (modèle quasi-1D compressible : masse, quantité de mouvement avec frottement, énergie). Avec une paroi autorisée à 2 700 K au lieu de 2 400 K, la température et la vitesse de sortie augmentent de 37 % par rapport au combustible historique UC.",
+        en: "To quantify the gain, we modelled the hydrogen flow in a 90 cm cooling channel in MATLAB (quasi-1D compressible model: mass, momentum with friction, energy). With the wall allowed to reach 2,700 K instead of 2,400 K, the exit temperature and velocity increase by 37% compared with the historical UC fuel.",
+      },
+    ],
+    facts: [
+      { label: { fr: "Combustible retenu", en: "Chosen fuel" }, value: { fr: "(U₀,₂Zr₀,₈)C tout-carbure", en: "All-carbide (U₀.₂Zr₀.₈)C" } },
+      { label: { fr: "Modèle", en: "Model" }, value: { fr: "Canal quasi-1D compressible, MATLAB", en: "Quasi-1D compressible channel, MATLAB" } },
+      { label: { fr: "Gain en sortie", en: "Exit gain" }, value: { fr: "+37 % de température et de vitesse", en: "+37% temperature and velocity" } },
+      { label: { fr: "Équipe", en: "Team" }, value: { fr: "Six étudiants du parcours ELS", en: "Six students from the ELS track" } },
+    ],
+    tags: tg("MATLAB", "propulsion", "matériaux|materials", "thermo-fluide|thermo-fluids", "hydrogène|hydrogen"),
+    image: "/images/projects/propulsion-nucleaire/champs-canal.jpg",
+    imageFit: "contain",
+    imageCredit: { fr: "Champs de vitesse et de température dans le canal de refroidissement, combustible (U,Zr)C", en: "Velocity and temperature fields in the cooling channel, (U,Zr)C fuel" },
+    images: [
+      { src: "/images/projects/propulsion-nucleaire/profils-axiaux.jpg", caption: { fr: "Profils le long du canal : (U₀,₂Zr₀,₈)C en rouge, UC en bleu", en: "Profiles along the channel: (U₀.₂Zr₀.₈)C in red, UC in blue" } },
+      { src: "/images/projects/propulsion-nucleaire/performances-sortie.jpg", caption: { fr: "Performances en sortie de canal pour les deux combustibles", en: "Channel exit performance for both fuels" } },
+    ],
+    documents: [
+      { name: { fr: "Rapport", en: "Report (French)" }, url: "/documents/propulsion-nucleaire/Rapport_propulsion_nucleaire.pdf" },
+    ],
+  },
+  {
+    slug: "rentree-atmospherique",
+    title: { fr: "Rentrée atmosphérique : Apollo et Artemis", en: "Atmospheric re-entry: Apollo and Artemis" },
+    kind: { fr: "Projet missions planétaires et rentrées atmosphériques", en: "Planetary missions and atmospheric entry project" },
+    period: { fr: "Mai 2026", en: "May 2026" },
+    status: "done",
+    description: {
+      fr: "Comparer le retour sur Terre de la capsule Apollo et de la capsule Orion d'Artemis, avec un simulateur de trajectoire 3D sous MATLAB.",
+      en: "Comparing the return to Earth of the Apollo capsule and Artemis's Orion capsule, with a 3D trajectory simulator in MATLAB.",
+    },
+    content: [
+      {
+        fr: "Les deux capsules reviennent de la Lune à environ 11 km/s, mais Orion est plus grosse (5 m de diamètre contre 3,9 m, 8,5 t contre 5,8 t) et utilise une entrée à rebond : elle replonge après être brièvement remontée, pour étaler le freinage et viser plus loin. Le projet compare les deux programmes : aérodynamique des capsules, protection thermique et stratégies de guidage (entrée directe ou à rebond).",
+        en: "Both capsules come back from the Moon at about 11 km/s, but Orion is bigger (5 m diameter against 3.9 m, 8.5 t against 5.8 t) and uses a skip entry: it climbs back briefly before diving again, to spread the braking and reach further. The project compares the two programmes: capsule aerodynamics, thermal protection and guidance strategies (direct or skip entry).",
+      },
+      {
+        fr: "La simulation s'appuie sur un programme MATLAB de calcul de rentrée en 3D écrit par Ivan Fedioun (ICARE-CNRS) : Terre ellipsoïdale, atmosphère US 1976, gravité variable, intégration en Runge-Kutta d'ordre 4. Je l'ai remis en état (corrections de syntaxe, conventions de latitude et d'azimut) puis alimenté avec les conditions d'entrée réelles d'Apollo 12 et d'Artemis I, tirées du rapport de mission NASA pour Apollo et des données publiées pour Artemis.",
+        en: "The simulation relies on a 3D re-entry MATLAB code written by Ivan Fedioun (ICARE-CNRS): ellipsoidal Earth, US 1976 atmosphere, varying gravity, fourth-order Runge-Kutta integration. I got it working again (syntax fixes, latitude and azimuth conventions) and fed it with the real entry conditions of Apollo 12 and Artemis I, taken from the NASA mission report for Apollo and published data for Artemis.",
+      },
+      {
+        fr: "Pour Orion en entrée directe balistique (entrée à 122 km, 11 km/s, pente de −5,85°), la capsule parcourt 1 660 km en 413 s. La décélération culmine à 7,6 g vers 52 km d'altitude et la capsule repasse sous Mach 1 vers 18 km. Le programme garde une portance constante : il ne peut donc pas reproduire le rebond piloté d'Orion, mais il permet de comparer les couloirs d'entrée et la première phase de freinage.",
+        en: "For Orion in a ballistic direct entry (entry at 122 km, 11 km/s, −5.85° flight-path angle), the capsule travels 1,660 km in 413 s. Deceleration peaks at 7.6 g around 52 km altitude and the capsule drops below Mach 1 around 18 km. The code keeps lift constant, so it cannot reproduce Orion's guided skip, but it lets us compare the entry corridors and the first braking phase.",
+      },
+    ],
+    facts: [
+      { label: { fr: "Vitesse d'entrée", en: "Entry speed" }, value: { fr: "11 km/s", en: "11 km/s" } },
+      { label: { fr: "Décélération max", en: "Peak deceleration" }, value: { fr: "7,6 g (Orion, entrée directe)", en: "7.6 g (Orion, direct entry)" } },
+      { label: { fr: "Outil", en: "Tool" }, value: { fr: "MATLAB, code ICARE-CNRS", en: "MATLAB, ICARE-CNRS code" } },
+    ],
+    tags: tg("MATLAB", "rentrée atmosphérique|atmospheric entry", "RK4", "Apollo", "Artemis"),
+    image: "/images/projects/rentree-atmospherique/altitude-vitesse.png",
+    imageFit: "contain",
+    imageCredit: { fr: "Altitude et vitesse d'Orion pendant la rentrée simulée", en: "Orion altitude and speed during the simulated entry" },
+    images: [
+      { src: "/images/projects/rentree-atmospherique/deceleration.png", caption: { fr: "Décélération en fonction de l'altitude", en: "Deceleration versus altitude" } },
+      { src: "/images/projects/rentree-atmospherique/trace-sol.png", caption: { fr: "Trace au sol, de l'entrée dans l'atmosphère à l'amerrissage dans le Pacifique", en: "Ground track, from atmospheric entry to splashdown in the Pacific" } },
+    ],
+  },
+  {
+    slug: "tuyere-laval",
+    title: { fr: "Choc dans une tuyère de Laval", en: "A shock in a Laval nozzle" },
+    kind: { fr: "TP de mécanique des fluides numérique", en: "Computational fluid dynamics lab" },
+    period: { fr: "Mars 2026", en: "March 2026" },
+    status: "done",
+    description: {
+      fr: "Simuler sous STAR-CCM+ une tuyère convergente-divergente et voir apparaître une onde de choc quand la pression en sortie est trop forte.",
+      en: "Simulating a converging-diverging nozzle in STAR-CCM+ and watching a shock wave appear when the outlet pressure is too high.",
+    },
+    content: [
+      {
+        fr: "Une tuyère de Laval accélère un gaz jusqu'à Mach 1 au col, puis au-delà dans le divergent. Le calcul analytique, avec 10 bar en entrée, donne un écoulement adapté à Mach 2,94 en sortie pour une pression de 29,8 kPa, et un débit de 3,61 kg/s. Si la pression imposée en sortie est plus élevée, l'écoulement ne peut pas rester supersonique jusqu'au bout : une onde de choc droite se forme dans le divergent.",
+        en: "A Laval nozzle accelerates a gas to Mach 1 at the throat, then beyond in the diverging section. The analytical calculation, with 10 bar at the inlet, gives a design flow at Mach 2.94 at the exit for a pressure of 29.8 kPa, and a mass flow of 3.61 kg/s. If the outlet pressure is higher, the flow cannot stay supersonic all the way: a normal shock forms in the diverging section.",
+      },
+      {
+        fr: "Après une étude de convergence du maillage (taille de maille retenue : 0,6 mm), j'ai simulé deux pressions de sortie. À 300 kPa, l'écoulement atteint Mach 2 avant un choc situé vers 17 cm de l'entrée, où la pression et la température remontent brutalement. À 500 kPa, le choc recule vers le col (vers 14,5 cm) et le Mach maximal tombe à 1,6. Les profils le long de l'axe sont comparés à la théorie des écoulements isentropiques.",
+        en: "After a mesh convergence study (chosen cell size: 0.6 mm), I simulated two outlet pressures. At 300 kPa, the flow reaches Mach 2 before a shock about 17 cm from the inlet, where pressure and temperature jump sharply. At 500 kPa, the shock moves back towards the throat (about 14.5 cm) and the maximum Mach number drops to 1.6. The profiles along the axis are compared with isentropic flow theory.",
+      },
+    ],
+    facts: [
+      { label: { fr: "Logiciel", en: "Software" }, value: { fr: "STAR-CCM+", en: "STAR-CCM+" } },
+      { label: { fr: "Pression d'entrée", en: "Inlet pressure" }, value: { fr: "10 bar", en: "10 bar" } },
+      { label: { fr: "Pressions de sortie", en: "Outlet pressures" }, value: { fr: "300 et 500 kPa", en: "300 and 500 kPa" } },
+      { label: { fr: "Mach maximal", en: "Peak Mach" }, value: { fr: "2,0 puis 1,6", en: "2.0, then 1.6" } },
+    ],
+    tags: tg("STAR-CCM+", "CFD", "écoulement compressible|compressible flow", "onde de choc|shock wave"),
+    image: "/images/projects/tuyere-laval/mach-300kpa.jpg",
+    imageFit: "contain",
+    imageCredit: { fr: "Nombre de Mach dans la demi-tuyère, pression de sortie de 300 kPa : le choc se voit à la cassure rouge-bleu", en: "Mach number in the half-nozzle, 300 kPa outlet pressure: the shock is the red-to-blue break" },
+    images: [
+      { src: "/images/projects/tuyere-laval/mach-500kpa.jpg", caption: { fr: "À 500 kPa, le choc recule vers le col", en: "At 500 kPa, the shock moves back towards the throat" } },
+      { src: "/images/projects/tuyere-laval/pression-axe-300kpa.jpg", caption: { fr: "Pression le long de l'axe à 300 kPa : la remontée brutale marque le choc", en: "Pressure along the axis at 300 kPa: the sudden rise marks the shock" } },
+      { src: "/images/projects/tuyere-laval/maillage.jpg", caption: { fr: "Le maillage polyédrique", en: "The polyhedral mesh" } },
+    ],
+    documents: [
+      { name: { fr: "Rapport (en anglais)", en: "Report" }, url: "/documents/tuyere-laval/Rapport_tuyere_Laval.pdf" },
+    ],
+  },
+  {
     slug: "trou-noir",
     title: { fr: "Simuler un trou noir", en: "Simulating a black hole" },
     kind: { fr: "Projet personnel", en: "Personal project" },
@@ -405,6 +566,220 @@ export const projects: Project[] = [
     ],
   },
   {
+    slug: "mecanique-fluides-ncku",
+    title: { fr: "Souffleries et sillages à Taïwan", en: "Wind tunnels and wakes in Taiwan" },
+    kind: { fr: "Travaux pratiques, semestre d'échange à NCKU", en: "Lab course, exchange semester at NCKU" },
+    period: { fr: "Automne 2025", en: "Autumn 2025" },
+    status: "done",
+    description: {
+      fr: "Quatre expériences de mécanique des fluides réelle : sondes de pression, visualisation PIV en canal hydraulique, sillage au fil chaud et mesure de traînée en soufflerie.",
+      en: "Four real fluid dynamics experiments: pressure probes, PIV flow visualisation in a water channel, hot-wire wake measurements and drag measurement in a wind tunnel.",
+    },
+    content: [
+      {
+        fr: "Ces travaux pratiques, suivis en anglais à la National Cheng Kung University, couvrent toute la chaîne de mesure : étalonner un capteur, acquérir un signal, le traiter et comparer le résultat à la théorie.",
+        en: "These labs, taught in English at National Cheng Kung University, cover the whole measurement chain: calibrating a sensor, acquiring a signal, processing it and comparing the result with theory.",
+      },
+      {
+        fr: "Sondes de pression : étalonnage sur colonne d'eau, puis comparaison d'un tube de Pitot, fiable seulement entre −10° et +10° de dérapage, et d'une sonde Cobra, qui mesure aussi la direction de l'écoulement. Canal hydraulique : visualisation par PIV (PIVlab sous MATLAB) du sillage d'un cylindre, de cylindres fendus et d'un profil NACA 0012 jusqu'à 20° d'incidence, avec le point de décollement et un nombre de Strouhal proche de 0,2.",
+        en: "Pressure probes: calibration against a water column, then comparison of a Pitot tube, reliable only between −10° and +10° of yaw, and a Cobra probe, which also measures flow direction. Water channel: PIV visualisation (PIVlab in MATLAB) of the wake of a cylinder, slotted cylinders and a NACA 0012 airfoil up to 20° angle of attack, with the separation point and a Strouhal number close to 0.2.",
+      },
+      {
+        fr: "Soufflerie : un fil chaud étalonné contre un Pitot (loi polynomiale d'ordre 4) mesure le sillage d'un cylindre de 6 mm. Le déficit de vitesse, l'intensité de turbulence et le spectre, traités sous MATLAB, donnent un pic de détachement tourbillonnaire à 264 Hz, soit St = 0,22 pour Re ≈ 2 700. Enfin, un capteur de force étalonné compare un cylindre (Cd ≈ 1) à un profil en goutte d'eau, environ trois fois moins traînant.",
+        en: "Wind tunnel: a hot wire calibrated against a Pitot tube (fourth-order polynomial law) measures the wake of a 6 mm cylinder. The velocity deficit, turbulence intensity and spectrum, processed in MATLAB, give a vortex-shedding peak at 264 Hz, i.e. St = 0.22 at Re ≈ 2,700. Finally, a calibrated force sensor compares a cylinder (Cd ≈ 1) with a teardrop shape, about three times less draggy.",
+      },
+    ],
+    facts: [
+      { label: { fr: "Lieu", en: "Place" }, value: { fr: "NCKU, Tainan (Taïwan)", en: "NCKU, Tainan (Taiwan)" } },
+      { label: { fr: "Instruments", en: "Instruments" }, value: { fr: "Pitot, sonde Cobra, PIV, fil chaud, capteur de force", en: "Pitot, Cobra probe, PIV, hot wire, force sensor" } },
+      { label: { fr: "Strouhal mesuré", en: "Measured Strouhal" }, value: { fr: "0,22 (théorie ≈ 0,20)", en: "0.22 (theory ≈ 0.20)" } },
+    ],
+    tags: tg("soufflerie|wind tunnel", "PIV", "fil chaud|hot wire", "MATLAB", "anglais|English"),
+    image: "/images/projects/mecanique-fluides-ncku/naca0012-vorticite.jpg",
+    imageCredit: { fr: "Champ de vorticité mesuré par PIV autour d'un profil NACA 0012 (en rouge) à forte incidence", en: "Vorticity field measured by PIV around a NACA 0012 airfoil (red) at high angle of attack" },
+    images: [
+      { src: "/images/projects/mecanique-fluides-ncku/sillage-vitesse.jpg", caption: { fr: "Profils de vitesse dans le sillage du cylindre, à 3, 4 et 5 diamètres", en: "Velocity profiles in the cylinder wake, at 3, 4 and 5 diameters" } },
+      { src: "/images/projects/mecanique-fluides-ncku/spectre-sillage.jpg", caption: { fr: "Spectre du signal de fil chaud : pic de détachement à 264 Hz", en: "Hot-wire signal spectrum: shedding peak at 264 Hz" } },
+      { src: "/images/projects/mecanique-fluides-ncku/cd-reynolds.jpg", caption: { fr: "Coefficient de traînée en fonction du nombre de Reynolds : cylindre et goutte d'eau", en: "Drag coefficient versus Reynolds number: cylinder and teardrop" } },
+    ],
+    documents: [
+      { name: { fr: "Rapport de TP (en anglais)", en: "Lab report" }, url: "/documents/mecanique-fluides-ncku/Rapport_Real_Fluid_Dynamics.pdf" },
+      { name: { fr: "Devoir de mécanique des fluides, manuscrit (en anglais)", en: "Fluid mechanics homework, handwritten" }, url: "/documents/mecanique-fluides-ncku/Homework_fluid_mechanics.pdf" },
+    ],
+  },
+  {
+    slug: "equation-chaleur",
+    title: { fr: "Équation de la chaleur et de Poisson", en: "Heat and Poisson equations" },
+    kind: { fr: "Projet de modélisation numérique", en: "Numerical modelling project" },
+    period: { fr: "Mai 2025", en: "May 2025" },
+    status: "done",
+    description: {
+      fr: "Résoudre la diffusion de la chaleur dans un carré chauffé par une source, et vérifier qu'elle converge vers la solution stationnaire.",
+      en: "Solving heat diffusion in a square heated by a source, and checking that it converges to the steady-state solution.",
+    },
+    content: [
+      {
+        fr: "Le domaine est le carré [−1, 1]², avec une température nulle sur les bords et un terme source fixe. J'ai résolu l'équation de la chaleur par différences finies (maillage 41 × 41, schéma explicite, pas de temps de 0,004), puis l'équation de Poisson qui donne l'état d'équilibre.",
+        en: "The domain is the square [−1, 1]², with zero temperature on the edges and a fixed source term. I solved the heat equation with finite differences (41 × 41 grid, explicit scheme, time step 0.004), then the Poisson equation that gives the equilibrium state.",
+      },
+      {
+        fr: "À t = 2, le maximum de température (0,675) se trouve près du pic de la source. La solution stationnaire est un peu plus haute (≈ 0,82), et l'écart entre les deux décroît exponentiellement, avec un temps caractéristique d'environ 0,5. Le schéma explicite est précis pour un petit pas de temps, mais devient coûteux sur des temps longs.",
+        en: "At t = 2, the maximum temperature (0.675) is close to the peak of the source. The steady-state solution is slightly higher (≈ 0.82), and the gap between the two decays exponentially, with a characteristic time of about 0.5. The explicit scheme is accurate for a small time step, but becomes costly over long times.",
+      },
+    ],
+    facts: [
+      { label: { fr: "Méthode", en: "Method" }, value: { fr: "Différences finies, schéma explicite", en: "Finite differences, explicit scheme" } },
+      { label: { fr: "Maillage", en: "Grid" }, value: { fr: "41 × 41 points", en: "41 × 41 points" } },
+    ],
+    tags: tg("Python", "différences finies|finite differences", "EDP|PDE"),
+    image: "/images/projects/equation-chaleur/temperature-t2.jpg",
+    imageFit: "contain",
+    imageCredit: { fr: "Champ de température à t = 2", en: "Temperature field at t = 2" },
+    images: [
+      { src: "/images/projects/equation-chaleur/solution-stationnaire.jpg", caption: { fr: "Solution stationnaire (équation de Poisson)", en: "Steady-state solution (Poisson equation)" } },
+      { src: "/images/projects/equation-chaleur/convergence.jpg", caption: { fr: "Écart maximal à la solution stationnaire au cours du temps", en: "Maximum gap to the steady-state solution over time" } },
+    ],
+    documents: [
+      { name: { fr: "Rapport", en: "Report (French)" }, url: "/documents/equation-chaleur/Rapport_equation_chaleur.pdf" },
+    ],
+  },
+  {
+    slug: "inconel-718",
+    title: { fr: "L'Inconel 718", en: "Inconel 718" },
+    kind: { fr: "Projet de sciences des matériaux", en: "Materials science project" },
+    period: { fr: "Avril 2025", en: "April 2025" },
+    status: "done",
+    description: {
+      fr: "Pourquoi cet alliage de nickel est-il partout dans les moteurs d'avion et de fusée ? Une étude de sa microstructure et de ses propriétés.",
+      en: "Why is this nickel alloy everywhere in aircraft and rocket engines? A study of its microstructure and properties.",
+    },
+    content: [
+      {
+        fr: "L'Inconel 718 repose sur une matrice γ de nickel, cubique à faces centrées, dans laquelle se forment des précipités très fins γ′ (Ni₃(Al,Ti)) et surtout γ″ (Ni₃Nb). Ces précipités freinent le mouvement des dislocations, ce qui donne à l'alliage sa grande résistance mécanique.",
+        en: "Inconel 718 is built on a face-centred cubic nickel γ matrix, in which very fine γ′ (Ni₃(Al,Ti)) and above all γ″ (Ni₃Nb) precipitates form. These precipitates slow down dislocation motion, which gives the alloy its high strength.",
+      },
+      {
+        fr: "La taille des grains joue aussi : selon la loi de Hall-Petch, des grains fins augmentent la résistance, mais on préfère des grains plus gros pour la stabilité à haute température dans les turbines. Résultat : une limite d'élasticité au-dessus de 1 000 MPa, une bonne tenue au fluage jusqu'à 650 °C et un module d'Young d'environ 200 GPa.",
+        en: "Grain size matters too: according to the Hall-Petch law, fine grains increase strength, but coarser grains are preferred for high-temperature stability in turbines. The result: a yield strength above 1,000 MPa, good creep resistance up to 650 °C and a Young's modulus of about 200 GPa.",
+      },
+    ],
+    facts: [
+      { label: { fr: "Limite d'élasticité", en: "Yield strength" }, value: { fr: "> 1 000 MPa", en: "> 1,000 MPa" } },
+      { label: { fr: "Tenue au fluage", en: "Creep resistance" }, value: { fr: "Jusqu'à 650 °C", en: "Up to 650 °C" } },
+      { label: { fr: "Densité", en: "Density" }, value: { fr: "≈ 8,2 g/cm³", en: "≈ 8.2 g/cm³" } },
+    ],
+    tags: tg("matériaux|materials", "superalliage|superalloy", "microstructure"),
+    image: "/images/projects/inconel-718/reseau-cfc.jpg",
+    imageFit: "contain",
+    documents: [
+      { name: { fr: "Rapport", en: "Report (French)" }, url: "/documents/inconel-718/Projet_Inconel_718.pdf" },
+    ],
+  },
+  {
+    slug: "cfd-naca-cylindre",
+    title: { fr: "Premières simulations CFD : profil NACA et cylindre", en: "First CFD simulations: NACA airfoil and cylinder" },
+    kind: { fr: "TP d'aérodynamique numérique", en: "Computational aerodynamics labs" },
+    period: { fr: "Février – avril 2025", en: "February – April 2025" },
+    status: "done",
+    description: {
+      fr: "Prendre en main STAR-CCM+ sur deux cas classiques : un profil d'aile NACA 0015 et un cylindre dans un écoulement d'air.",
+      en: "Getting started with STAR-CCM+ on two classic cases: a NACA 0015 airfoil and a cylinder in an airflow.",
+    },
+    content: [
+      {
+        fr: "Pour chaque cas : géométrie, domaine et maillage, puis suivi de la convergence des résidus et lecture des champs de vitesse et de pression. Sur le profil NACA 0015, l'écoulement accélère sur l'extrados et une dépression se forme autour de l'aile. Sur le cylindre, simulé à 10, 15 et 20 m/s, la vitesse augmente sur les côtés et chute devant et derrière, comme le prévoit Bernoulli.",
+        en: "For each case: geometry, domain and mesh, then monitoring residual convergence and reading the velocity and pressure fields. On the NACA 0015 airfoil, the flow speeds up over the upper surface and low pressure forms around the wing. On the cylinder, simulated at 10, 15 and 20 m/s, the velocity increases on the sides and drops in front and behind, as Bernoulli predicts.",
+      },
+      {
+        fr: "Les coefficients de traînée et de portance du cylindre sont relevés pour chaque vitesse. La comparaison des deux cas montre pourquoi une aile a un profil et non une section ronde : à vitesse égale, le profil NACA produit bien plus de portance.",
+        en: "The cylinder's drag and lift coefficients are recorded at each speed. Comparing both cases shows why a wing has an airfoil shape rather than a round section: at the same speed, the NACA airfoil produces far more lift.",
+      },
+    ],
+    facts: [
+      { label: { fr: "Logiciel", en: "Software" }, value: { fr: "STAR-CCM+", en: "STAR-CCM+" } },
+      { label: { fr: "Vitesses du cylindre", en: "Cylinder speeds" }, value: { fr: "10, 15 et 20 m/s", en: "10, 15 and 20 m/s" } },
+    ],
+    tags: tg("STAR-CCM+", "CFD", "aérodynamique|aerodynamics"),
+    image: "/images/projects/cfd-naca-cylindre/cylindre-vitesse.jpg",
+    imageFit: "contain",
+    imageCredit: { fr: "Vitesse autour du cylindre, vue de dessus : le sillage se forme à l'arrière", en: "Velocity around the cylinder, top view: the wake forms behind it" },
+    images: [
+      { src: "/images/projects/cfd-naca-cylindre/cylindre-vecteurs.jpg", caption: { fr: "Vecteurs vitesse autour du cylindre", en: "Velocity vectors around the cylinder" } },
+      { src: "/images/projects/cfd-naca-cylindre/naca-vitesse.jpg", caption: { fr: "Champ de vitesse autour du profil NACA 0015", en: "Velocity field around the NACA 0015 airfoil" } },
+    ],
+    documents: [
+      { name: { fr: "TP profil NACA", en: "NACA airfoil lab (French)" }, url: "/documents/cfd-naca-cylindre/TP_CFD_profil_NACA.pdf" },
+      { name: { fr: "TP cylindre", en: "Cylinder lab (French)" }, url: "/documents/cfd-naca-cylindre/TP_CFD_cylindre.pdf" },
+    ],
+  },
+  {
+    slug: "statistiques",
+    title: { fr: "Statistiques avec Python", en: "Statistics with Python" },
+    kind: { fr: "Mini-projet de sciences des données", en: "Data science mini-project" },
+    period: { fr: "Janvier 2025", en: "January 2025" },
+    status: "done",
+    description: {
+      fr: "Décrire un jeu de données, mesurer une corrélation, ajuster une régression et calculer un intervalle de confiance, le tout en Python.",
+      en: "Describing a dataset, measuring a correlation, fitting a regression and computing a confidence interval, all in Python.",
+    },
+    content: [
+      {
+        fr: "Sur la production de lait de quinze vaches : statistiques descriptives (moyenne, médiane, quartiles, écart-type), boîtes à moustaches et histogrammes. Entre deux séries, la covariance et le coefficient de corrélation (r = 0,81) montrent un lien assez fort, et une régression linéaire par les moindres carrés donne la droite d'ajustement.",
+        en: "On the milk production of fifteen cows: descriptive statistics (mean, median, quartiles, standard deviation), box plots and histograms. Between two series, the covariance and the correlation coefficient (r = 0.81) show a fairly strong link, and a least-squares linear regression gives the fitted line.",
+      },
+      {
+        fr: "Sur dix mesures d'un temps de chute (moyenne 0,631 s, écart-type 0,017 s), on calcule un intervalle de confiance à 95 % avec la loi de Student, adaptée aux petits échantillons dont on ne connaît pas l'écart-type.",
+        en: "On ten measurements of a fall time (mean 0.631 s, standard deviation 0.017 s), we compute a 95% confidence interval with Student's t-distribution, suited to small samples with unknown standard deviation.",
+      },
+    ],
+    tags: tg("Python", "statistiques|statistics", "régression|regression"),
+    image: "/images/projects/statistiques/regression.jpg",
+    imageFit: "contain",
+    images: [
+      { src: "/images/projects/statistiques/boites.jpg", caption: { fr: "Boîtes à moustaches des deux séries", en: "Box plots of both series" } },
+      { src: "/images/projects/statistiques/histogrammes.jpg", caption: { fr: "Histogrammes des deux séries", en: "Histograms of both series" } },
+    ],
+    documents: [
+      { name: { fr: "Rapport", en: "Report (French)" }, url: "/documents/statistiques/Projet_sciences_des_donnees.pdf" },
+    ],
+  },
+  {
+    slug: "analyse-harmonique",
+    title: { fr: "Analyser un son avec Fourier", en: "Analysing a sound with Fourier" },
+    kind: { fr: "Projet d'analyse harmonique", en: "Harmonic analysis project" },
+    period: { fr: "Octobre 2024", en: "October 2024" },
+    status: "done",
+    description: {
+      fr: "Comprendre la transformée de Fourier discrète sur des signaux simples, puis retrouver les harmoniques d'un enregistrement et resynthétiser le son.",
+      en: "Understanding the discrete Fourier transform on simple signals, then finding the harmonics of a recording and resynthesising the sound.",
+    },
+    content: [
+      {
+        fr: "Première partie : six signaux (sinus, cosinus déphasé, somme de cosinus, sinus redressé…) et leurs spectres calculés en Python. Les pics donnent les fréquences présentes, les fréquences au-delà de la moitié de la fréquence d'échantillonnage se lisent comme des fréquences négatives, et pour un signal réel X(−f) est le conjugué de X(f).",
+        en: "Part one: six signals (sine, phase-shifted cosine, sum of cosines, rectified sine…) and their spectra computed in Python. The peaks give the frequencies present, frequencies above half the sampling rate read as negative frequencies, and for a real signal X(−f) is the conjugate of X(f).",
+      },
+      {
+        fr: "Deuxième partie : un enregistrement audio de 2,3 s. Son spectre fait apparaître une fondamentale à 259 Hz et des harmoniques à 519, 778, 1 038 et 1 297 Hz. En additionnant ces sinusoïdes avec leurs amplitudes, on reconstruit un son synthétique proche de l'original.",
+        en: "Part two: a 2.3 s audio recording. Its spectrum shows a fundamental at 259 Hz and harmonics at 519, 778, 1,038 and 1,297 Hz. Adding these sine waves with their amplitudes rebuilds a synthetic sound close to the original.",
+      },
+    ],
+    facts: [
+      { label: { fr: "Fondamentale", en: "Fundamental" }, value: { fr: "259 Hz", en: "259 Hz" } },
+      { label: { fr: "Équipe", en: "Team" }, value: { fr: "Avec E. Houdré", en: "With E. Houdré" } },
+    ],
+    tags: tg("Python", "Fourier", "traitement du signal|signal processing"),
+    image: "/images/projects/analyse-harmonique/spectre-voix.jpg",
+    imageFit: "contain",
+    imageCredit: { fr: "Spectre de l'enregistrement : la fondamentale et ses harmoniques", en: "Spectrum of the recording: the fundamental and its harmonics" },
+    images: [
+      { src: "/images/projects/analyse-harmonique/signal-audio.jpg", caption: { fr: "Le signal audio dans le temps", en: "The audio signal over time" } },
+      { src: "/images/projects/analyse-harmonique/spectre-x3.jpg", caption: { fr: "Spectre de 2 cos(10πt) + 7 cos(2πt), avec les fréquences négatives", en: "Spectrum of 2 cos(10πt) + 7 cos(2πt), with negative frequencies" } },
+    ],
+    documents: [
+      { name: { fr: "Rapport", en: "Report (French)" }, url: "/documents/analyse-harmonique/Rapport_analyse_harmonique.pdf" },
+    ],
+  },
+  {
     slug: "prisma",
     title: { fr: "PRISMA", en: "PRISMA" },
     kind: { fr: "Projet associatif, AeroIPSA", en: "Student association project, AeroIPSA" },
@@ -452,11 +827,7 @@ export const archive: { group: T; items: { title: T; note?: T }[] }[] = [
   {
     group: { fr: "Cycle ingénieur, 2e année (2025 – 2026)", en: "Engineering cycle, 2nd year (2025 – 2026)" },
     items: [
-      { title: { fr: "Rentrée atmosphérique : Apollo et Artemis", en: "Atmospheric re-entry: Apollo and Artemis" }, note: { fr: "Simulation 3D sous MATLAB, entrée directe et entrée à rebond", en: "3D MATLAB simulation, direct and skip entry" } },
-      { title: { fr: "Conception avion et écoconception, industrialisation et méthodes de production", en: "Aircraft design and eco-design, industrialisation and production methods" } },
-      { title: { fr: "Production électrique et hydrogène", en: "Electric power and hydrogen production" } },
-      { title: { fr: "Méthodes numériques pour le spatial", en: "Numerical methods for space" } },
-    ],
+      { title: { fr: "Conception avion et écoconception, industrialisation et méthodes de production", en: "Aircraft design and eco-design, industrialisation and production methods" } },    ],
   },
   {
     group: { fr: "Cycle ingénieur, 1re année (2024 – 2025)", en: "Engineering cycle, 1st year (2024 – 2025)" },
@@ -464,9 +835,7 @@ export const archive: { group: T; items: { title: T; note?: T }[] }[] = [
       { title: { fr: "Modélisation et simulation numérique, application aux véhicules", en: "Modelling and numerical simulation for vehicles" } },
       { title: { fr: "Catia I et Catia II", en: "Catia I and Catia II" } },
       { title: { fr: "Modélisation et analyse dynamique des aéronefs", en: "Aircraft dynamics modelling and analysis" } },
-      { title: { fr: "Analyse harmonique pour l'ingénieur", en: "Harmonic analysis for engineers" } },
       { title: { fr: "Optimisation convexe", en: "Convex optimisation" } },
-      { title: { fr: "Introduction aux sciences des données", en: "Introduction to data science" } },
       { title: { fr: "Initiation aux bases de données", en: "Introduction to databases" } },
       { title: { fr: "Conduite et gestion de projet", en: "Project management" } },
     ],
