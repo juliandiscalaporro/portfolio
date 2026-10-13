@@ -355,6 +355,56 @@ export const projects: Project[] = [
     ],
   },
   {
+    slug: "trou-noir",
+    title: { fr: "Simuler un trou noir", en: "Simulating a black hole" },
+    kind: { fr: "Projet personnel", en: "Personal project" },
+    period: { fr: "Mars – mai 2026", en: "March – May 2026" },
+    status: "done",
+    description: {
+      fr: "Voir ce que voit un observateur près d'un trou noir : un simulateur 3D en Python qui lance un rayon de lumière par pixel et suit sa trajectoire courbée, directement sur la carte graphique.",
+      en: "Seeing what an observer near a black hole would see: a 3D simulator in Python that casts one light ray per pixel and follows its curved path, directly on the graphics card.",
+    },
+    content: [
+      {
+        fr: "Tout est parti d'Interstellar : je voulais comprendre pourquoi Gargantua ressemble à ça, avec cet anneau de lumière qui passe au-dessus et en dessous de l'ombre. La réponse tient dans la courbure des rayons lumineux. Le disque d'accrétion est plat, mais la lumière émise derrière le trou noir est déviée vers nous et le fait apparaître autour de l'ombre.",
+        en: "It all started with Interstellar: I wanted to understand why Gargantua looks the way it does, with that ring of light passing above and below the shadow. The answer lies in the bending of light rays. The accretion disk is flat, but light emitted behind the black hole is bent towards us and makes it appear around the shadow.",
+      },
+      {
+        fr: "Première version, en 2D avec Pygame : vingt rayons partent de la gauche et sont déviés par une attraction en 1/r². Ceux qui passent trop près sont absorbés, les autres sont défléchis d'autant plus qu'ils frôlent le trou noir. J'ai réglé la constante de gravité pour que la sphère des photons tombe à 1,5 fois le rayon de Schwarzschild, comme dans la réalité.",
+        en: "First version, in 2D with Pygame: twenty rays leave from the left and are deflected by a 1/r² attraction. Those passing too close are absorbed; the others are deflected more the closer they graze the black hole. I tuned the gravitational constant so that the photon sphere sits at 1.5 times the Schwarzschild radius, as in reality.",
+      },
+      {
+        fr: "Deuxième version, en 3D : je fais du ray tracing à l'envers. Pour chaque pixel de l'écran, un rayon part de la caméra et je remonte sa trajectoire. L'accélération reprend le terme newtonien et ajoute la correction relativiste de Schwarzschild en 3GL²/r⁴, où L est le moment cinétique du rayon, conservé le long de la trajectoire. L'intégration se fait en Runge-Kutta d'ordre 4, sur 400 pas par rayon. Le rayon s'arrête s'il passe sous l'horizon (pixel noir), s'il traverse le plan du disque (pixel coloré selon la température et l'effet Doppler, plus clair du côté qui vient vers nous), ou s'il s'échappe vers le fond étoilé.",
+        en: "Second version, in 3D: I do backward ray tracing. For each screen pixel, a ray leaves the camera and I trace its path back. The acceleration takes the Newtonian term and adds the Schwarzschild relativistic correction in 3GL²/r⁴, where L is the ray's angular momentum, conserved along the path. Integration uses fourth-order Runge-Kutta, with 400 steps per ray. A ray stops if it falls below the horizon (black pixel), crosses the disk plane (pixel coloured by temperature and Doppler effect, brighter on the side moving towards us), or escapes to the starry background.",
+      },
+      {
+        fr: "En Python pur, un million de rayons par image prendrait plusieurs minutes. J'ai donc écrit le calcul dans un shader GLSL, exécuté par OpenGL sur la carte graphique : chaque pixel est calculé en parallèle et la scène tourne en temps réel, à la souris. Une grille déformée en entonnoir, sous le trou noir, représente le puits de potentiel gravitationnel. On retrouve l'image d'Interstellar : l'ombre, l'anneau de photons et le disque vu à la fois de face et par-dessus.",
+        en: "In pure Python, a million rays per frame would take several minutes. So I wrote the computation as a GLSL shader, run by OpenGL on the graphics card: every pixel is computed in parallel and the scene runs in real time, controlled with the mouse. A funnel-shaped grid below the black hole shows the gravitational potential well. The Interstellar image appears: the shadow, the photon ring and the disk seen both edge-on and from above.",
+      },
+    ],
+    facts: [
+      { label: { fr: "Méthode", en: "Method" }, value: { fr: "Ray tracing inverse, un rayon par pixel", en: "Backward ray tracing, one ray per pixel" } },
+      { label: { fr: "Physique", en: "Physics" }, value: { fr: "Newton + correction de Schwarzschild", en: "Newton + Schwarzschild correction" } },
+      { label: { fr: "Intégrateur", en: "Integrator" }, value: { fr: "RK4, 400 pas par rayon", en: "RK4, 400 steps per ray" } },
+      { label: { fr: "Rendu", en: "Rendering" }, value: { fr: "Shader GLSL sur GPU, temps réel", en: "GLSL shader on GPU, real time" } },
+    ],
+    tags: tg("Python", "OpenGL", "GLSL", "RK4", "relativité générale|general relativity", "ray tracing"),
+    image: "/images/projects/simulating-black-hole/couverture.jpg",
+    imageCredit: {
+      fr: "Capture du simulateur : la caméra est presque dans le plan du disque",
+      en: "Simulator screenshot: the camera is almost in the disk plane",
+    },
+    images: [
+      {
+        src: "/images/projects/simulating-black-hole/deviation-2d.jpg",
+        caption: {
+          fr: "Première version en 2D : vingt rayons lumineux déviés ou absorbés par le trou noir",
+          en: "First 2D version: twenty light rays deflected or absorbed by the black hole",
+        },
+      },
+    ],
+  },
+  {
     slug: "prisma",
     title: { fr: "PRISMA", en: "PRISMA" },
     kind: { fr: "Projet associatif, AeroIPSA", en: "Student association project, AeroIPSA" },
@@ -424,9 +474,7 @@ export const archive: { group: T; items: { title: T; note?: T }[] }[] = [
   {
     group: { fr: "Projets personnels et associatifs", en: "Personal and association projects" },
     items: [
-      { title: { fr: "ASTRAY, AeroIPSA", en: "ASTRAY, AeroIPSA" }, note: { fr: "Vol en recherche d'altitude maximale, test du système de stabilisation et largage de poudres colorées", en: "Maximum-altitude flight, stabilisation system test and coloured powder release" } },
-      { title: { fr: "Simuler un trou noir", en: "Simulating a black hole" } },
-    ],
+      { title: { fr: "ASTRAY, AeroIPSA", en: "ASTRAY, AeroIPSA" }, note: { fr: "Vol en recherche d'altitude maximale, test du système de stabilisation et largage de poudres colorées", en: "Maximum-altitude flight, stabilisation system test and coloured powder release" } },    ],
   },
 ];
 
