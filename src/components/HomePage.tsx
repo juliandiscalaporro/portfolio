@@ -5,6 +5,7 @@ import {
   config,
   experiences,
   projects,
+  projectThemes,
   archive,
   sky,
   skills,
@@ -30,7 +31,10 @@ const closing = {
 export default function HomePage({ lang }: { lang: Lang }) {
   const t = ui(lang);
   const ongoing = projects.filter((p) => p.status === "ongoing");
-  const done = projects.filter((p) => p.status === "done");
+  const bySlug = new Map(projects.map((p) => [p.slug, p]));
+  const doneGroups = projectThemes
+    .map((g) => ({ ...g, items: g.slugs.map((s) => bySlug.get(s)).filter((p): p is (typeof projects)[number] => !!p && p.status === "done") }))
+    .filter((g) => g.items.length > 0);
   const cvLabel = t.cv + (config.cvIsTranslated[lang] ? "" : t.cvFrOnly);
 
   return (
@@ -187,14 +191,14 @@ export default function HomePage({ lang }: { lang: Lang }) {
                     href={`${t.projectBase}/${p.slug}`}
                     className="group grid gap-6 py-8 md:grid-cols-12 md:gap-10 md:py-10 xl:grid-cols-1 xl:gap-6"
                   >
-                    <div className="relative aspect-[16/10] overflow-hidden rounded-[3px] bg-raised md:col-span-5 xl:col-span-1">
+                    <div className={`relative aspect-[16/10] overflow-hidden rounded-[3px] md:col-span-5 xl:col-span-1 ${p.imageFit === "contain" ? "bg-white" : "bg-raised"}`}>
                       {p.image && (
                         <Image
                           src={p.image}
                           alt=""
                           fill
                           sizes="(min-width: 768px) 40vw, 100vw"
-                          className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                          className={`${p.imageFit === "contain" ? "object-contain p-3" : "object-cover"} transition-transform duration-500 group-hover:scale-[1.03]`}
                         />
                       )}
                     </div>
@@ -222,36 +226,49 @@ export default function HomePage({ lang }: { lang: Lang }) {
             </ul>
 
             <h3 className="mt-20 font-serif text-[1.3rem] font-medium">{t.doneTitle}</h3>
-            <ul className="mt-5 grid gap-x-8 gap-y-14 md:grid-cols-2 2xl:grid-cols-4">
-              {done.map((p) => (
-                <li key={p.slug}>
-                  <Link href={`${t.projectBase}/${p.slug}`} className="group block">
-                    <div className={`relative aspect-[16/10] overflow-hidden rounded-[3px] ${p.imageFit === "contain" ? "bg-white" : "bg-raised"}`}>
-                      {p.image && (
-                        <Image
-                          src={p.image}
-                          alt=""
-                          fill
-                          sizes="(min-width: 768px) 45vw, 100vw"
-                          className={`${p.imageFit === "contain" ? "object-contain p-3" : "object-cover"} transition-transform duration-500 group-hover:scale-[1.03]`}
-                        />
-                      )}
-                    </div>
-                    <p className="mt-5 flex flex-wrap gap-x-3 text-[0.92rem] text-muted">
-                      <span>{tr(p.kind, lang)}</span>
-                      <span className="text-faint">{tr(p.period, lang)}</span>
-                    </p>
-                    <h4 className="mt-2 font-serif text-[1.6rem] font-medium leading-snug text-paper transition-colors group-hover:text-star">
-                      {tr(p.title, lang)}
-                    </h4>
-                    <p className="mt-2 text-paper/80">{tr(p.description, lang)}</p>
-                    <span className="mt-4 inline-block text-[0.95rem] text-paper underline decoration-star/60 underline-offset-4 group-hover:decoration-star">
-                      {t.readProject}
-                    </span>
-                  </Link>
-                </li>
+            <nav aria-label={t.doneTitle} className="mt-5 flex flex-wrap gap-2">
+              {doneGroups.map((g) => (
+                <a key={g.id} href={`#theme-${g.id}`} className="chip transition-colors hover:text-star">
+                  {tr(g.title, lang)} <span className="text-faint">· {g.items.length}</span>
+                </a>
               ))}
-            </ul>
+            </nav>
+
+            {doneGroups.map((g) => (
+              <section key={g.id} id={`theme-${g.id}`} className="mt-16 scroll-mt-24">
+                <h4 className="border-b border-line pb-3 text-[1.05rem] text-star">{tr(g.title, lang)}</h4>
+                <ul className="mt-8 grid gap-x-8 gap-y-14 md:grid-cols-2 2xl:grid-cols-4">
+                  {g.items.map((p) => (
+                    <li key={p.slug}>
+                      <Link href={`${t.projectBase}/${p.slug}`} className="group block">
+                        <div className={`relative aspect-[16/10] overflow-hidden rounded-[3px] ${p.imageFit === "contain" ? "bg-white" : "bg-raised"}`}>
+                          {p.image && (
+                            <Image
+                              src={p.image}
+                              alt=""
+                              fill
+                              sizes="(min-width: 768px) 45vw, 100vw"
+                              className={`${p.imageFit === "contain" ? "object-contain p-3" : "object-cover"} transition-transform duration-500 group-hover:scale-[1.03]`}
+                            />
+                          )}
+                        </div>
+                        <p className="mt-5 flex flex-wrap gap-x-3 text-[0.92rem] text-muted">
+                          <span>{tr(p.kind, lang)}</span>
+                          <span className="text-faint">{tr(p.period, lang)}</span>
+                        </p>
+                        <h5 className="mt-2 font-serif text-[1.6rem] font-medium leading-snug text-paper transition-colors group-hover:text-star">
+                          {tr(p.title, lang)}
+                        </h5>
+                        <p className="mt-2 text-paper/80">{tr(p.description, lang)}</p>
+                        <span className="mt-4 inline-block text-[0.95rem] text-paper underline decoration-star/60 underline-offset-4 group-hover:decoration-star">
+                          {t.readProject}
+                        </span>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            ))}
 
             <h3 className="mt-24 font-serif text-[1.3rem] font-medium">{t.archiveTitle}</h3>
             <div className="mt-6 grid gap-10 md:grid-cols-3 xl:gap-16">

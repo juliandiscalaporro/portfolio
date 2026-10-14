@@ -408,29 +408,35 @@ export const projects: Project[] = [
     },
     content: [
       {
-        fr: "Un moteur nucléaire thermique, comme NERVA dans les années 1960, fait passer de l'hydrogène liquide dans un réacteur à fission avant de le détendre dans une tuyère. Il atteint 800 à 1 000 s d'impulsion spécifique, contre 450 s pour le meilleur moteur chimique, ce qui réduit fortement la masse de propergol pour aller vers Mars. Mais au-delà de 2 500 K, l'hydrogène chaud attaque le combustible en graphite et arrache de la matière fissile, rejetée dans le jet.",
-        en: "A nuclear thermal engine, like NERVA in the 1960s, passes liquid hydrogen through a fission reactor before expanding it in a nozzle. It reaches 800 to 1,000 s of specific impulse, against 450 s for the best chemical engine, which greatly reduces the propellant mass for a trip to Mars. But above 2,500 K, hot hydrogen attacks the graphite fuel and strips off fissile material, which is ejected in the exhaust.",
+        fr: "Un moteur nucléaire thermique, comme NERVA dans les années 1960, fait passer de l'hydrogène liquide dans un réacteur à fission avant de le détendre dans une tuyère. Il atteint 800 à 1 000 s d'impulsion spécifique, contre 450 s pour le meilleur moteur chimique. Pour une mission vers Mars (Δv ≈ 5,5 km/s), l'équation de Tsiolkovski fait alors passer le rapport de masse au départ d'environ 3,5 à 1,9 : le propergol passe de plus des deux tiers à moins de la moitié de la masse du vaisseau. Mais au-delà de 2 500 K, l'hydrogène chaud attaque le combustible en graphite et arrache de la matière fissile, rejetée dans le jet.",
+        en: "A nuclear thermal engine, like NERVA in the 1960s, passes liquid hydrogen through a fission reactor before expanding it in a nozzle. It reaches 800 to 1,000 s of specific impulse, against 450 s for the best chemical engine. For a mission to Mars (Δv ≈ 5.5 km/s), the Tsiolkovsky equation then brings the initial mass ratio down from about 3.5 to 1.9: propellant drops from over two thirds to under half of the spacecraft's mass. But above 2,500 K, hot hydrogen attacks the graphite fuel and strips off fissile material, which is ejected in the exhaust.",
       },
       {
-        fr: "Après un état de l'art (histoire de Rover/NERVA et DRACO, contraintes techniques, économiques, écologiques et réglementaires), nous avons comparé quatre matériaux réfractaires et retenu un combustible tout-carbure (U₀,₂Zr₀,₈)C, qui supprime l'interface graphite responsable de la corrosion et supporte une paroi plus chaude.",
-        en: "After a review (the history of Rover/NERVA and DRACO, technical, economic, environmental and regulatory constraints), we compared four refractory materials and chose an all-carbide (U₀.₂Zr₀.₈)C fuel, which removes the graphite interface responsible for corrosion and withstands a hotter wall.",
+        fr: "L'état de l'art couvre toute la chaîne de l'hydrogène : sa production verte par électrolyse (alcaline ou PEM), son stockage liquide à 20,27 K, où la conversion ortho-para dégage plus de chaleur que la vaporisation elle-même, la fragilisation des métaux par l'hydrogène, et les solutions de stockage sans évaporation pour des missions de plus de six mois (isolation multicouche, cryoréfrigérateur, ombrage solaire). Il couvre aussi l'histoire de Rover/NERVA et de DRACO et les contraintes réglementaires du lancement d'un réacteur (norme NASA-STD-8719.12). Côté cœur du réacteur, nous avons comparé les combustibles réfractaires, dont les carbures et le CERMET tungstène–UO₂, et retenu un tout-carbure (U₀,₂Zr₀,₈)C, qui supprime l'interface graphite responsable de la corrosion et supporte une paroi plus chaude.",
+        en: "The review covers the whole hydrogen chain: green production by electrolysis (alkaline or PEM), liquid storage at 20.27 K, where ortho-para conversion releases more heat than vaporisation itself, hydrogen embrittlement of metals, and zero boil-off storage for missions longer than six months (multilayer insulation, cryocooler, sun shading). It also covers the history of Rover/NERVA and DRACO and the regulatory constraints of launching a reactor (NASA-STD-8719.12). For the reactor core, we compared refractory fuels, including carbides and tungsten–UO₂ CERMET, and chose an all-carbide (U₀.₂Zr₀.₈)C, which removes the graphite interface responsible for corrosion and withstands a hotter wall.",
       },
       {
-        fr: "Pour chiffrer le gain, nous avons modélisé sous MATLAB l'écoulement d'hydrogène dans un canal de refroidissement de 90 cm (modèle quasi-1D compressible : masse, quantité de mouvement avec frottement, énergie). Avec une paroi autorisée à 2 700 K au lieu de 2 400 K, la température et la vitesse de sortie augmentent de 37 % par rapport au combustible historique UC.",
-        en: "To quantify the gain, we modelled the hydrogen flow in a 90 cm cooling channel in MATLAB (quasi-1D compressible model: mass, momentum with friction, energy). With the wall allowed to reach 2,700 K instead of 2,400 K, the exit temperature and velocity increase by 37% compared with the historical UC fuel.",
+        fr: "Pour chiffrer le gain, nous avons modélisé sous MATLAB l'écoulement d'hydrogène dans un canal de refroidissement de 90 cm, dans les conditions de NERVA : modèle quasi-1D compressible résolu par un schéma prédicteur-correcteur, avec des propriétés de l'hydrogène qui varient avec la température. L'hydrogène entre à 20 K et 68,9 bar et ressort vers 1 280 K et 31 bar : sa densité est divisée par 120, il accélère de 2 à 243 m/s mais reste subsonique (Mach 0,09), l'accélération supersonique se faisant ensuite dans la tuyère. Avec le combustible (U₀,₂Zr₀,₈)C, qui accepte un flux de 2,0 MW/m² contre 1,4 MW/m² pour l'UC historique, la température de sortie passe de 1 028 K à 1 407 K et la vitesse de 195 à 267 m/s, soit environ 37 % de mieux.",
+        en: "To quantify the gain, we modelled the hydrogen flow in a 90 cm cooling channel in MATLAB, under NERVA conditions: a quasi-1D compressible model solved with a predictor-corrector scheme, with hydrogen properties varying with temperature. Hydrogen enters at 20 K and 68.9 bar and leaves at around 1,280 K and 31 bar: its density drops by a factor of 120 and it accelerates from 2 to 243 m/s but stays subsonic (Mach 0.09), the supersonic acceleration happening later in the nozzle. With the (U₀.₂Zr₀.₈)C fuel, which accepts a 2.0 MW/m² heat flux against 1.4 MW/m² for historical UC, the exit temperature rises from 1,028 K to 1,407 K and the velocity from 195 to 267 m/s, about 37% better.",
+      },
+      {
+        fr: "Le travail propose enfin une modélisation système du moteur complet sous Simcenter AMESim, découpé en six sous-systèmes couplés, à confronter aux données de l'essai PHOEBUS-2A de 1968, le réacteur de propulsion le plus puissant jamais testé (4 100 MW thermiques). Le tout a été rédigé sous la forme d'un article de revue scientifique.",
+        en: "Finally, the work proposes a system model of the complete engine in Simcenter AMESim, split into six coupled sub-systems, to be compared with data from the 1968 PHOEBUS-2A test, the most powerful propulsion reactor ever tested (4,100 MW thermal). Everything was written up as a scientific journal article.",
       },
     ],
     facts: [
       { label: { fr: "Combustible retenu", en: "Chosen fuel" }, value: { fr: "(U₀,₂Zr₀,₈)C tout-carbure", en: "All-carbide (U₀.₂Zr₀.₈)C" } },
       { label: { fr: "Modèle", en: "Model" }, value: { fr: "Canal quasi-1D compressible, MATLAB", en: "Quasi-1D compressible channel, MATLAB" } },
+      { label: { fr: "Hydrogène dans le canal", en: "Hydrogen in the channel" }, value: { fr: "20 K → 1 407 K", en: "20 K → 1,407 K" } },
       { label: { fr: "Gain en sortie", en: "Exit gain" }, value: { fr: "+37 % de température et de vitesse", en: "+37% temperature and velocity" } },
       { label: { fr: "Équipe", en: "Team" }, value: { fr: "Six étudiants du parcours ELS", en: "Six students from the ELS track" } },
     ],
-    tags: tg("MATLAB", "propulsion", "matériaux|materials", "thermo-fluide|thermo-fluids", "hydrogène|hydrogen"),
+    tags: tg("MATLAB", "AMESim", "propulsion", "matériaux|materials", "thermo-fluide|thermo-fluids", "hydrogène|hydrogen", "cryogénie|cryogenics"),
     image: "/images/projects/propulsion-nucleaire/champs-canal.jpg",
     imageFit: "contain",
     imageCredit: { fr: "Champs de vitesse et de température dans le canal de refroidissement, combustible (U,Zr)C", en: "Velocity and temperature fields in the cooling channel, (U,Zr)C fuel" },
     images: [
+      { src: "/images/projects/propulsion-nucleaire/profils-nerva.jpg", caption: { fr: "Conditions NERVA : température, vitesse, pression, densité, Mach et débit le long du canal", en: "NERVA conditions: temperature, velocity, pressure, density, Mach number and flow rate along the channel" } },
       { src: "/images/projects/propulsion-nucleaire/profils-axiaux.jpg", caption: { fr: "Profils le long du canal : (U₀,₂Zr₀,₈)C en rouge, UC en bleu", en: "Profiles along the channel: (U₀.₂Zr₀.₈)C in red, UC in blue" } },
       { src: "/images/projects/propulsion-nucleaire/performances-sortie.jpg", caption: { fr: "Performances en sortie de canal pour les deux combustibles", en: "Channel exit performance for both fuels" } },
     ],
@@ -441,7 +447,7 @@ export const projects: Project[] = [
   {
     slug: "rentree-atmospherique",
     title: { fr: "Rentrée atmosphérique : Apollo et Artemis", en: "Atmospheric re-entry: Apollo and Artemis" },
-    kind: { fr: "Projet missions planétaires et rentrées atmosphériques", en: "Planetary missions and atmospheric entry project" },
+    kind: { fr: "Projet missions planétaires et rentrées atmosphériques, en équipe de trois", en: "Planetary missions and atmospheric entry project, team of three" },
     period: { fr: "Mai 2026", en: "May 2026" },
     status: "done",
     description: {
@@ -450,29 +456,39 @@ export const projects: Project[] = [
     },
     content: [
       {
-        fr: "Les deux capsules reviennent de la Lune à environ 11 km/s, mais Orion est plus grosse (5 m de diamètre contre 3,9 m, 8,5 t contre 5,8 t) et utilise une entrée à rebond : elle replonge après être brièvement remontée, pour étaler le freinage et viser plus loin. Le projet compare les deux programmes : aérodynamique des capsules, protection thermique et stratégies de guidage (entrée directe ou à rebond).",
-        en: "Both capsules come back from the Moon at about 11 km/s, but Orion is bigger (5 m diameter against 3.9 m, 8.5 t against 5.8 t) and uses a skip entry: it climbs back briefly before diving again, to spread the braking and reach further. The project compares the two programmes: capsule aerodynamics, thermal protection and guidance strategies (direct or skip entry).",
+        fr: "Cinquante ans séparent les deux programmes, mais la mécanique orbitale n'a pas changé : en revenant de la Lune, Apollo comme Orion abordent l'atmosphère à environ 11 km/s. Orion est plus grande (5 m de diamètre contre 3,9 m), embarque quatre astronautes au lieu de trois et tient 21 jours en autonomie au lieu de 14. Nous avons comparé les deux programmes sur leur contexte, l'architecture des lanceurs et des capsules, l'avionique, la propulsion, et surtout la rentrée atmosphérique.",
+        en: "Fifty years separate the two programmes, but orbital mechanics has not changed: coming back from the Moon, both Apollo and Orion hit the atmosphere at about 11 km/s. Orion is bigger (5 m in diameter against 3.9 m), carries four astronauts instead of three and lasts 21 days on its own instead of 14. We compared the two programmes on their context, launcher and capsule architecture, avionics, propulsion, and above all atmospheric re-entry.",
+      },
+      {
+        fr: "Côté physique de la rentrée, les deux capsules ont un coefficient balistique proche (environ 400 kg/m² pour Apollo, 390 kg/m² pour Orion) et la même finesse visée, L/D ≈ 0,3. Le couloir d'entrée est étroit : trop rasante (au-dessus de −5°), la capsule rebondit hors de l'atmosphère ; trop plongeante (au-delà de −10°), le chauffage et les g deviennent létaux. Apollo visait entre −5,5° et −7,5° avec une précision de ±0,4°. Nous avons aussi détaillé les régimes d'écoulement traversés, du moléculaire libre au-dessus de 100 km jusqu'au régime continu sous 60 km, et l'histoire des boucliers thermiques : fissures de l'AVCOAT après le vol EFT-1 en 2014, et chauffage radiatif de la face arrière, longtemps négligé, confirmé par les capteurs d'Artemis I en 2022.",
+        en: "On the re-entry physics side, both capsules have a similar ballistic coefficient (about 400 kg/m² for Apollo, 390 kg/m² for Orion) and the same target lift-to-drag ratio, L/D ≈ 0.3. The entry corridor is narrow: too shallow (above −5°) and the capsule skips out of the atmosphere; too steep (beyond −10°) and heating and g-loads become lethal. Apollo aimed between −5.5° and −7.5° with ±0.4° accuracy. We also detailed the flow regimes crossed, from free molecular flow above 100 km down to continuum flow below 60 km, and the history of the heat shields: AVCOAT cracking after the EFT-1 flight in 2014, and radiative heating of the backshell, long overlooked, confirmed by Artemis I's sensors in 2022.",
       },
       {
         fr: "La simulation s'appuie sur un programme MATLAB de calcul de rentrée en 3D écrit par Ivan Fedioun (ICARE-CNRS) : Terre ellipsoïdale, atmosphère US 1976, gravité variable, intégration en Runge-Kutta d'ordre 4. Je l'ai remis en état (corrections de syntaxe, conventions de latitude et d'azimut) puis alimenté avec les conditions d'entrée réelles d'Apollo 12 et d'Artemis I, tirées du rapport de mission NASA pour Apollo et des données publiées pour Artemis.",
         en: "The simulation relies on a 3D re-entry MATLAB code written by Ivan Fedioun (ICARE-CNRS): ellipsoidal Earth, US 1976 atmosphere, varying gravity, fourth-order Runge-Kutta integration. I got it working again (syntax fixes, latitude and azimuth conventions) and fed it with the real entry conditions of Apollo 12 and Artemis I, taken from the NASA mission report for Apollo and published data for Artemis.",
       },
       {
-        fr: "Pour Orion en entrée directe balistique (entrée à 122 km, 11 km/s, pente de −5,85°), la capsule parcourt 1 660 km en 413 s. La décélération culmine à 7,6 g vers 52 km d'altitude et la capsule repasse sous Mach 1 vers 18 km. Le programme garde une portance constante : il ne peut donc pas reproduire le rebond piloté d'Orion, mais il permet de comparer les couloirs d'entrée et la première phase de freinage.",
-        en: "For Orion in a ballistic direct entry (entry at 122 km, 11 km/s, −5.85° flight-path angle), the capsule travels 1,660 km in 413 s. Deceleration peaks at 7.6 g around 52 km altitude and the capsule drops below Mach 1 around 18 km. The code keeps lift constant, so it cannot reproduce Orion's guided skip, but it lets us compare the entry corridors and the first braking phase.",
+        fr: "Pour Orion en entrée directe balistique (entrée à 122 km, 11 km/s, pente de −5,85°), la capsule parcourt 1 660 km en 413 s. Sa vitesse reste proche de 11 km/s pendant la première minute, puis chute à moins de 1 km/s en un peu plus de trois minutes ; la décélération culmine à 7,6 g vers 52 km d'altitude et la capsule repasse sous Mach 1 vers 18 km. Pour Apollo, le programme garde la portance constante, sans la modulation en roulis qu'appliquait le vrai guidage : après un premier plongeon jusqu'à environ 55 km, la capsule ressort de l'atmosphère, remonte vers 860 km et ne retombe qu'au bout de 4 700 s. C'est exactement le rebond que le pilotage de la portance devait éviter, et que l'entrée à rebond d'Orion exploite au contraire de façon contrôlée.",
+        en: "For Orion in a ballistic direct entry (entry at 122 km, 11 km/s, −5.85° flight-path angle), the capsule travels 1,660 km in 413 s. Its speed stays close to 11 km/s for the first minute, then falls below 1 km/s in just over three minutes; deceleration peaks at 7.6 g around 52 km altitude and the capsule drops below Mach 1 around 18 km. For Apollo, the code keeps lift constant, without the roll modulation applied by the real guidance: after a first dip down to about 55 km, the capsule leaves the atmosphere, climbs to around 860 km and only comes back after 4,700 s. This is exactly the skip that lift control had to avoid, and that Orion's skip entry instead exploits in a controlled way.",
       },
     ],
     facts: [
       { label: { fr: "Vitesse d'entrée", en: "Entry speed" }, value: { fr: "11 km/s", en: "11 km/s" } },
       { label: { fr: "Décélération max", en: "Peak deceleration" }, value: { fr: "7,6 g (Orion, entrée directe)", en: "7.6 g (Orion, direct entry)" } },
+      { label: { fr: "Couloir d'entrée", en: "Entry corridor" }, value: { fr: "−5,5° à −7,5° (Apollo)", en: "−5.5° to −7.5° (Apollo)" } },
       { label: { fr: "Outil", en: "Tool" }, value: { fr: "MATLAB, code ICARE-CNRS", en: "MATLAB, ICARE-CNRS code" } },
     ],
-    tags: tg("MATLAB", "rentrée atmosphérique|atmospheric entry", "RK4", "Apollo", "Artemis"),
+    tags: tg("MATLAB", "rentrée atmosphérique|atmospheric entry", "RK4", "Apollo", "Artemis", "boucliers thermiques|heat shields"),
     image: "/images/projects/rentree-atmospherique/altitude-vitesse.png",
     imageFit: "contain",
     imageCredit: { fr: "Altitude et vitesse d'Orion pendant la rentrée simulée", en: "Orion altitude and speed during the simulated entry" },
     images: [
-      { src: "/images/projects/rentree-atmospherique/deceleration.png", caption: { fr: "Décélération en fonction de l'altitude", en: "Deceleration versus altitude" } },
+      { src: "/images/projects/rentree-atmospherique/orion-altitude-distance.jpg", caption: { fr: "Orion : altitude en fonction de la distance parcourue au sol, 1 660 km jusqu'à l'amerrissage", en: "Orion: altitude versus ground distance, 1,660 km to splashdown" } },
+      { src: "/images/projects/rentree-atmospherique/orion-vitesse.jpg", caption: { fr: "Orion : vitesse absolue au cours du temps, de 11 km/s à moins de 0,5 km/s", en: "Orion: absolute speed over time, from 11 km/s to under 0.5 km/s" } },
+      { src: "/images/projects/rentree-atmospherique/deceleration.png", caption: { fr: "Orion : décélération en fonction de l'altitude", en: "Orion: deceleration versus altitude" } },
+      { src: "/images/projects/rentree-atmospherique/orion-plan-entree.jpg", caption: { fr: "Orion : trajectoire dans le plan d'entrée, au-dessus de la surface terrestre", en: "Orion: trajectory in the entry plane, above the Earth's surface" } },
+      { src: "/images/projects/rentree-atmospherique/apollo-rebond.jpg", caption: { fr: "Apollo à portance constante : la capsule rebondit jusqu'à 860 km avant de revenir", en: "Apollo with constant lift: the capsule skips up to 860 km before coming back" } },
+      { src: "/images/projects/rentree-atmospherique/apollo-globe.jpg", caption: { fr: "Apollo : trajectoire en 3D autour de la Terre", en: "Apollo: 3D trajectory around the Earth" } },
       { src: "/images/projects/rentree-atmospherique/trace-sol.png", caption: { fr: "Trace au sol, de l'entrée dans l'atmosphère à l'amerrissage dans le Pacifique", en: "Ground track, from atmospheric entry to splashdown in the Pacific" } },
     ],
   },
@@ -722,6 +738,54 @@ export const projects: Project[] = [
       { src: "/images/projects/catia-2/contraintes-sommet.jpg", caption: { fr: "Contraintes de Von Mises au sommet du poteau : 17,1 MPa au maximum", en: "Von Mises stress at the top of the leg: 17.1 MPa maximum" } },
       { src: "/images/projects/catia-2/contraintes-pied.jpg", caption: { fr: "Contraintes près de l'encastrement", en: "Stress near the clamped base" } },
     ],
+    documents: [
+      { name: { fr: "Rapport : étude de la tenue mécanique du poteau", en: "Report: structural study of the main leg (French)" }, url: "/documents/catia-2/Rapport_etude_mecanique_IPSATTRACTION.pdf" },
+      { name: { fr: "Support de soutenance", en: "Defence slides (French)" }, url: "/documents/catia-2/Soutenance_IPSATTRACTION.pdf" },
+    ],
+  },
+  {
+    slug: "dynamique-aeronefs",
+    title: { fr: "Stabiliser un avion par placement de pôles", en: "Stabilising an aircraft by pole placement" },
+    kind: { fr: "Projet de modélisation et d'analyse dynamique des aéronefs", en: "Aircraft dynamics modelling and analysis project" },
+    period: { fr: "Avril 2025", en: "April 2025" },
+    status: "done",
+    description: {
+      fr: "Mettre en équations le mouvement longitudinal d'un avion, retrouver ses modes propres, puis concevoir un pilote automatique qui amortit ses oscillations.",
+      en: "Writing the equations of an aircraft's longitudinal motion, finding its natural modes, then designing an autopilot that damps its oscillations.",
+    },
+    content: [
+      {
+        fr: "Le mouvement longitudinal de l'avion (vitesse, incidence, tangage) est décrit par une représentation d'état à quatre variables, commandée par la gouverne de profondeur. La matrice de commandabilité est de rang plein : une seule entrée suffit à piloter tout le système. Les valeurs propres ont toutes une partie réelle négative, donc l'avion est stable, mais elles forment deux paires complexes : l'oscillation d'incidence, rapide et bien amortie (−2,82 ± 2,01i), et la phugoïde, une longue oscillation de vitesse et d'altitude à peine amortie (−0,0073 ± 0,066i).",
+        en: "The aircraft's longitudinal motion (speed, angle of attack, pitch) is described by a four-variable state-space model, driven by the elevator. The controllability matrix has full rank: a single input is enough to steer the whole system. All eigenvalues have a negative real part, so the aircraft is stable, but they form two complex pairs: the short-period oscillation, fast and well damped (−2.82 ± 2.01i), and the phugoid, a long speed and altitude oscillation that is barely damped (−0.0073 ± 0.066i).",
+      },
+      {
+        fr: "Sous Simulink, j'ai excité le modèle avec une entrée sinusoïdale de pulsation croissante, de 0,022 à 0,099 rad/s. L'amplitude de la réponse augmente jusqu'à un maximum vers 0,066 rad/s, puis redescend : c'est la résonance de la phugoïde, à la pulsation prévue par les valeurs propres.",
+        en: "In Simulink, I excited the model with a sinusoidal input of increasing frequency, from 0.022 to 0.099 rad/s. The response amplitude grows up to a maximum around 0.066 rad/s, then falls again: this is the phugoid resonance, at the frequency predicted by the eigenvalues.",
+      },
+      {
+        fr: "Pour finir, j'ai conçu un pilote automatique par retour d'état, u = −Kx, en plaçant les quatre pôles en boucle fermée sur l'axe réel (−1,5, −2, −2,5 et −3). Le gain K, calculé à la main puis avec la fonction place de MATLAB, supprime les oscillations : depuis plusieurs conditions initiales, l'avion revient à l'équilibre en quelques secondes au lieu d'osciller pendant plusieurs minutes.",
+        en: "Finally, I designed a state-feedback autopilot, u = −Kx, by placing the four closed-loop poles on the real axis (−1.5, −2, −2.5 and −3). The gain K, computed by hand and with MATLAB's place function, removes the oscillations: from several initial conditions, the aircraft returns to equilibrium within seconds instead of oscillating for several minutes.",
+      },
+    ],
+    facts: [
+      { label: { fr: "Outils", en: "Tools" }, value: { fr: "MATLAB, Simulink", en: "MATLAB, Simulink" } },
+      { label: { fr: "Phugoïde", en: "Phugoid" }, value: { fr: "ω ≈ 0,066 rad/s, à peine amortie", en: "ω ≈ 0.066 rad/s, barely damped" } },
+      { label: { fr: "Pôles imposés", en: "Placed poles" }, value: { fr: "−1,5 ; −2 ; −2,5 ; −3", en: "−1.5, −2, −2.5, −3" } },
+    ],
+    tags: tg("MATLAB", "Simulink", "automatique|control", "représentation d'état|state space", "mécanique du vol|flight dynamics"),
+    image: "/images/projects/dynamique-aeronefs/poles-zeros.jpg",
+    imageFit: "contain",
+    imageCredit: { fr: "Carte des pôles en boucle ouverte : oscillation d'incidence à gauche, phugoïde près de l'axe imaginaire", en: "Open-loop pole map: short-period mode on the left, phugoid near the imaginary axis" },
+    images: [
+      { src: "/images/projects/dynamique-aeronefs/reponse-echelon.jpg", caption: { fr: "Réponse en boucle ouverte : les oscillations s'amortissent lentement", en: "Open-loop response: oscillations die out slowly" } },
+      { src: "/images/projects/dynamique-aeronefs/resonance.jpg", caption: { fr: "Entrée sinusoïdale à 0,066 rad/s : la résonance de la phugoïde", en: "Sinusoidal input at 0.066 rad/s: phugoid resonance" } },
+      { src: "/images/projects/dynamique-aeronefs/boucle-ouverte.jpg", caption: { fr: "Modèle Simulink en boucle ouverte", en: "Open-loop Simulink model" } },
+      { src: "/images/projects/dynamique-aeronefs/boucle-fermee.jpg", caption: { fr: "Pilote automatique : retour d'état u = −Kx", en: "Autopilot: state feedback u = −Kx" } },
+      { src: "/images/projects/dynamique-aeronefs/reponse-corrigee.jpg", caption: { fr: "Réponse avec le pilote automatique : retour à l'équilibre en quelques secondes", en: "Response with the autopilot: back to equilibrium within seconds" } },
+    ],
+    documents: [
+      { name: { fr: "Rapport", en: "Report (French)" }, url: "/documents/dynamique-aeronefs/Rapport_dynamique_aeronefs.pdf" },
+    ],
   },
   {
     slug: "cfd-naca-cylindre",
@@ -758,6 +822,49 @@ export const projects: Project[] = [
     documents: [
       { name: { fr: "TP profil NACA", en: "NACA airfoil lab (French)" }, url: "/documents/cfd-naca-cylindre/TP_CFD_profil_NACA.pdf" },
       { name: { fr: "TP cylindre", en: "Cylinder lab (French)" }, url: "/documents/cfd-naca-cylindre/TP_CFD_cylindre.pdf" },
+    ],
+  },
+  {
+    slug: "optimisation-convexe",
+    title: { fr: "Optimiser le profil de vol d'un avion", en: "Optimising an aircraft's flight profile" },
+    kind: { fr: "Projet d'optimisation convexe", en: "Convex optimisation project" },
+    period: { fr: "2024 – 2025", en: "2024 – 2025" },
+    status: "done",
+    description: {
+      fr: "À quelle altitude voler, et à quel rythme monter et descendre, pour consommer le moins de carburant possible sur une distance donnée ?",
+      en: "At what altitude should an aircraft fly, and how fast should it climb and descend, to burn as little fuel as possible over a given distance?",
+    },
+    content: [
+      {
+        fr: "La trajectoire est découpée en N + 1 points d'altitude, avec un départ et une arrivée au sol. La consommation additionne trois termes : une consommation nominale, une pénalité quadratique quand l'avion s'écarte de son altitude optimale (qui dépend de sa masse), et une pénalité sur les changements d'altitude entre deux points successifs. Le but est de trouver le profil qui minimise la consommation totale.",
+        en: "The trajectory is split into N + 1 altitude points, with take-off and landing at ground level. Fuel burn adds up three terms: a nominal consumption, a quadratic penalty when the aircraft moves away from its optimal altitude (which depends on its mass), and a penalty on altitude changes between two successive points. The goal is to find the profile that minimises total fuel burn.",
+      },
+      {
+        fr: "À masse fixe, la consommation est une fonction quadratique des altitudes. J'ai écrit sa matrice hessienne, somme d'une matrice tridiagonale (le terme de montée et de descente) et d'une matrice diagonale (le terme d'altitude), et montré qu'elle est définie positive : le problème est strictement convexe, la solution existe et elle est unique. Le minimum vérifie un système linéaire, que j'ai résolu en Python par une méthode du gradient à pas fixe. J'ai ensuite étudié l'effet de la discrétisation (N de 50 à 1 000) et comparé trois avions : leurs paramètres de consommation fixent les pentes de montée et de descente.",
+        en: "With fixed mass, fuel burn is a quadratic function of the altitudes. I wrote out its Hessian, the sum of a tridiagonal matrix (the climb and descent term) and a diagonal matrix (the altitude term), and showed that it is positive definite: the problem is strictly convex, so the solution exists and is unique. The minimum satisfies a linear system, which I solved in Python with a fixed-step gradient method. I then studied the effect of discretisation (N from 50 to 1,000) and compared three aircraft: their consumption parameters set the climb and descent slopes.",
+      },
+      {
+        fr: "Avec une masse variable, l'avion s'allège en brûlant son carburant, et son altitude optimale monte au fil du vol. Le gradient exact devient difficile à calculer, car la masse en chaque point dépend de toute la consommation qui précède. J'ai donc utilisé une méthode de point fixe : on met à jour les altitudes à masse figée, puis on recalcule la masse le long du nouveau profil, et on recommence. La convergence demande des mises à jour assez petites pour éviter les oscillations, et une masse qui reste physiquement admissible.",
+        en: "With varying mass, the aircraft gets lighter as it burns fuel, and its optimal altitude rises during the flight. The exact gradient becomes hard to compute, because the mass at each point depends on all the fuel burned before it. I therefore used a fixed-point method: update the altitudes with the mass frozen, then recompute the mass along the new profile, and repeat. Convergence requires updates small enough to avoid oscillations, and a mass that stays physically admissible.",
+      },
+    ],
+    facts: [
+      { label: { fr: "Langage", en: "Language" }, value: { fr: "Python", en: "Python" } },
+      { label: { fr: "Méthodes", en: "Methods" }, value: { fr: "Gradient à pas fixe, point fixe", en: "Fixed-step gradient, fixed point" } },
+      { label: { fr: "Cas étudiés", en: "Cases studied" }, value: { fr: "3 avions, N de 50 à 1 000", en: "3 aircraft, N from 50 to 1,000" } },
+    ],
+    tags: tg("Python", "optimisation", "convexité|convexity", "méthode du gradient|gradient method", "point fixe|fixed point"),
+    image: "/images/projects/optimisation-convexe/profil-n100.jpg",
+    imageFit: "contain",
+    imageCredit: { fr: "Profil de vol optimal pour N = 100 : montée, croisière, descente", en: "Optimal flight profile for N = 100: climb, cruise, descent" },
+    images: [
+      { src: "/images/projects/optimisation-convexe/profil-n50.jpg", caption: { fr: "Profil optimal, N = 50", en: "Optimal profile, N = 50" } },
+      { src: "/images/projects/optimisation-convexe/profil-n200.jpg", caption: { fr: "Profil optimal, N = 200", en: "Optimal profile, N = 200" } },
+      { src: "/images/projects/optimisation-convexe/profil-n500.jpg", caption: { fr: "Profil optimal, N = 500", en: "Optimal profile, N = 500" } },
+      { src: "/images/projects/optimisation-convexe/profil-n1000.jpg", caption: { fr: "Profil optimal, N = 1 000", en: "Optimal profile, N = 1,000" } },
+      { src: "/images/projects/optimisation-convexe/avion-1.jpg", caption: { fr: "Avion 1, masse variable", en: "Aircraft 1, varying mass" } },
+      { src: "/images/projects/optimisation-convexe/avion-2.jpg", caption: { fr: "Avion 2, masse variable", en: "Aircraft 2, varying mass" } },
+      { src: "/images/projects/optimisation-convexe/avion-3.jpg", caption: { fr: "Avion 3, masse variable", en: "Aircraft 3, varying mass" } },
     ],
   },
   {
@@ -829,6 +936,40 @@ export const projects: Project[] = [
     ],
   },
   {
+    slug: "gestion-maintenance",
+    title: { fr: "Réorganiser l'outillage d'un atelier de maintenance", en: "Reorganising the tooling of a maintenance workshop" },
+    kind: { fr: "Projet de conduite et gestion de projet, en équipe de sept", en: "Project management project, team of seven" },
+    period: { fr: "2024 – 2025", en: "2024 – 2025" },
+    status: "done",
+    description: {
+      fr: "Un atelier de maintenance moteur aéronautique perd des journées entières à cause de son outillage. Comment monter le projet qui règle le problème ?",
+      en: "An aircraft engine maintenance workshop loses whole days because of its tooling. How do you set up the project that fixes it?",
+    },
+    content: [
+      {
+        fr: "Le cas de départ : des zones de maintenance engorgées, un grand nombre d'outils cassés, obsolètes ou perdus, des postes peu flexibles et une charge de travail qui va augmenter. Conséquences : des jours d'arrêt dus à l'outillage, du matériel potentiellement dangereux et des tensions entre les équipes. Les objectifs fixés étaient de réduire le temps moyen d'immobilisation (TAT), d'absorber la nouvelle charge, de limiter les jours d'arrêt et d'améliorer l'environnement de travail.",
+        en: "The starting point: congested maintenance areas, many broken, obsolete or lost tools, inflexible workstations and a workload about to grow. The consequences: days lost to tooling problems, potentially unsafe equipment and tension between teams. The goals were to cut the average turnaround time (TAT), absorb the new workload, reduce downtime and improve the working environment.",
+      },
+      {
+        fr: "Nous avons découpé le projet en cinq lots, chacun avec son livrable : un livret de l'outillage nécessaire pour chaque tâche de maintenance, un audit et un inventaire du matériel existant, la réorganisation des espaces (l'outillage commun, environ 20 % du total, reste près des postes ; le reste part dans un nouveau bâtiment), un lien logistique avec des prestataires pour déplacer les outils, et un accompagnement des techniciens dans le changement. Le planning a été construit sous forme de diagramme de Gantt, avec une cartographie du processus cible et une matrice d'analyse des risques (probabilité et gravité).",
+        en: "We split the project into five work packages, each with its own deliverable: a booklet listing the tooling needed for every maintenance task, an audit and inventory of existing equipment, the reorganisation of the spaces (common tooling, about 20% of the total, stays near the workstations; the rest moves to a new building), a logistics link with contractors to move tools, and support for technicians through the change. The schedule was built as a Gantt chart, together with a map of the target process and a risk analysis matrix (probability and severity).",
+      },
+    ],
+    facts: [
+      { label: { fr: "Équipe", en: "Team" }, value: { fr: "7 étudiants", en: "7 students" } },
+      { label: { fr: "Découpage", en: "Breakdown" }, value: { fr: "5 lots, 5 livrables", en: "5 work packages, 5 deliverables" } },
+      { label: { fr: "Outils", en: "Tools" }, value: { fr: "Gantt, cartographie de processus, matrice des risques", en: "Gantt, process map, risk matrix" } },
+    ],
+    tags: tg("gestion de projet|project management", "Gantt", "analyse des risques|risk analysis", "maintenance", "travail en équipe|teamwork"),
+    image: "/images/projects/gestion-maintenance/analyse-risques.jpg",
+    imageFit: "contain",
+    imageCredit: { fr: "Analyse des risques du projet", en: "Project risk analysis" },
+    images: [
+      { src: "/images/projects/gestion-maintenance/gantt.jpg", caption: { fr: "Diagramme de Gantt du projet", en: "Project Gantt chart" } },
+      { src: "/images/projects/gestion-maintenance/cartographie-process.jpg", caption: { fr: "Cartographie du processus cible", en: "Target process map" } },
+    ],
+  },
+  {
     slug: "analyse-harmonique",
     title: { fr: "Analyser un son avec Fourier", en: "Analysing a sound with Fourier" },
     kind: { fr: "Projet d'analyse harmonique", en: "Harmonic analysis project" },
@@ -862,6 +1003,56 @@ export const projects: Project[] = [
     ],
     documents: [
       { name: { fr: "Rapport", en: "Report (French)" }, url: "/documents/analyse-harmonique/Rapport_analyse_harmonique.pdf" },
+    ],
+  },
+  {
+    slug: "astray",
+    title: { fr: "ASTRAY", en: "ASTRAY" },
+    kind: { fr: "Projet associatif, AeroIPSA", en: "Student association project, AeroIPSA" },
+    period: { fr: "2025 – 2026", en: "2025 – 2026" },
+    status: "ongoing",
+    description: {
+      fr: "Une minifusée avec deux objectifs : monter le plus haut possible, et larguer en vol une poudre colorée biodégradable.",
+      en: "A mini rocket with two goals: climbing as high as possible, and releasing a biodegradable coloured powder in flight.",
+    },
+    content: [
+      {
+        fr: "ASTRAY est une minifusée de 75 cm de long et 65 mm de diamètre, pour 1,2 kg sans moteur, propulsée par un Pro24-6G. Elle doit remplir deux missions : atteindre l'altitude la plus haute possible avec ce moteur, et libérer pendant le vol une poudre colorée biodégradable, visible depuis le sol.",
+        en: "ASTRAY is a mini rocket 75 cm long and 65 mm in diameter, weighing 1.2 kg without its motor, powered by a Pro24-6G. It has two missions: reaching the highest possible altitude with this motor, and releasing a biodegradable coloured powder during the flight, visible from the ground.",
+      },
+      {
+        fr: "La fusée est entièrement conçue sous CATIA V5, bloc par bloc : une coiffe ogivale de 20 cm équipée d'un tube de Pitot, qui intègre aussi le mécanisme de largage de la poudre, un bloc caméra et batterie avec une RunCam, une cage pour le parachute, le tube principal et le bloc de propulsion avec ses quatre ailerons. Des pièces de test servent à valider les compartiments à poudre.",
+        en: "The rocket is fully designed in CATIA V5, block by block: a 20 cm ogive nose cone fitted with a Pitot tube, which also houses the powder release mechanism, a camera and battery block with a RunCam, a parachute cage, the main body tube and the propulsion block with its four fins. Test parts are used to validate the powder compartments.",
+      },
+      {
+        fr: "Dans l'équipe, j'ai réalisé les simulations CFD sous STAR-CCM+, de la coiffe seule puis de la fusée complète. Je travaille aussi sur la fabrication : électronique embarquée et soudure, structure en composite, et intégration mécanique des différents blocs dans le tube.",
+        en: "Within the team, I ran the CFD simulations in STAR-CCM+, first of the nose cone alone and then of the full rocket. I also work on the build: onboard electronics and soldering, the composite structure, and the mechanical integration of the blocks into the body tube.",
+      },
+      {
+        fr: "La stabilité et la trajectoire sont vérifiées avec StabTraj, l'outil de Planète Sciences. La marge statique est de 2,8 à 3 calibres, avec une finesse de 11,5 et un coefficient de portance de 17,3 : la fusée est stable et respecte les critères du cahier des charges. La simulation prévoit une culmination vers 330 m au bout de 8 s, puis une descente sous parachute à environ 9 à 11 m/s. La fusée n'a pas encore volé.",
+        en: "Stability and trajectory are checked with StabTraj, the Planète Sciences tool. The static margin is 2.8 to 3 calibres, with a slenderness of 11.5 and a normal force coefficient of 17.3: the rocket is stable and meets the specification criteria. The simulation predicts an apogee around 330 m after 8 s, then a descent under parachute at about 9 to 11 m/s. The rocket has not flown yet.",
+      },
+    ],
+    facts: [
+      { label: { fr: "Moteur", en: "Motor" }, value: { fr: "Pro24-6G", en: "Pro24-6G" } },
+      { label: { fr: "Dimensions", en: "Size" }, value: { fr: "75 cm, Ø 65 mm, 1,2 kg à vide", en: "75 cm, Ø 65 mm, 1.2 kg dry" } },
+      { label: { fr: "Marge statique", en: "Static margin" }, value: { fr: "2,8 à 3 calibres", en: "2.8 to 3 calibres" } },
+      { label: { fr: "Apogée simulée", en: "Simulated apogee" }, value: { fr: "≈ 330 m", en: "≈ 330 m" } },
+    ],
+    tags: tg("STAR-CCM+", "CFD", "électronique|electronics", "soudure|soldering", "composites", "intégration|integration", "CATIA V5", "StabTraj"),
+    image: "/images/projects/astray/astray.jpg",
+    imageFit: "contain",
+    imageCredit: { fr: "ASTRAY dans CATIA V5 : le tube transparent laisse voir les blocs internes", en: "ASTRAY in CATIA V5: the transparent tube shows the internal blocks" },
+    images: [
+      { src: "/images/projects/astray/photo-integration.jpg", caption: { fr: "ASTRAY en cours d'intégration : tube en composite, coiffe et ailerons montés", en: "ASTRAY during integration: composite tube, nose cone and fins fitted" } },
+      { src: "/images/projects/astray/astray-3d.jpg", caption: { fr: "La fusée complète en perspective", en: "The full rocket in perspective" } },
+      { src: "/images/projects/astray/coiffe.jpg", caption: { fr: "Coiffe ogivale avec son tube de Pitot", en: "Ogive nose cone with its Pitot tube" } },
+      { src: "/images/projects/astray/coiffe-interieur.jpg", caption: { fr: "Une version précédente de la coiffe, vue en transparence", en: "An earlier version of the nose cone, see-through view" } },
+      { src: "/images/projects/astray/arbre-poudre.jpg", caption: { fr: "Pièce du mécanisme de largage de la poudre", en: "Part of the powder release mechanism" } },
+      { src: "/images/projects/astray/compartiments-poudre.jpg", caption: { fr: "Compartiments de test pour la poudre", en: "Powder test compartments" } },
+      { src: "/images/projects/astray/bloc-camera.jpg", caption: { fr: "Bloc caméra et batterie", en: "Camera and battery block" } },
+      { src: "/images/projects/astray/cage-parachute.jpg", caption: { fr: "Cage du parachute", en: "Parachute cage" } },
+      { src: "/images/projects/astray/bloc-propulsion.jpg", caption: { fr: "Bloc de propulsion : tube moteur, bagues de centrage et aileron", en: "Propulsion block: motor tube, centring rings and fin" } },
     ],
   },
   {
@@ -905,6 +1096,37 @@ export const projects: Project[] = [
 ];
 
 
+// ─── Thèmes des projets terminés (ordre d'affichage) ───────────────────────
+// Chaque projet terminé doit apparaître dans un thème. Dans un thème : du plus récent au plus ancien.
+
+export const projectThemes: { id: string; title: T; slugs: string[] }[] = [
+  {
+    id: "astronomie",
+    title: { fr: "Astronomie et mécanique céleste", en: "Astronomy and celestial mechanics" },
+    slugs: ["2007-vw266", "gaia-606", "estimation-trajectoire", "trou-noir"],
+  },
+  {
+    id: "missions",
+    title: { fr: "Missions spatiales et rentrée atmosphérique", en: "Space missions and atmospheric entry" },
+    slugs: ["rentree-atmospherique", "neptune"],
+  },
+  {
+    id: "propulsion",
+    title: { fr: "Propulsion et mécanique des fluides", en: "Propulsion and fluid mechanics" },
+    slugs: ["propulsion-nucleaire", "tuyere-laval", "mecanique-fluides-ncku", "cfd-naca-cylindre"],
+  },
+  {
+    id: "conception",
+    title: { fr: "Conception, matériaux et gestion de projet", en: "Design, materials and project management" },
+    slugs: ["catia-2", "inconel-718", "prisma", "gestion-maintenance", "catia-1"],
+  },
+  {
+    id: "modelisation",
+    title: { fr: "Modélisation, calcul et automatique", en: "Modelling, computation and control" },
+    slugs: ["equation-chaleur", "dynamique-aeronefs", "optimisation-convexe", "statistiques", "analyse-harmonique"],
+  },
+];
+
 // ─── Autres projets (liste courte, sans page) ──────────────────────────────
 // Pour donner une page à l'un d'eux, déplace-le dans `projects` ci-dessus.
 
@@ -918,16 +1140,7 @@ export const archive: { group: T; items: { title: T; note?: T }[] }[] = [
     group: { fr: "Cycle ingénieur, 1re année (2024 – 2025)", en: "Engineering cycle, 1st year (2024 – 2025)" },
     items: [
       { title: { fr: "Modélisation et simulation numérique, application aux véhicules", en: "Modelling and numerical simulation for vehicles" } },
-      { title: { fr: "Modélisation et analyse dynamique des aéronefs", en: "Aircraft dynamics modelling and analysis" } },
-      { title: { fr: "Optimisation convexe", en: "Convex optimisation" } },
-      { title: { fr: "Initiation aux bases de données", en: "Introduction to databases" } },
-      { title: { fr: "Conduite et gestion de projet", en: "Project management" } },
     ],
-  },
-  {
-    group: { fr: "Projets personnels et associatifs", en: "Personal and association projects" },
-    items: [
-      { title: { fr: "ASTRAY, AeroIPSA", en: "ASTRAY, AeroIPSA" }, note: { fr: "Vol en recherche d'altitude maximale, test du système de stabilisation et largage de poudres colorées", en: "Maximum-altitude flight, stabilisation system test and coloured powder release" } },    ],
   },
 ];
 
