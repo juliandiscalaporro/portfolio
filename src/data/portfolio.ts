@@ -676,6 +676,47 @@ export const projects: Project[] = [
     ],
   },
   {
+    slug: "catia-2",
+    title: { fr: "Un manège sous CATIA V5", en: "A fairground ride in CATIA V5" },
+    kind: { fr: "Projet de CAO, module Catia II", en: "CAD project, Catia II module" },
+    period: { fr: "Avril 2025", en: "April 2025" },
+    status: "done",
+    description: {
+      fr: "Modéliser pièce par pièce un manège à pendule et son installation, puis tout positionner dans un assemblage.",
+      en: "Modelling a pendulum ride and its installation part by part, then positioning everything in an assembly.",
+    },
+    content: [
+      {
+        fr: "Le projet de fin de module Catia II : concevoir sous CATIA V5 un manège et son environnement. J'ai modélisé une quinzaine de pièces dans l'atelier Part Design : le moteur électrique et son support, la poutre de transmission, les paliers et les liaisons pivot, les bras du pendule et du siège, ainsi que tout ce qui entoure l'attraction (plateformes, escaliers, barrières de sécurité, éclairage, panneaux).",
+        en: "The final project of the Catia II module: designing a fairground ride and its surroundings in CATIA V5. I modelled about fifteen parts in the Part Design workbench: the electric motor and its frame, the drive beam, the bearings and pivot joints, the pendulum and seat arms, and everything around the ride (platforms, stairs, safety barriers, lighting, signs).",
+      },
+      {
+        fr: "La structure est ensuite réunie dans l'atelier Assembly Design. L'assemblage compte 22 composants, positionnés les uns par rapport aux autres par des contraintes de coïncidence et de contact. Les pièces répétées, comme les barrières ou les escaliers, sont des instances d'une même pièce.",
+        en: "The structure is then brought together in the Assembly Design workbench. The assembly has 22 components, positioned relative to each other with coincidence and contact constraints. Repeated parts, such as the barriers or the stairs, are instances of a single part.",
+      },
+    ],
+    facts: [
+      { label: { fr: "Logiciel", en: "Software" }, value: { fr: "CATIA V5 R19", en: "CATIA V5 R19" } },
+      { label: { fr: "Ateliers", en: "Workbenches" }, value: { fr: "Part Design, Assembly Design", en: "Part Design, Assembly Design" } },
+      { label: { fr: "Assemblage", en: "Assembly" }, value: { fr: "22 composants", en: "22 components" } },
+    ],
+    tags: tg("CAO|CAD", "CATIA V5", "assemblage|assembly", "conception mécanique|mechanical design"),
+    image: "/images/projects/catia-2/assemblage.jpg",
+    imageFit: "contain",
+    imageCredit: { fr: "Vue d'ensemble de l'assemblage dans CATIA V5", en: "Overview of the assembly in CATIA V5" },
+    images: [
+      { src: "/images/projects/catia-2/assemblage-2.jpg", caption: { fr: "L'assemblage vu sous un autre angle", en: "The assembly from another angle" } },
+      { src: "/images/projects/catia-2/moteur.jpg", caption: { fr: "Moteur électrique", en: "Electric motor" } },
+      { src: "/images/projects/catia-2/support-moteur.jpg", caption: { fr: "Support du moteur", en: "Motor frame" } },
+      { src: "/images/projects/catia-2/soutien-pivot.jpg", caption: { fr: "Soutien de la liaison pivot", en: "Pivot joint bearing" } },
+      { src: "/images/projects/catia-2/liaison-barre.jpg", caption: { fr: "Liaison entre la poutre et la barre transversale", en: "Joint between the beam and the cross bar" } },
+      { src: "/images/projects/catia-2/liaison.jpg", caption: { fr: "Pièce de liaison", en: "Connecting part" } },
+      { src: "/images/projects/catia-2/escalier.jpg", caption: { fr: "Escalier d'accès", en: "Access stairs" } },
+      { src: "/images/projects/catia-2/barriere.jpg", caption: { fr: "Barrière", en: "Barrier" } },
+      { src: "/images/projects/catia-2/ampoule.jpg", caption: { fr: "Ampoule de l'éclairage", en: "Light bulb" } },
+    ],
+  },
+  {
     slug: "cfd-naca-cylindre",
     title: { fr: "Premières simulations CFD : profil NACA et cylindre", en: "First CFD simulations: NACA airfoil and cylinder" },
     kind: { fr: "TP d'aérodynamique numérique", en: "Computational aerodynamics labs" },
@@ -741,6 +782,43 @@ export const projects: Project[] = [
     ],
     documents: [
       { name: { fr: "Rapport", en: "Report (French)" }, url: "/documents/statistiques/Projet_sciences_des_donnees.pdf" },
+    ],
+  },
+  {
+    slug: "catia-1",
+    title: { fr: "Premiers pas sous CATIA V5", en: "First steps in CATIA V5" },
+    kind: { fr: "TP de CAO, module Catia I", en: "CAD labs, Catia I module" },
+    period: { fr: "Novembre – décembre 2024", en: "November – December 2024" },
+    status: "done",
+    description: {
+      fr: "Les TP du module Catia I : un boîtier en tôle assemblé à partir de quatre pièces, et un flacon de shampoing.",
+      en: "The Catia I module labs: a sheet-metal casing assembled from four parts, and a shampoo bottle.",
+    },
+    content: [
+      {
+        fr: "Le fil rouge du module est un boîtier en tôle pliée. Chaque pièce est modélisée séparément : le corps du boîtier en U, le capot supérieur et deux brides de fixation en équerre. Elles sont ensuite assemblées dans l'atelier Assembly Design, en positionnant chaque pièce par des contraintes.",
+        en: "The common thread of the module is a folded sheet-metal casing. Each part is modelled separately: the U-shaped casing body, the top cover and two angle mounting brackets. They are then assembled in the Assembly Design workbench, positioning each part with constraints.",
+      },
+      {
+        fr: "Un second TP porte sur une forme plus libre, un flacon de shampoing, pour travailler une pièce aux formes courbes.",
+        en: "A second lab deals with a freer shape, a shampoo bottle, to practise modelling a curved part.",
+      },
+    ],
+    facts: [
+      { label: { fr: "Logiciel", en: "Software" }, value: { fr: "CATIA V5 R19", en: "CATIA V5 R19" } },
+      { label: { fr: "Ateliers", en: "Workbenches" }, value: { fr: "Part Design, Assembly Design", en: "Part Design, Assembly Design" } },
+      { label: { fr: "Boîtier", en: "Casing" }, value: { fr: "4 pièces assemblées", en: "4 assembled parts" } },
+    ],
+    tags: tg("CAO|CAD", "CATIA V5", "tôlerie|sheet metal", "assemblage|assembly"),
+    image: "/images/projects/catia-1/boitier-assemble.jpg",
+    imageFit: "contain",
+    imageCredit: { fr: "Le boîtier assemblé : corps, capot et brides", en: "The assembled casing: body, cover and brackets" },
+    images: [
+      { src: "/images/projects/catia-1/boitier-assemble-2.jpg", caption: { fr: "Le boîtier assemblé, vu de l'autre côté", en: "The assembled casing, seen from the other side" } },
+      { src: "/images/projects/catia-1/boitier.jpg", caption: { fr: "Corps du boîtier en tôle pliée", en: "Folded sheet-metal casing body" } },
+      { src: "/images/projects/catia-1/capot.jpg", caption: { fr: "Capot supérieur", en: "Top cover" } },
+      { src: "/images/projects/catia-1/bride.jpg", caption: { fr: "Bride de fixation", en: "Mounting bracket" } },
+      { src: "/images/projects/catia-1/flacon.jpg", caption: { fr: "Flacon de shampoing", en: "Shampoo bottle" } },
     ],
   },
   {
@@ -833,7 +911,6 @@ export const archive: { group: T; items: { title: T; note?: T }[] }[] = [
     group: { fr: "Cycle ingénieur, 1re année (2024 – 2025)", en: "Engineering cycle, 1st year (2024 – 2025)" },
     items: [
       { title: { fr: "Modélisation et simulation numérique, application aux véhicules", en: "Modelling and numerical simulation for vehicles" } },
-      { title: { fr: "Catia I et Catia II", en: "Catia I and Catia II" } },
       { title: { fr: "Modélisation et analyse dynamique des aéronefs", en: "Aircraft dynamics modelling and analysis" } },
       { title: { fr: "Optimisation convexe", en: "Convex optimisation" } },
       { title: { fr: "Initiation aux bases de données", en: "Introduction to databases" } },
