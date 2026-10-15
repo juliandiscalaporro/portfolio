@@ -270,22 +270,26 @@ export default function HomePage({ lang }: { lang: Lang }) {
               </section>
             ))}
 
-            <h3 className="mt-24 font-serif text-[1.3rem] font-medium">{t.archiveTitle}</h3>
-            <div className="mt-6 grid gap-10 md:grid-cols-3 xl:gap-16">
-              {archive.map((g) => (
-                <div key={g.group.fr}>
-                  <p className="border-b border-line pb-3 text-[0.95rem] text-star">{tr(g.group, lang)}</p>
-                  <ul className="mt-3 space-y-3">
-                    {g.items.map((it) => (
-                      <li key={it.title.fr} className="leading-snug">
-                        <span className="text-paper/90">{tr(it.title, lang)}</span>
-                        {it.note && <span className="mt-0.5 block text-[0.9rem] text-muted">{tr(it.note, lang)}</span>}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
+            {archive.length > 0 && (
+              <>
+              <h3 className="mt-24 font-serif text-[1.3rem] font-medium">{t.archiveTitle}</h3>
+              <div className="mt-6 grid gap-10 md:grid-cols-3 xl:gap-16">
+                {archive.map((g) => (
+                  <div key={g.group.fr}>
+                    <p className="border-b border-line pb-3 text-[0.95rem] text-star">{tr(g.group, lang)}</p>
+                    <ul className="mt-3 space-y-3">
+                      {g.items.map((it) => (
+                        <li key={it.title.fr} className="leading-snug">
+                          <span className="text-paper/90">{tr(it.title, lang)}</span>
+                          {it.note && <span className="mt-0.5 block text-[0.9rem] text-muted">{tr(it.note, lang)}</span>}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+              </>
+            )}
           </div>
         </section>
 

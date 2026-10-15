@@ -625,38 +625,45 @@ export const projects: Project[] = [
   },
   {
     slug: "equation-chaleur",
-    title: { fr: "Équation de la chaleur et de Poisson", en: "Heat and Poisson equations" },
-    kind: { fr: "Projet de modélisation numérique", en: "Numerical modelling project" },
-    period: { fr: "Mai 2025", en: "May 2025" },
+    title: { fr: "Simulation numérique : chaleur, Poisson et ondes", en: "Numerical simulation: heat, Poisson and wave equations" },
+    kind: { fr: "Module de modélisation et simulation numérique", en: "Modelling and numerical simulation module" },
+    period: { fr: "Février – mai 2025", en: "February – May 2025" },
     status: "done",
     description: {
-      fr: "Résoudre la diffusion de la chaleur dans un carré chauffé par une source, et vérifier qu'elle converge vers la solution stationnaire.",
-      en: "Solving heat diffusion in a square heated by a source, and checking that it converges to the steady-state solution.",
+      fr: "Programmer les schémas numériques classiques, vérifier leur précision et leur stabilité, puis résoudre la diffusion de la chaleur dans un domaine 2D.",
+      en: "Programming the classic numerical schemes, checking their accuracy and stability, then solving heat diffusion in a 2D domain.",
     },
     content: [
       {
-        fr: "Le domaine est le carré [−1, 1]², avec une température nulle sur les bords et un terme source fixe. J'ai résolu l'équation de la chaleur par différences finies (maillage 41 × 41, schéma explicite, pas de temps de 0,004), puis l'équation de Poisson qui donne l'état d'équilibre.",
-        en: "The domain is the square [−1, 1]², with zero temperature on the edges and a fixed source term. I solved the heat equation with finite differences (41 × 41 grid, explicit scheme, time step 0.004), then the Poisson equation that gives the equilibrium state.",
+        fr: "Les TD ont posé les bases en Python. Sur une équation différentielle simple, j'ai comparé Euler explicite, Euler implicite et Runge-Kutta d'ordre 2, en suivant l'erreur quand on réduit le pas. J'ai ensuite résolu l'équation de la chaleur en 1D avec un schéma explicite, et vérifié à la main la solution exacte qui sert de référence.",
+        en: "The tutorials laid the groundwork in Python. On a simple differential equation, I compared explicit Euler, implicit Euler and second-order Runge-Kutta, tracking the error as the step is reduced. I then solved the 1D heat equation with an explicit scheme, and checked by hand the exact solution used as a reference.",
       },
       {
-        fr: "À t = 2, le maximum de température (0,675) se trouve près du pic de la source. La solution stationnaire est un peu plus haute (≈ 0,82), et l'écart entre les deux décroît exponentiellement, avec un temps caractéristique d'environ 0,5. Le schéma explicite est précis pour un petit pas de temps, mais devient coûteux sur des temps longs.",
-        en: "At t = 2, the maximum temperature (0.675) is close to the peak of the source. The steady-state solution is slightly higher (≈ 0.82), and the gap between the two decays exponentially, with a characteristic time of about 0.5. The explicit scheme is accurate for a small time step, but becomes costly over long times.",
+        fr: "Pour l'équation des ondes, j'ai étudié le schéma explicite centré : il est consistant et précis à l'ordre 2 en temps et en espace, et l'analyse de stabilité de Von Neumann donne la condition CFL c·Δt/Δx ≤ 1. Implémenté en Python, il reproduit la solution exacte à t = 1.",
+        en: "For the wave equation, I studied the centred explicit scheme: it is consistent and second-order accurate in time and space, and Von Neumann stability analysis gives the CFL condition c·Δt/Δx ≤ 1. Implemented in Python, it reproduces the exact solution at t = 1.",
+      },
+      {
+        fr: "Le projet final passe en 2D. Le domaine est le carré [−1, 1]², avec une température nulle sur les bords et un terme source fixe. J'ai résolu l'équation de la chaleur par différences finies (maillage 41 × 41, schéma explicite, pas de temps de 0,004), puis l'équation de Poisson qui donne l'état d'équilibre. À t = 2, le maximum de température (0,675) se trouve près du pic de la source. La solution stationnaire est un peu plus haute (≈ 0,82), et l'écart entre les deux décroît exponentiellement, avec un temps caractéristique d'environ 0,5.",
+        en: "The final project moves to 2D. The domain is the square [−1, 1]², with zero temperature on the edges and a fixed source term. I solved the heat equation with finite differences (41 × 41 grid, explicit scheme, time step 0.004), then the Poisson equation that gives the equilibrium state. At t = 2, the maximum temperature (0.675) is close to the peak of the source. The steady-state solution is slightly higher (≈ 0.82), and the gap between the two decays exponentially, with a characteristic time of about 0.5.",
       },
     ],
     facts: [
-      { label: { fr: "Méthode", en: "Method" }, value: { fr: "Différences finies, schéma explicite", en: "Finite differences, explicit scheme" } },
-      { label: { fr: "Maillage", en: "Grid" }, value: { fr: "41 × 41 points", en: "41 × 41 points" } },
+      { label: { fr: "Langage", en: "Language" }, value: { fr: "Python", en: "Python" } },
+      { label: { fr: "Schémas", en: "Schemes" }, value: { fr: "Euler, RK2, différences finies explicites", en: "Euler, RK2, explicit finite differences" } },
+      { label: { fr: "Stabilité (ondes)", en: "Stability (waves)" }, value: { fr: "c·Δt/Δx ≤ 1", en: "c·Δt/Δx ≤ 1" } },
+      { label: { fr: "Projet 2D", en: "2D project" }, value: { fr: "Maillage 41 × 41", en: "41 × 41 grid" } },
     ],
-    tags: tg("Python", "différences finies|finite differences", "EDP|PDE"),
+    tags: tg("Python", "différences finies|finite differences", "EDP|PDE", "stabilité|stability", "Runge-Kutta"),
     image: "/images/projects/equation-chaleur/temperature-t2.jpg",
     imageFit: "contain",
-    imageCredit: { fr: "Champ de température à t = 2", en: "Temperature field at t = 2" },
+    imageCredit: { fr: "Projet 2D : champ de température à t = 2", en: "2D project: temperature field at t = 2" },
     images: [
       { src: "/images/projects/equation-chaleur/solution-stationnaire.jpg", caption: { fr: "Solution stationnaire (équation de Poisson)", en: "Steady-state solution (Poisson equation)" } },
       { src: "/images/projects/equation-chaleur/convergence.jpg", caption: { fr: "Écart maximal à la solution stationnaire au cours du temps", en: "Maximum gap to the steady-state solution over time" } },
+      { src: "/images/projects/equation-chaleur/ondes-dt0005.jpg", caption: { fr: "Équation des ondes : schéma numérique et solution exacte à t = 1 (Δt = 0,005, Δx = 0,01)", en: "Wave equation: numerical scheme and exact solution at t = 1 (Δt = 0.005, Δx = 0.01)" } },
     ],
     documents: [
-      { name: { fr: "Rapport", en: "Report (French)" }, url: "/documents/equation-chaleur/Rapport_equation_chaleur.pdf" },
+      { name: { fr: "Rapport du projet 2D", en: "2D project report (French)" }, url: "/documents/equation-chaleur/Rapport_equation_chaleur.pdf" },
     ],
   },
   {
@@ -936,6 +943,47 @@ export const projects: Project[] = [
     ],
   },
   {
+    slug: "production-aeronautique",
+    title: { fr: "Réorganiser une unité de production aéronautique", en: "Reorganising an aerospace production unit" },
+    kind: { fr: "Projet d'industrialisation et méthodes de production, en équipe de six", en: "Industrialisation and production methods project, team of six" },
+    period: { fr: "2025 – 2026", en: "2025 – 2026" },
+    status: "done",
+    description: {
+      fr: "Un atelier de fabrication de pièces aéronautiques est saturé. Où sont les goulots, comment réorganiser les flux, et combien faut-il investir pour multiplier la production ?",
+      en: "An aerospace parts workshop is saturated. Where are the bottlenecks, how should the flows be reorganised, and how much investment does it take to multiply output?",
+    },
+    content: [
+      {
+        fr: "Le diagnostic part de l'analyse des flux. Le diagramme spaghetti des quatre parcours de pièces (A à D) montre des déplacements inutiles, et le calcul de charge poste par poste révèle que 11 postes sur 13 sont en surcharge. Le goulot critique est le poste 3D, chargé à plus de 14 fois sa capacité, suivie du traitement thermique (4,4 fois) et de l'usinage (3,2 fois).",
+        en: "The diagnosis starts from a flow analysis. The spaghetti diagram of the four part routes (A to D) shows unnecessary travel, and the station-by-station load calculation reveals that 11 of the 13 stations are overloaded. The critical bottleneck is the 3D station, loaded at more than 14 times its capacity, followed by heat treatment (4.4 times) and machining (3.2 times).",
+      },
+      {
+        fr: "Nous avons proposé une nouvelle implantation de l'atelier, qui réduit les distances parcourues de 32 à 48 % selon la gamme (1 193 m de gagnés au total), puis dimensionné chaque poste : machines supplémentaires, passage en 2×8 ou 3×8 et heures supplémentaires selon la charge, revente des machines en excès. Le plan est déployé sur trois ans, avec 3 M€ d'investissement (quatre machines pour le poste 3D, un four de traitement thermique, quatre cabines de ressuage) et plus de 40 embauches progressives.",
+        en: "We proposed a new workshop layout, which cuts travel distances by 32 to 48% depending on the routing (1,193 m saved in total), then sized each station: extra machines, moving to two or three shifts and overtime depending on load, and selling surplus machines. The plan is rolled out over three years, with €3M of investment (four machines for the 3D station, a heat-treatment furnace, four penetrant-inspection booths) and more than 40 progressive hires.",
+      },
+      {
+        fr: "Le business plan simplifié montre une production qui passe de 275 à 3 438 pièces par an, une marge brute de 7,3 M€ la troisième année contre 557 k€ au départ, et un investissement amorti dès la deuxième année.",
+        en: "The simplified business plan shows output rising from 275 to 3,438 parts a year, a gross margin of €7.3M in year three against €557k at the start, and the investment paid back from the second year.",
+      },
+    ],
+    facts: [
+      { label: { fr: "Équipe", en: "Team" }, value: { fr: "6 étudiants", en: "6 students" } },
+      { label: { fr: "Goulot initial", en: "Initial bottleneck" }, value: { fr: "Poste 3D, 14 × sa capacité", en: "3D station, 14 × capacity" } },
+      { label: { fr: "Investissement", en: "Investment" }, value: { fr: "3 M€ sur 3 ans", en: "€3M over 3 years" } },
+      { label: { fr: "Production", en: "Output" }, value: { fr: "275 → 3 438 pièces/an", en: "275 → 3,438 parts/year" } },
+    ],
+    tags: tg("industrialisation|industrialisation", "analyse des flux|flow analysis", "dimensionnement capacitaire|capacity planning", "business plan", "travail en équipe|teamwork"),
+    image: "/images/projects/production-aeronautique/implantation-reorganisee.jpg",
+    imageFit: "contain",
+    imageCredit: { fr: "Implantation réorganisée de l'atelier", en: "Reorganised workshop layout" },
+    images: [
+      { src: "/images/projects/production-aeronautique/implantation-initiale.jpg", caption: { fr: "Implantation initiale de l'atelier", en: "Initial workshop layout" } },
+      { src: "/images/projects/production-aeronautique/diagnostic.jpg", caption: { fr: "Diagnostic : distances parcourues et goulots d'étranglement", en: "Diagnosis: travel distances and bottlenecks" } },
+      { src: "/images/projects/production-aeronautique/plan-action.jpg", caption: { fr: "Plan d'action : investissements et coûts de personnel sur trois ans", en: "Action plan: investment and staff costs over three years" } },
+      { src: "/images/projects/production-aeronautique/retour-investissement.jpg", caption: { fr: "Retour sur investissement", en: "Return on investment" } },
+    ],
+  },
+  {
     slug: "gestion-maintenance",
     title: { fr: "Réorganiser l'outillage d'un atelier de maintenance", en: "Reorganising the tooling of a maintenance workshop" },
     kind: { fr: "Projet de conduite et gestion de projet, en équipe de sept", en: "Project management project, team of seven" },
@@ -1117,8 +1165,8 @@ export const projectThemes: { id: string; title: T; slugs: string[] }[] = [
   },
   {
     id: "conception",
-    title: { fr: "Conception, matériaux et gestion de projet", en: "Design, materials and project management" },
-    slugs: ["catia-2", "inconel-718", "prisma", "gestion-maintenance", "catia-1"],
+    title: { fr: "Conception, production et gestion de projet", en: "Design, production and project management" },
+    slugs: ["production-aeronautique", "catia-2", "inconel-718", "prisma", "gestion-maintenance", "catia-1"],
   },
   {
     id: "modelisation",
@@ -1130,19 +1178,7 @@ export const projectThemes: { id: string; title: T; slugs: string[] }[] = [
 // ─── Autres projets (liste courte, sans page) ──────────────────────────────
 // Pour donner une page à l'un d'eux, déplace-le dans `projects` ci-dessus.
 
-export const archive: { group: T; items: { title: T; note?: T }[] }[] = [
-  {
-    group: { fr: "Cycle ingénieur, 2e année (2025 – 2026)", en: "Engineering cycle, 2nd year (2025 – 2026)" },
-    items: [
-      { title: { fr: "Conception avion et écoconception, industrialisation et méthodes de production", en: "Aircraft design and eco-design, industrialisation and production methods" } },    ],
-  },
-  {
-    group: { fr: "Cycle ingénieur, 1re année (2024 – 2025)", en: "Engineering cycle, 1st year (2024 – 2025)" },
-    items: [
-      { title: { fr: "Modélisation et simulation numérique, application aux véhicules", en: "Modelling and numerical simulation for vehicles" } },
-    ],
-  },
-];
+export const archive: { group: T; items: { title: T; note?: T }[] }[] = [];
 
 // ─── Ciel ──────────────────────────────────────────────────────────────────
 
