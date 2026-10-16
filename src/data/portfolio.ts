@@ -532,6 +532,51 @@ export const projects: Project[] = [
     ],
   },
   {
+    slug: "eolienne-savonius",
+    title: { fr: "Écoulement autour d'une éolienne Savonius", en: "Flow around a Savonius wind turbine" },
+    kind: { fr: "TP de mécanique des fluides numérique, en binôme", en: "Computational fluid dynamics lab, in a pair" },
+    period: { fr: "Mars 2026", en: "March 2026" },
+    status: "done",
+    description: {
+      fr: "Simuler sous STAR-CCM+ un rotor Savonius à deux pales qui tourne dans le vent, et suivre le sillage, les tourbillons et les efforts qu'ils produisent.",
+      en: "Simulating a rotating two-bladed Savonius rotor in the wind with STAR-CCM+, and following the wake, the vortices and the forces they create.",
+    },
+    content: [
+      {
+        fr: "Une éolienne Savonius est une éolienne à axe vertical, simple à construire et qui fonctionne quelle que soit la direction du vent. Avant de lancer le calcul, nous avons fixé les paramètres à la main pour deux nombres de Reynolds, 4 000 et 12 000. Le second donne un vent de 1,86 m/s. D'après la courbe de puissance du rotor, nous avons choisi une vitesse spécifique λ = 1, soit une rotation de 18,6 rad/s, et un pas de temps qui découpe chaque tour en 36 pas de 10°.",
+        en: "A Savonius turbine is a vertical-axis wind turbine, simple to build and working whatever the wind direction. Before running the computation, we set the parameters by hand for two Reynolds numbers, 4,000 and 12,000. The latter gives a wind speed of 1.86 m/s. From the rotor's power curve, we chose a tip-speed ratio λ = 1, i.e. a rotation of 18.6 rad/s, and a time step that splits each turn into 36 steps of 10°.",
+      },
+      {
+        fr: "Le domaine est découpé en deux régions : une zone cylindrique autour du rotor, qui tourne avec lui et dont le maillage est fin (5 mm), et un grand domaine fixe autour, maillé plus grossièrement. Le calcul est instationnaire, incompressible, avec le modèle de turbulence k-ω.",
+        en: "The domain is split into two regions: a cylindrical zone around the rotor, which rotates with it and has a fine mesh (5 mm), and a large fixed domain around it, with a coarser mesh. The computation is unsteady and incompressible, with the k-ω turbulence model.",
+      },
+      {
+        fr: "Les champs de vitesse et de pression montrent un sillage large derrière le rotor, et la vorticité fait apparaître des tourbillons lâchés alternativement de chaque côté. Ces lâchers se retrouvent dans les efforts : après un régime transitoire d'environ 0,1 s, le moment, la portance et la traînée oscillent tous à la même fréquence, environ 5 Hz. Nous avons ensuite comparé les deux nombres de Reynolds : à 12 000, le sillage est plus étendu et l'écoulement plus instationnaire.",
+        en: "The velocity and pressure fields show a wide wake behind the rotor, and the vorticity reveals vortices shed alternately from each side. This shedding shows up in the forces: after a transient of about 0.1 s, the moment, lift and drag all oscillate at the same frequency, about 5 Hz. We then compared the two Reynolds numbers: at 12,000, the wake is longer and the flow more unsteady.",
+      },
+    ],
+    facts: [
+      { label: { fr: "Logiciel", en: "Software" }, value: { fr: "STAR-CCM+", en: "STAR-CCM+" } },
+      { label: { fr: "Reynolds", en: "Reynolds" }, value: { fr: "4 000 et 12 000", en: "4,000 and 12,000" } },
+      { label: { fr: "Vitesse spécifique", en: "Tip-speed ratio" }, value: { fr: "λ = 1", en: "λ = 1" } },
+      { label: { fr: "Lâcher tourbillonnaire", en: "Vortex shedding" }, value: { fr: "≈ 5 Hz", en: "≈ 5 Hz" } },
+      { label: { fr: "Binôme", en: "Partner" }, value: { fr: "Avec C. Planchon", en: "With C. Planchon" } },
+    ],
+    tags: tg("STAR-CCM+", "CFD", "écoulement instationnaire|unsteady flow", "éolienne|wind turbine", "tourbillons|vortex shedding"),
+    image: "/images/projects/eolienne-savonius/vitesse-re12000.jpg",
+    imageFit: "contain",
+    imageCredit: { fr: "Vitesse autour du rotor à Re = 12 000 : le sillage s'étend loin derrière", en: "Velocity around the rotor at Re = 12,000: the wake stretches far behind" },
+    images: [
+      { src: "/images/projects/eolienne-savonius/vorticite.jpg", caption: { fr: "Vorticité autour des deux pales", en: "Vorticity around the two blades" } },
+      { src: "/images/projects/eolienne-savonius/portance.jpg", caption: { fr: "Portance au cours du temps : oscillations régulières à environ 5 Hz", en: "Lift over time: regular oscillations at about 5 Hz" } },
+      { src: "/images/projects/eolienne-savonius/vitesse-re4000.jpg", caption: { fr: "Même champ de vitesse à Re = 4 000", en: "Same velocity field at Re = 4,000" } },
+      { src: "/images/projects/eolienne-savonius/maillage.jpg", caption: { fr: "Maillage : la région tournante autour du rotor est plus fine", en: "Mesh: the rotating region around the rotor is finer" } },
+    ],
+    documents: [
+      { name: { fr: "Rapport (en anglais)", en: "Report" }, url: "/documents/eolienne-savonius/Rapport_eolienne_Savonius.pdf" },
+    ],
+  },
+  {
     slug: "trou-noir",
     title: { fr: "Simuler un trou noir", en: "Simulating a black hole" },
     kind: { fr: "Projet personnel", en: "Personal project" },
@@ -664,6 +709,63 @@ export const projects: Project[] = [
     ],
     documents: [
       { name: { fr: "Rapport du projet 2D", en: "2D project report (French)" }, url: "/documents/equation-chaleur/Rapport_equation_chaleur.pdf" },
+    ],
+  },
+  {
+    slug: "elements-finis",
+    title: { fr: "Calcul de structures par éléments finis sous Patran/Nastran", en: "Finite element structural analysis with Patran/Nastran" },
+    kind: { fr: "TP du module Analyse numérique des structures (Mé422)", en: "Lab sessions, Numerical analysis in structural engineering module (Mé422)" },
+    period: { fr: "Février – avril 2026", en: "February – April 2026" },
+    status: "done",
+    description: {
+      fr: "Une série de TP pour apprendre à modéliser une structure sous Patran et à la calculer avec Nastran, de la simple barre jusqu'aux analyses thermiques, en confrontant chaque fois le calcul à la solution analytique.",
+      en: "A series of labs to learn how to model a structure in Patran and solve it with Nastran, from a single bar up to thermal analyses, checking each computation against the analytical solution.",
+    },
+    content: [
+      {
+        fr: "Les premiers TP montent en dimension pas à pas. En 1D, une barre d'acier de 2 m encastrée et tirée par 300 kN : Nastran donne un allongement de 5,76 mm et une contrainte de 605 MPa, exactement FL/ES et F/S. Puis la même poutre, à section caisson (30 × 40 mm, 4 mm d'épaisseur), passe en flexion : une force de 1 500 N en bout donne 309 mm de flèche, le poids propre 6 mm, et les deux ensemble 315 mm, exactement la somme, ce qui vérifie le principe de superposition. Le TP 2 passe aux éléments coques (CQUAD4) avec une plaque d'acier de 100 mm, percée d'un trou de 10 mm de rayon et tirée par 10 kN. La contrainte nominale vaut 50 MPa, et l'abaque de Peterson donne Kt = 3,17, soit 158,5 MPa au bord du trou. Le premier maillage trouve 146 MPa ; en l'affinant autour du trou, on monte à 160 MPa, à 1 % de la théorie. Un modèle réduit au quart de plaque, grâce aux symétries, donne la même valeur.",
+        en: "The first labs move up in dimension step by step. In 1D, a clamped 2 m steel bar pulled by 300 kN: Nastran gives an elongation of 5.76 mm and a stress of 605 MPa, exactly FL/EA and F/A. Then the same box-section beam (30 × 40 mm, 4 mm thick) is loaded in bending: a 1,500 N tip load gives a 309 mm deflection, its own weight 6 mm, and both together 315 mm, exactly the sum, which checks the superposition principle. Lab 2 moves to shell elements (CQUAD4) with a 100 mm steel plate, drilled with a 10 mm radius hole and pulled by 10 kN. The nominal stress is 50 MPa, and Peterson's chart gives Kt = 3.17, i.e. 158.5 MPa at the edge of the hole. The first mesh finds 146 MPa; refining it around the hole brings it to 160 MPa, within 1% of theory. A quarter-plate model, using the symmetries, gives the same value.",
+      },
+      {
+        fr: "Le TP 3 initie au maillage 3D sur une chape en acier encastrée et chargée en flexion par son alésage. La même pièce est maillée quatre fois, en hexaèdres et en tétraèdres, linéaires puis quadratiques (HEX8, HEX20, TET4, TET10). En prenant le HEX20 comme référence (0,99 mm de flèche, 27,4 MPa), les éléments linéaires sont trop raides et sous-estiment la contrainte : de 13 % en HEX8 et de 32 % en TET4. Le TET10 reste à moins de 6 %, un bon compromis quand la géométrie ne se maille pas en hexaèdres. Avec un coefficient de sécurité d'environ 8,6, la chape est largement surdimensionnée.",
+        en: "Lab 3 introduces 3D meshing on a clamped steel lug loaded in bending through its bore. The same part is meshed four times, with hexahedra and tetrahedra, linear then quadratic (HEX8, HEX20, TET4, TET10). Taking HEX20 as the reference (0.99 mm deflection, 27.4 MPa), the linear elements are too stiff and underestimate the stress: by 13% with HEX8 and by 32% with TET4. TET10 stays within 6%, a good compromise when the geometry cannot be meshed with hexahedra. With a safety factor of about 8.6, the lug is largely oversized.",
+      },
+      {
+        fr: "Le TP 4, rédigé avec Corentin Planchon, introduit le calcul thermique et thermomécanique. Un cylindre creux en aluminium encastré est chauffé : la limite élastique est atteinte pour ΔT ≈ 93,4 °C. À ΔT = 85 °C, Nastran donne 82,5 MPa, sous les 85 MPa de R0,2 ; à ΔT = 100 °C, la contrainte monte à 97 MPa et la pièce plastifie. On passe ensuite à la conduction et à la convection : pour un mur simple, la température de la face extérieure calculée (118 °C) colle à la solution analytique (117,9 °C).",
+        en: "Lab 4, written with Corentin Planchon, introduces thermal and thermo-mechanical analysis. A clamped hollow aluminium cylinder is heated: the yield limit is reached at ΔT ≈ 93.4 °C. At ΔT = 85 °C, Nastran gives 82.5 MPa, below the 85 MPa yield strength; at ΔT = 100 °C, the stress rises to 97 MPa and the part yields. Then come conduction and convection: for a single wall, the computed outer-face temperature (118 °C) matches the analytical solution (117.9 °C).",
+      },
+      {
+        fr: "Le dernier exercice est le mur d'un four industriel en trois couches (briques réfractaires, briques de kaolin, briques ordinaires). Le calcul analytique donne l'épaisseur de kaolin (38,7 cm), qui porte à elle seule environ 85 % de la résistance thermique. Le mur est modélisé deux fois, en barres 1D (15 éléments) et en volume 3D (140 éléments) : les deux donnent 51,7 °C sur la face extérieure avec convection. Le modèle 3D coûte seize fois plus de degrés de liberté pour le même résultat, d'où la leçon du TP : adapter le modèle à la physique du problème.",
+        en: "The last exercise is the wall of an industrial furnace made of three layers (refractory bricks, kaolin bricks, ordinary bricks). The analytical calculation gives the kaolin thickness (38.7 cm), which alone carries about 85% of the thermal resistance. The wall is modelled twice, with 1D bars (15 elements) and as a 3D solid (140 elements): both give 51.7 °C on the outer face with convection. The 3D model needs sixteen times more degrees of freedom for the same result, hence the lesson of the lab: fit the model to the physics of the problem.",
+      },
+      {
+        fr: "La soutenance de fin de module reprenait ce type de calcul sur un mur bicouche (9 cm puis 5 cm, de conductivités 4 et 2 W/m·°C), à 28 °C côté intérieur et refroidi par convection (h = 23 W/m²·°C, air à 20 °C). Les modèles 1D et 3D donnent 23,8 °C sur la face extérieure, comme le calcul par résistances thermiques en série.",
+        en: "The end-of-module assessment applied this kind of calculation to a two-layer wall (9 cm then 5 cm, with conductivities of 4 and 2 W/m·°C), at 28 °C on the inside and cooled by convection (h = 23 W/m²·°C, air at 20 °C). The 1D and 3D models both give 23.8 °C on the outer face, as does the series thermal-resistance calculation.",
+      },
+    ],
+    facts: [
+      { label: { fr: "Logiciels", en: "Software" }, value: { fr: "Patran 2024, MSC Nastran", en: "Patran 2024, MSC Nastran" } },
+      { label: { fr: "Éléments", en: "Elements" }, value: { fr: "Barres, poutres, coques, volumes", en: "Rods, beams, shells, solids" } },
+      { label: { fr: "Analyses", en: "Analyses" }, value: { fr: "Statique linéaire, thermique stationnaire", en: "Linear static, steady-state thermal" } },
+      { label: { fr: "Binôme", en: "Partner" }, value: { fr: "Avec C. Planchon", en: "With C. Planchon" } },
+    ],
+    tags: tg("Patran", "Nastran", "éléments finis|finite elements", "calcul de structures|structural analysis", "thermique|heat transfer"),
+    image: "/images/projects/elements-finis/cylindre-von-mises.jpg",
+    imageFit: "contain",
+    imageCredit: { fr: "Cylindre creux chauffé de 100 °C : contrainte de Von Mises, maximale à l'encastrement", en: "Hollow cylinder heated by 100 °C: Von Mises stress, highest at the clamped end" },
+    images: [
+      { src: "/images/projects/elements-finis/cylindre-deplacement.jpg", caption: { fr: "Même cylindre : déplacement, nul à l'encastrement et maximal au bout libre", en: "Same cylinder: displacement, zero at the clamped end and highest at the free end" } },
+      { src: "/images/projects/elements-finis/plaque-trouee-von-mises.jpg", caption: { fr: "Plaque trouée en traction : la contrainte se concentre au bord du trou", en: "Plate with a hole under tension: the stress concentrates at the edge of the hole" } },
+      { src: "/images/projects/elements-finis/chape-von-mises.jpg", caption: { fr: "Chape en flexion, maillage HEX20 : contrainte de Von Mises, maximale au bord de l'alésage", en: "Lug in bending, HEX20 mesh: Von Mises stress, highest at the edge of the bore" } },
+      { src: "/images/projects/elements-finis/mur-temperature.jpg", caption: { fr: "Mur simple : 350 °C à gauche, convection à droite", en: "Single wall: 350 °C on the left, convection on the right" } },
+      { src: "/images/projects/elements-finis/mur-profil.jpg", caption: { fr: "Profil de température linéaire dans l'épaisseur du mur", en: "Linear temperature profile through the wall" } },
+      { src: "/images/projects/elements-finis/four-3d-convection.jpg", caption: { fr: "Mur de four en trois couches, modèle 3D avec convection", en: "Three-layer furnace wall, 3D model with convection" } },
+    ],
+    documents: [
+      { name: { fr: "Rapport du TP 1 : poutre creuse en traction et en flexion (en anglais)", en: "Lab 1 report: hollow beam in tension and bending" }, url: "/documents/elements-finis/TP1_poutre_creuse.pdf" },
+      { name: { fr: "Rapport du TP 2 : plaque mince trouée (en anglais)", en: "Lab 2 report: thin plate with a hole" }, url: "/documents/elements-finis/TP2_plaque_trouee.pdf" },
+      { name: { fr: "Rapport du TP 3 : chape en flexion, rédigé par C. Planchon (en anglais)", en: "Lab 3 report: lug in bending, written by C. Planchon" }, url: "/documents/elements-finis/TP3_chape_flexion.pdf" },
+      { name: { fr: "Rapport du TP 4 : analyse thermique (en anglais)", en: "Lab 4 report: thermal analysis" }, url: "/documents/elements-finis/TP4_analyse_thermique_elements_finis.pdf" },
     ],
   },
   {
@@ -1161,7 +1263,7 @@ export const projectThemes: { id: string; title: T; slugs: string[] }[] = [
   {
     id: "propulsion",
     title: { fr: "Propulsion et mécanique des fluides", en: "Propulsion and fluid mechanics" },
-    slugs: ["propulsion-nucleaire", "tuyere-laval", "mecanique-fluides-ncku", "cfd-naca-cylindre"],
+    slugs: ["propulsion-nucleaire", "tuyere-laval", "eolienne-savonius", "mecanique-fluides-ncku", "cfd-naca-cylindre"],
   },
   {
     id: "conception",
@@ -1171,7 +1273,7 @@ export const projectThemes: { id: string; title: T; slugs: string[] }[] = [
   {
     id: "modelisation",
     title: { fr: "Modélisation, calcul et automatique", en: "Modelling, computation and control" },
-    slugs: ["equation-chaleur", "dynamique-aeronefs", "optimisation-convexe", "statistiques", "analyse-harmonique"],
+    slugs: ["equation-chaleur", "elements-finis", "dynamique-aeronefs", "optimisation-convexe", "statistiques", "analyse-harmonique"],
   },
 ];
 
