@@ -625,6 +625,7 @@ export const projects: Project[] = [
         },
       },
     ],
+    videos: ["/images/projects/simulating-black-hole/trou-noir-simulations.mp4"],
   },
   {
     slug: "mecanique-fluides-ncku",
