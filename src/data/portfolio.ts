@@ -628,6 +628,59 @@ export const projects: Project[] = [
     videos: ["/images/projects/simulating-black-hole/trou-noir-simulations.mp4"],
   },
   {
+    slug: "trou-de-ver",
+    title: { fr: "Voir à travers un trou de ver", en: "Seeing through a wormhole" },
+    kind: { fr: "Projet personnel", en: "Personal project" },
+    period: { fr: "Octobre 2026", en: "October 2026" },
+    status: "done",
+    description: {
+      fr: "La suite du trou noir : un simulateur temps réel de ce que verrait un observateur devant un trou de ver, accompagné d'un rapport qui redémontre la physique et vérifie le simulateur image par image.",
+      en: "The follow-up to the black hole: a real-time simulator of what an observer would see in front of a wormhole, with a report that re-derives the physics and checks the simulator image by image.",
+    },
+    content: [
+      {
+        fr: "Un trou de ver est un tunnel de l'espace-temps qui relie deux régions, ici deux univers A et B. J'ai étudié deux formes de tunnel avec la métrique de Morris et Thorne : celle d'Ellis, la plus simple, et le modèle Dneg construit pour Interstellar (James, von Tunzelmann, Franklin et Thorne, 2015). Le résultat central est simple : un rayon lumineux traverse le tunnel si et seulement si son paramètre d'impact est plus petit que le rayon de la gorge. On voit donc le ciel de l'autre univers dans un disque dont on peut prédire la taille, entouré d'anneaux qui sont des images multiples du ciel local.",
+        en: "A wormhole is a spacetime tunnel connecting two regions, here two universes A and B. I studied two tunnel shapes with the Morris–Thorne metric: Ellis's, the simplest, and the Dneg model built for Interstellar (James, von Tunzelmann, Franklin and Thorne, 2015). The central result is simple: a light ray goes through the tunnel if and only if its impact parameter is smaller than the throat radius. So the other universe's sky is seen inside a disk whose size can be predicted, surrounded by rings that are multiple images of the local sky.",
+      },
+      {
+        fr: "Le simulateur reprend le principe du trou noir : un rayon par pixel, environ un million par image, intégré en Runge-Kutta d'ordre 4 dans un shader GLSL, à 30–45 images par seconde. Deux choix numériques comptent. Les coordonnées sphériques deviennent singulières sur l'axe polaire, comme le blocage de cardan des angles d'Euler : je décris donc chaque rayon par un vecteur unitaire et son moment cinétique, comme on passe aux quaternions. Et pour Dneg, dont la courbure saute au bout de la gorge, chaque pas s'arrête exactement sur ce saut, ce qui garde l'ordre 4 de la méthode.",
+        en: "The simulator uses the black hole's principle: one ray per pixel, about a million per frame, integrated with fourth-order Runge-Kutta in a GLSL shader, at 30–45 frames per second. Two numerical choices matter. Spherical coordinates become singular on the polar axis, like gimbal lock with Euler angles: so I describe each ray by a unit vector and its angular momentum, just as one switches to quaternions. And for Dneg, whose curvature jumps at the end of the throat, every step stops exactly on that jump, which keeps the method fourth-order.",
+      },
+      {
+        fr: "Une version avancée ajoute un potentiel gravitationnel, la rotation du tunnel (entraînement des référentiels), un vaisseau relativiste avec aberration et effet Doppler, et un disque de gaz, affiché seulement quand des orbites stables existent : sans rotation, la dernière orbite stable est en r = 2m. Le rapport montre aussi qu'un tunnel exige de la matière d'énergie négative, de l'ordre de la masse de Jupiter pour une gorge d'un mètre, et étudie les forces de marée que subirait un voyageur.",
+        en: "An advanced version adds a gravitational potential, rotation of the tunnel (frame dragging), a relativistic ship with aberration and Doppler shift, and a gas disk, shown only when stable orbits exist: without rotation, the innermost stable orbit is at r = 2m. The report also shows that a tunnel requires negative-energy matter, about the mass of Jupiter for a one-metre throat, and studies the tidal forces a traveller would feel.",
+      },
+      {
+        fr: "Tout est vérifié. L'angle de déviation calculé colle à la formule exacte d'Ellis à 1,5 × 10⁻⁸ rad près, et la convergence suit bien l'ordre 4. Surtout, un script mesure automatiquement sur les images le bord du tunnel et l'anneau d'Einstein, puis les compare aux prédictions analytiques : 7,81° mesuré pour 7,80° prévu, 14,06° pour 13,98°, soit un écart inférieur au pixel.",
+        en: "Everything is checked. The computed deflection angle matches Ellis's exact formula to within 1.5 × 10⁻⁸ rad, and convergence follows fourth order. Above all, a script automatically measures the tunnel edge and the Einstein ring on the images and compares them with the analytical predictions: 7.81° measured for 7.80° predicted, 14.06° for 13.98°, an error below one pixel.",
+      },
+    ],
+    facts: [
+      { label: { fr: "Modèles", en: "Models" }, value: { fr: "Ellis et Dneg (Interstellar)", en: "Ellis and Dneg (Interstellar)" } },
+      { label: { fr: "Méthode", en: "Method" }, value: { fr: "Ray tracing inverse, RK4, shader GLSL", en: "Backward ray tracing, RK4, GLSL shader" } },
+      { label: { fr: "Rendu", en: "Rendering" }, value: { fr: "≈ 1 million de rayons, 30–45 images/s", en: "≈ 1 million rays, 30–45 fps" } },
+      { label: { fr: "Validation", en: "Validation" }, value: { fr: "Écart aux prédictions < 1 pixel", en: "Error vs predictions < 1 pixel" } },
+    ],
+    tags: tg("Python", "OpenGL", "GLSL", "RK4", "relativité générale|general relativity", "ray tracing", "SciPy", "SymPy"),
+    image: "/images/projects/trou-de-ver/rendu_vue_A.jpg",
+    imageCredit: {
+      fr: "Le trou de ver Dneg vu à huit rayons de gorge : le disque central est le ciel de l'autre univers. Ciels : ESO/S. Brunier (CC BY 4.0) et NASA/GSFC SVS Deep Star Maps",
+      en: "The Dneg wormhole seen from eight throat radii: the central disk is the other universe's sky. Skies: ESO/S. Brunier (CC BY 4.0) and NASA/GSFC SVS Deep Star Maps",
+    },
+    images: [
+      { src: "/images/projects/trou-de-ver/rendu_traversee_1.jpg", caption: { fr: "En approchant, à 2,5 rayons de gorge : le tunnel occupe une grande partie du champ", en: "Getting closer, at 2.5 throat radii: the tunnel fills much of the view" } },
+      { src: "/images/projects/trou-de-ver/rendu_disque_photo.jpg", caption: { fr: "Version avancée : disque de gaz en orbite autour du tunnel Dneg, avec un potentiel m = 0,8", en: "Advanced version: gas disk orbiting the Dneg tunnel, with a potential m = 0.8" } },
+      { src: "/images/projects/trou-de-ver/rendu_couverture.jpg", caption: { fr: "Le disque de gaz et les anneaux du ciel local, vus dans le simulateur", en: "The gas disk and the rings of the local sky, seen in the simulator" } },
+      { src: "/images/projects/trou-de-ver/annote_compare_grille.jpg", caption: { fr: "Validation sur une grille de test, Ellis à gauche et Dneg à droite : le repère magenta placé derrière le tunnel forme l'anneau d'Einstein prédit", en: "Validation on a test grid, Ellis on the left and Dneg on the right: the magenta marker behind the tunnel forms the predicted Einstein ring" } },
+      { src: "/images/projects/trou-de-ver/plongement.jpg", caption: { fr: "Diagrammes de plongement : la forme du tunnel pour Ellis et pour Dneg", en: "Embedding diagrams: the tunnel's shape for Ellis and for Dneg" } },
+      { src: "/images/projects/trou-de-ver/maree.jpg", caption: { fr: "Forces de marée le long du tunnel et vitesse de traversée supportable", en: "Tidal forces along the tunnel and survivable crossing speed" } },
+    ],
+    videos: ["/images/projects/trou-de-ver/trou-de-ver-traversee.mp4"],
+    documents: [
+      { name: { fr: "Rapport (30 pages)", en: "Report (30 pages, French)" }, url: "/documents/trou-de-ver/Rapport_trous_de_ver.pdf" },
+    ],
+  },
+  {
     slug: "mecanique-fluides-ncku",
     title: { fr: "Souffleries et sillages à Taïwan", en: "Wind tunnels and wakes in Taiwan" },
     kind: { fr: "Travaux pratiques, semestre d'échange à NCKU", en: "Lab course, exchange semester at NCKU" },
@@ -1254,7 +1307,7 @@ export const projectThemes: { id: string; title: T; slugs: string[] }[] = [
   {
     id: "astronomie",
     title: { fr: "Astronomie et mécanique céleste", en: "Astronomy and celestial mechanics" },
-    slugs: ["2007-vw266", "gaia-606", "estimation-trajectoire", "trou-noir"],
+    slugs: ["2007-vw266", "gaia-606", "estimation-trajectoire", "trou-noir", "trou-de-ver"],
   },
   {
     id: "missions",
