@@ -612,6 +612,7 @@ export const projects: Project[] = [
     imageFit: "contain",
     imageCredit: { fr: "Lignes de courant à 25 m/s : l'air descend en spirale le long des parois, puis remonte au centre vers la sortie", en: "Streamlines at 25 m/s: air spirals down along the walls, then rises through the centre to the outlet" },
     images: [
+      { src: "/images/projects/cyclone/traceurs-25ms.gif", caption: { fr: "Animation des traceurs à 25 m/s : l'air entre par le côté, descend en spirale puis remonte par le tube central", en: "Tracer animation at 25 m/s: air enters from the side, spirals down, then rises through the central tube" } },
       { src: "/images/projects/cyclone/pression-3-vitesses.jpg", caption: { fr: "Pression dans un plan de coupe aux trois vitesses : même allure, mais des valeurs qui croissent comme le carré de la vitesse", en: "Pressure in a cross-section at the three velocities: same pattern, but values growing as the square of the velocity" } },
       { src: "/images/projects/cyclone/vitesse-profondeur.jpg", caption: { fr: "Vitesse verticale à 10 m/s, avec le tube de sortie à 0,2 m puis à 0,35 m", en: "Vertical velocity at 10 m/s, with the outlet tube at 0.2 m, then 0.35 m" } },
       { src: "/images/projects/cyclone/maillage.jpg", caption: { fr: "Le maillage polyédrique, avec l'entrée rectangulaire et le tube de sortie", en: "The polyhedral mesh, with the rectangular inlet and the outlet tube" } },
