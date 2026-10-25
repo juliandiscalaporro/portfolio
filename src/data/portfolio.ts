@@ -577,6 +577,47 @@ export const projects: Project[] = [
     ],
   },
   {
+    slug: "cyclone",
+    title: { fr: "Écoulement tourbillonnaire dans un cyclone", en: "Swirling flow in a cyclone separator" },
+    kind: { fr: "TP de mécanique des fluides numérique", en: "Computational fluid dynamics lab" },
+    period: { fr: "Février 2026", en: "February 2026" },
+    status: "done",
+    description: {
+      fr: "Dessiner, mailler et simuler sous STAR-CCM+ un séparateur cyclonique, puis voir comment l'écoulement réagit à la vitesse d'entrée et à la longueur du tube de sortie.",
+      en: "Drawing, meshing and simulating a cyclone separator in STAR-CCM+, then seeing how the flow responds to the inlet velocity and to the length of the outlet tube.",
+    },
+    content: [
+      {
+        fr: "Un cyclone sépare les particules d'un gaz sans filtre : l'air entre tangentiellement dans un corps cylindro-conique, tourne en spirale en descendant le long des parois, puis remonte au centre pour sortir par un tube plongé par le haut. C'était mon premier TP sous STAR-CCM+, avec toute la chaîne de calcul : une CAO paramétrée, où la profondeur du tube de sortie est un paramètre de conception, un maillage polyédrique de 36 000 cellules, puis un calcul stationnaire, incompressible et turbulent avec le modèle k-ω.",
+        en: "A cyclone separates particles from a gas without a filter: air enters tangentially into a cylindrical-conical body, spirals down along the walls, then rises through the centre and leaves through a tube inserted from the top. It was my first lab in STAR-CCM+, covering the whole workflow: a parametric CAD model, where the depth of the outlet tube is a design parameter, a 36,000-cell polyhedral mesh, then a steady, incompressible, turbulent computation with the k-ω model.",
+      },
+      {
+        fr: "Les lignes de courant montrent bien la double spirale : un tourbillon extérieur qui descend et un tourbillon central qui remonte vers la sortie. La pression est forte contre les parois et faible au centre, sous l'effet de la rotation. J'ai lancé le calcul pour trois vitesses d'entrée : la surpression maximale passe d'environ 100 Pa à 5 m/s à 450 Pa à 10 m/s, puis 3 100 Pa à 25 m/s. Elle croît à peu près comme le carré de la vitesse, ce qu'on attend d'une pression dynamique.",
+        en: "The streamlines clearly show the double spiral: an outer vortex going down and a central vortex rising towards the outlet. Pressure is high against the walls and low at the centre, because of the rotation. I ran the computation for three inlet velocities: the maximum overpressure goes from about 100 Pa at 5 m/s to 450 Pa at 10 m/s, then 3,100 Pa at 25 m/s. It grows roughly as the square of the velocity, as expected for a dynamic pressure.",
+      },
+      {
+        fr: "Enfin, j'ai modifié le paramètre de conception dans la CAO pour faire plonger le tube de sortie à 0,35 m au lieu de 0,2 m, puis remaillé et relancé le calcul à 10 m/s. Le tube descend alors jusqu'au début du cône, et la surpression maximale monte légèrement, à environ 490 Pa.",
+        en: "Finally, I changed the design parameter in the CAD model so that the outlet tube goes down to 0.35 m instead of 0.2 m, then re-meshed and ran the computation again at 10 m/s. The tube then reaches the start of the cone, and the maximum overpressure rises slightly, to about 490 Pa.",
+      },
+    ],
+    facts: [
+      { label: { fr: "Logiciel", en: "Software" }, value: { fr: "STAR-CCM+", en: "STAR-CCM+" } },
+      { label: { fr: "Modèle", en: "Model" }, value: { fr: "Stationnaire, k-ω", en: "Steady, k-ω" } },
+      { label: { fr: "Vitesses d'entrée", en: "Inlet velocities" }, value: { fr: "5, 10 et 25 m/s", en: "5, 10 and 25 m/s" } },
+      { label: { fr: "Maillage", en: "Mesh" }, value: { fr: "≈ 36 000 cellules", en: "≈ 36,000 cells" } },
+      { label: { fr: "Tube de sortie", en: "Outlet tube" }, value: { fr: "0,2 puis 0,35 m", en: "0.2, then 0.35 m" } },
+    ],
+    tags: tg("STAR-CCM+", "CFD", "CAO paramétrée|parametric CAD", "écoulement tourbillonnaire|swirling flow"),
+    image: "/images/projects/cyclone/lignes-courant-25ms.jpg",
+    imageFit: "contain",
+    imageCredit: { fr: "Lignes de courant à 25 m/s : l'air descend en spirale le long des parois, puis remonte au centre vers la sortie", en: "Streamlines at 25 m/s: air spirals down along the walls, then rises through the centre to the outlet" },
+    images: [
+      { src: "/images/projects/cyclone/pression-3-vitesses.jpg", caption: { fr: "Pression dans un plan de coupe aux trois vitesses : même allure, mais des valeurs qui croissent comme le carré de la vitesse", en: "Pressure in a cross-section at the three velocities: same pattern, but values growing as the square of the velocity" } },
+      { src: "/images/projects/cyclone/vitesse-profondeur.jpg", caption: { fr: "Vitesse verticale à 10 m/s, avec le tube de sortie à 0,2 m puis à 0,35 m", en: "Vertical velocity at 10 m/s, with the outlet tube at 0.2 m, then 0.35 m" } },
+      { src: "/images/projects/cyclone/maillage.jpg", caption: { fr: "Le maillage polyédrique, avec l'entrée rectangulaire et le tube de sortie", en: "The polyhedral mesh, with the rectangular inlet and the outlet tube" } },
+    ],
+  },
+  {
     slug: "trou-noir",
     title: { fr: "Simuler un trou noir", en: "Simulating a black hole" },
     kind: { fr: "Projet personnel", en: "Personal project" },
@@ -1317,7 +1358,7 @@ export const projectThemes: { id: string; title: T; slugs: string[] }[] = [
   {
     id: "propulsion",
     title: { fr: "Propulsion et mécanique des fluides", en: "Propulsion and fluid mechanics" },
-    slugs: ["propulsion-nucleaire", "tuyere-laval", "eolienne-savonius", "mecanique-fluides-ncku", "cfd-naca-cylindre"],
+    slugs: ["propulsion-nucleaire", "tuyere-laval", "eolienne-savonius", "cyclone", "mecanique-fluides-ncku", "cfd-naca-cylindre"],
   },
   {
     id: "conception",
